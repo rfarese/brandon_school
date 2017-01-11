@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'capybara'

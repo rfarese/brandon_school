@@ -5,4 +5,6 @@ RSpec.describe House, type: :model do
   it { should_not have_valid(:name).when(nil, "") }
 
   it { should have_many(:users).through(:permissions) }
+  it { should have_many(:rooms) }
+  it { should have_many(:tours) }
 end
