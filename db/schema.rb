@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111141358) do
+ActiveRecord::Schema.define(version: 20170111163624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170111141358) do
 
   add_index "permissions", ["house_id"], name: "index_permissions_on_house_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "house_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",                null: false
