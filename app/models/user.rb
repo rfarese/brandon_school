@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :role, inclusion: { in: %w(admin overnight_staff) }, presence: true
-  has_many :houses
+  has_many :permissions
+  has_many :houses, through: :permissions
 
   def email_required?
     false

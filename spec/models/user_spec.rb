@@ -6,6 +6,8 @@ RSpec.describe User, type: :model do
 
   it { should have_valid(:role).when("admin", "overnight_staff") }
   it { should_not have_valid(:role).when(nil, "", "super admin", "staff", "overnight staff") }
+
+  it { should have_many(:houses).through(:permissions) }
   
   it 'has a matching password confirmation for the password' do
     user = User.new
