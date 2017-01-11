@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
   belongs_to :house
-  validates :name, presence: true 
+  has_many :beds 
+  validates :name, presence: true
 end
