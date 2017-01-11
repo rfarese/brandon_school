@@ -1,0 +1,6 @@
+<%= simple_form_for @tour do |f| %>
+  <%= f.input :house_id, collection: @houses %>
+  <%= f.input :selfie, label: "Take a Selfie", as: :file %>
+
+  <%= f.button :submit, value: "Upload" %>
+<% end %>
