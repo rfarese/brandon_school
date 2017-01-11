@@ -1,5 +1,5 @@
 class House < ActiveRecord::Base
-  belongs_to :user
+  has_many :permissions
+  has_many :users, through: :permissions
   validates :name, presence: true
-  validates :user_id, presence: true 
 end
