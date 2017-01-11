@@ -5,4 +5,5 @@ RSpec.describe Room, type: :model do
   it { should_not have_valid(:name).when(nil, "") }
 
   it { should belong_to(:house) }
+  it { should have_many(:beds) }
 end
