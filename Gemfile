@@ -9,6 +9,7 @@ gem 'foundation-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'carrierwave'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'capybara'
