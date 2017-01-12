@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "QR scan code;", type: :feature do
+RSpec.feature "User views QR code scanner;", type: :feature do
   let(:permission) { FactoryGirl.create(:permission) }
   let(:user) { permission.user }
   let(:house) { permission.house }
