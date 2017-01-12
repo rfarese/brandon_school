@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User scans a QR code;", type: :feature do
+RSpec.feature "QR scan code;", type: :feature do
   let(:permission) { FactoryGirl.create(:permission) }
   let(:user) { permission.user }
   let(:house) { permission.house }
@@ -10,5 +10,6 @@ RSpec.feature "User scans a QR code;", type: :feature do
     navigate_to_qrcode_scanner(house)
 
     expect(current_path).to eq(new_qrcode_scan_path)
+    expect(page).to have_content("Scan a QR Code")
   end
 end
