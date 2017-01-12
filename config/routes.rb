@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "homes#index"
   resources :tours, only: [:new, :create]
   resource :qrcode_scan, only: [:new]
+  resources :rooms, only: [:new, :create]
 end
