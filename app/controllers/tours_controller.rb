@@ -9,7 +9,7 @@ class ToursController < ApplicationController
     tour = Tour.new(tour_params)
     tour.status = "incomplete"
     tour.save
-    redirect_to root_path
+    redirect_to new_qrcode_scan_path 
   end
 
   private

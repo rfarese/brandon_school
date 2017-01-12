@@ -1,0 +1,2 @@
+class QrcodeScan
+end
