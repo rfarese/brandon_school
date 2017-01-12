@@ -20,8 +20,6 @@ group :development, :test do
   gem 'shoulda'
   gem 'valid_attribute'
   gem 'database_cleaner'
-  gem 'jasmine'
-  gem 'poltergeist'
   gem 'dotenv-rails'
 end
 
