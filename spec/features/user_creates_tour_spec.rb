@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "User creates a tour;", type: :feature do
   let(:permission) { FactoryGirl.create(:permission) }
   let(:user) { permission.user }
-  let(:house) {permission.house }
+  let(:house) { permission.house }
 
   scenario "user views link to create a new tour" do
     sign_in(user)

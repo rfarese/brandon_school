@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'carrierwave'
 gem 'fog-aws'
+gem 'rqrcode'
 
 group :development, :test do
   gem 'capybara'
