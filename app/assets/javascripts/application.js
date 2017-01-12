@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require qrcode.js/dist/qrcode
 //= require foundation
 //= require_tree .
 

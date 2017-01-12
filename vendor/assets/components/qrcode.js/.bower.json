@@ -1,0 +1,41 @@
+{
+  "name": "qrcode.js",
+  "description": "Javascript library to read QR codes in the browser",
+  "main": "dist/qrcode.js",
+  "authors": [
+    "@iagolast"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "HTML5",
+    "javascript",
+    "QR",
+    "webQR",
+    "WebRTC"
+  ],
+  "homepage": "https://github.com/IagoLast/qrcodejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib",
+    "manual",
+    "src",
+    "gulpfile.js",
+    "index.html",
+    "README.md"
+  ],
+  "version": "1.2.2",
+  "_release": "1.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.2",
+    "commit": "6f75d470f502a27769dca92d22c8fa52de9f4c96"
+  },
+  "_source": "https://github.com/IagoLast/qrcodejs.git",
+  "_target": "^1.2.2",
+  "_originalSource": "qrcode-reader.js",
+  "_direct": true
+}

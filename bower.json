@@ -1,0 +1,21 @@
+{
+  "name": "brandon_school",
+  "homepage": "https://github.com/rfarese/brandon_school",
+  "authors": [
+    "Robert Farese <robertfarese@yahoo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "qrcode.js": "qrcode-reader.js#^1.2.2"
+  }
+}
