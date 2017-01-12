@@ -1,6 +1,7 @@
 class Room < ActiveRecord::Base
   belongs_to :house
   has_many :beds
+  has_many :student_checks, as: :checkable
   has_one :qrcode
   validates :name, presence: true
   after_save :create_new_qr_code
