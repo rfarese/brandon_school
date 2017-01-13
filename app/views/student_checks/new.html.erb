@@ -1,9 +1,1 @@
-<% @checks.each do |check| %>
-  <h4>Student Check for: <%= check.student %></h4>
-  <%= simple_form_for check do |f| %>
-    <%= f.input :status %>
-    <%= f.input :comment, as: :text %>
-
-    <%= f.button :submit %>
-  <% end %>
-<% end %>
+<h1>New student checks</h1>

@@ -17,3 +17,6 @@
 
 # Ignore Bower Components
 /bower_components/
+
+# Ignore Public Uploads
+/public/uploads
