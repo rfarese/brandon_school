@@ -1,6 +1,23 @@
+function generateStudentChecks(room_identifier) {
+	var request = $.ajax( {
+	  method: "POST",
+	  url: "http://localhost:3000/generate_student_checks",
+		data: {
+			student_check: {
+				room_id: room_identifier
+			}
+		}
+	});
+
+	request.done(function(data) {
+		console.log(data)
+	});
+}
+
 function onSuccess(data) {
 		document.getElementById('video').setAttribute("style", "border: 3px solid #52e250");
 		console.log('Sucess:', data);
+		generateStudentChecks(data)
 }
 
 function onError(err) {

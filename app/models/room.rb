@@ -13,4 +13,12 @@ class Room < ActiveRecord::Base
     qr_code.save
     self.qrcode = qr_code
   end
+
+  def students
+    s = []
+    self.beds.each do |bed|
+      s << bed.student if bed.student
+    end
+    s
+  end 
 end
