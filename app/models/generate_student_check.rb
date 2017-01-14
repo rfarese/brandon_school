@@ -1,9 +1,9 @@
 class GenerateStudentCheck
-  attr_reader :room_id, :student_checks
+  attr_reader :room_id, :checks_and_initials
 
   def initialize(room_id)
     @room_id = room_id
-    @student_checks = []
+    @checks_and_initials = []
   end
 
   def room
@@ -14,10 +14,12 @@ class GenerateStudentCheck
     room.students
   end
 
-  def build
+  def generate
     students.each do |student|
-      student_checks << StudentCheck.create(student_id: student.id, status: "asleep")
+      student_check = StudentCheck.create(student_id: student.id, status: "asleep")
+      check_and_initials = { check: student_check, initials: student.initials }
+      checks_and_initials << check_and_initials
     end
-    student_checks
+    checks_and_initials
   end
 end

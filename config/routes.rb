@@ -5,11 +5,6 @@ Rails.application.routes.draw do
   resource :qrcode_scan, only: [:new]
   resources :rooms, only: [:new, :create]
 
-  namespace :api do
-    namespace :v1 do
-      resources :student_checks, only: [:update]
-    end
-  end
-
   post 'generate_student_checks' => 'api/v1/student_checks#generate'
+  put 'update_student_checks' => 'api/v1/student_checks#update'
 end

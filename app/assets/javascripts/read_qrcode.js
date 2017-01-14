@@ -10,8 +10,18 @@ function generateStudentChecks(room_identifier) {
 	});
 
 	request.done(function(data) {
-		debugger;
-		console.log(data);
+		var students = data.student_checks
+		var form = $(".student-check-form");
+		form.show();
+
+		for (var i = 0; i < students.length; i++) {
+			student = students[i]
+			if (i === 0 ) {
+				addStudentToForm(student)
+			} else {
+				createStudentForm(student)
+			};
+		};
 	});
 }
 
