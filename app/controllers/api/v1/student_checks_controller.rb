@@ -1,29 +1,17 @@
 class Api::V1::StudentChecksController < ApplicationController
-  # NOTE - need to remove the polymorphic relationship for students checks
-  # and add student has_many student checks and student check belongs_to student
+  def generate
+    generate_student_checks = GenerateStudentCheck.new(generate_student_check_params[:room_id])
+    student_checks = generate_student_checks.build
 
-  def generate_student_checks
-    room = Room.find(generate_student_checks_params[:room_id])
-    students = room.students
-    @student_checks = []
-
-    students.each do |student|
-      @student_checks << StudentCheck.new(checkable: student)
-    end
-
-    render 'student_checks/new'
-    # redirect_to new_student_check_path(student_checks: @student_checks.to_json)
+    render json: { student_checks: student_checks }
   end
 
-  def create
+  def update
   end
 
   private
-  def generate_student_checks_params
-    params.require(:student_check).permit(:room_id)
-  end
 
-  def student_check_params
-    params.require(:student_check).permit()
+  def generate_student_check_params
+    params.require(:student_check).permit(:room_id)
   end
 end

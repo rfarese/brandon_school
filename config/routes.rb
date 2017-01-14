@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :student_checks, only: [:create]
+      resources :student_checks, only: [:update]
     end
   end
 
-  post 'generate_student_checks' => 'api/v1/student_checks'
-  resources :student_checks, only: [:new]
+  post 'generate_student_checks' => 'api/v1/student_checks#generate'
 end

@@ -10,7 +10,8 @@ function generateStudentChecks(room_identifier) {
 	});
 
 	request.done(function(data) {
-		console.log(data)
+		debugger;
+		console.log(data);
 	});
 }
 
