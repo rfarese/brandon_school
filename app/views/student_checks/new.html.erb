@@ -4,7 +4,7 @@
 
 <div class="student-check-container">
   <h2 class='student-initials'>Student: </h2>
-  <form class='student-check-form' action='http://localhost:3000/update_student_checks', method="post">
+  <form class='student-check-form' data-remote="true" action='http://localhost:3000/update_student_checks', method='post'>
     <input name='_method' type='hidden' value='put' />
     <input id='student_check_id' type='hidden' name='student_check[id]' type='text'/>
     <div class='row'>
