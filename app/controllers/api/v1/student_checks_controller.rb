@@ -10,13 +10,14 @@ class Api::V1::StudentChecksController < ApplicationController
 
   def update
     student_check = StudentCheck.find(student_check_params[:id])
+
     if student_check.update(student_check_params)
       notice = "Student Check Complete"
     else
       notice = "There was an error with your Student Check"
     end
-    student_check_id = student_check_params[:id]
 
+    student_check_id = student_check_params[:id]
     render json: { notice: notice, student_check_id: student_check_id }
   end
 
