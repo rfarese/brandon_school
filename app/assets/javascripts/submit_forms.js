@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  // $("body").on("click", ".student-check-submit-button", function(event) {
+
   $( "form" ).submit(function( event ) {
     debugger;
     var form_data = ( $( this ).serializeArray() );
