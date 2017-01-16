@@ -20,11 +20,16 @@ $(document).ready(function() {
     });
 
     request.done(function(data) {
-      // figure out if all the forms have been completed
-        // if so, then send a get request to scan a new QR code 
+      formsSubmitted += 1
+
+      if (formsSubmitted === studentQuantity) {
+        location.reload(); 
+        // update tour to specify that this room check is complete
+        // check to see if there are any more rooms to check
+        // if there are more rooms, refresh the current page
+      }
       form.hide();
       noticeElement.append(data.notice);
-      roomComplete
     });
   });
 });

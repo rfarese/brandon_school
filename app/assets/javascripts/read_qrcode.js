@@ -11,6 +11,8 @@ function generateStudentChecks(room_identifier) {
 
 	request.done(function(data) {
 		var students = data.student_checks
+		studentQuantity = students.length
+		formsSubmitted = 0; 
 		var form = $(".student-check-form");
 		form.show();
 
