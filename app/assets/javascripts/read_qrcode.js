@@ -1,12 +1,9 @@
-function generateStudentChecks(room_identifier) {
+function generateStudentChecks(data) {
 	var request = $.ajax( {
 	  method: "POST",
 	  url: "http://localhost:3000/generate_student_checks",
 		data: {
-			student_check: {
-				room_id: room_identifier
-				// add tour id and bind student checks to tour 
-			}
+			student_check: data
 		}
 	});
 
@@ -31,7 +28,9 @@ function generateStudentChecks(room_identifier) {
 function onSuccess(data) {
 		document.getElementById('video').setAttribute("style", "border: 3px solid #52e250");
 		console.log('Sucess:', data);
-		generateStudentChecks(data)
+		var tourId = $("#tour_id").attr("value");
+		var generatorData = { room_id: data, tour_id: tourId }
+		generateStudentChecks(generatorData)
 }
 
 function onError(err) {

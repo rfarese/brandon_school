@@ -6,6 +6,7 @@ $(document).ready(function() {
     var status = form.find("#student_check_status option:selected").attr("value");
     var comment = form.find("#student_check_comment").val();
     var noticeElement = form.parent().find(".form-notice");
+    debugger; 
 
     var request = $.ajax( {
       method: "PUT",
@@ -23,7 +24,7 @@ $(document).ready(function() {
       formsSubmitted += 1
 
       if (formsSubmitted === studentQuantity) {
-        location.reload(); 
+        location.reload();
         // update tour to specify that this room check is complete
         // check to see if there are any more rooms to check
         // if there are more rooms, refresh the current page
