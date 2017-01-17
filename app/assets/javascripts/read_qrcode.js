@@ -5,6 +5,7 @@ function generateStudentChecks(room_identifier) {
 		data: {
 			student_check: {
 				room_id: room_identifier
+				// add tour id and bind student checks to tour 
 			}
 		}
 	});
@@ -12,7 +13,7 @@ function generateStudentChecks(room_identifier) {
 	request.done(function(data) {
 		var students = data.student_checks
 		studentQuantity = students.length
-		formsSubmitted = 0; 
+		formsSubmitted = 0;
 		var form = $(".student-check-form");
 		form.show();
 

@@ -2,11 +2,14 @@
 
 <video width="320px" height="240px" id="video" autoplay></video>
 
+<h1>Tour Id: <%= @tour.id %></h1>
+
 <div class="student-check-container">
   <h2 class='student-initials'>Student: </h2>
   <form class='student-check-form' data-remote="true" action='http://localhost:3000/update_student_checks', method='post'>
     <input name='_method' type='hidden' value='put' />
     <input id='student_check_id' type='hidden' name='student_check[id]' type='text'/>
+    <input id="tour_id" type="hidden" name="tour[id]" type="text" value="<%= @tour.id %>"/>
     <div class='row'>
       <div class='large-12 columns'>
         <label>Status

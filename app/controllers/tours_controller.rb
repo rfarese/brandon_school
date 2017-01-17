@@ -6,9 +6,9 @@ class ToursController < ApplicationController
   end
 
   def create
-    tour = Tour.new(tour_params)
-    tour.status = "incomplete"
-    tour.save
+    @tour = Tour.new(tour_params)
+    @tour.status = "incomplete"
+    @tour.save
     render 'student_checks/new'
   end
 
