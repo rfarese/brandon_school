@@ -1,6 +1,6 @@
 class Api::V1::StudentChecksController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :update
-  after_action :tour_complete?, only: [:update]
+  # after_action :tour_complete?, only: [:update]
   # after update, check to see if tour is complete
   # if it is complete,
 
@@ -21,7 +21,7 @@ class Api::V1::StudentChecksController < ApplicationController
     end
 
     student_check_id = student_check_params[:id]
-    render json: { notice: notice, student_check_id: student_check_id }
+    render json: { notice: notice, student_check_id: student_check_id, tour_status: tour_complete? }
   end
 
   private
@@ -34,7 +34,12 @@ class Api::V1::StudentChecksController < ApplicationController
     params.require(:student_check).permit(:id, :status, :comment)
   end
 
-  def tour_complete?
+  def tour
+    student_check = StudentCheck.find(student_check_params[:id])
+    student_check.checkable
+  end
 
+  def tour_complete?
+    tour.complete?
   end
 end
