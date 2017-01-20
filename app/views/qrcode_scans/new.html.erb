@@ -1,0 +1,10 @@
+<h1>Scan a QR Code</h1>
+
+<video width="320px" height="240px" id="video" autoplay></video>
+
+<div class="row">
+<%= link_to "Check on Students",
+    generate_student_checks_path(tour_id: @tour.id),
+    class: "button", id: "generate-student-check-button",
+    method: :post %>
+</div>

@@ -1,4 +1,4 @@
 class QrcodeScansController < ApplicationController
   def new
   end
-end 
+end

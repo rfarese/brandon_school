@@ -5,7 +5,7 @@ class Api::V1::StudentChecksController < ApplicationController
   # if it is complete,
 
   def generate
-    @current_tour = Tour.find(generate_student_check_params[:tour_id])
+    @current_tour = Tour.find(params[:tour_id])
     generate_student_checks = GenerateStudentCheck.new(generate_student_check_params)
     @student_checks = generate_student_checks.generate
 
@@ -28,7 +28,7 @@ class Api::V1::StudentChecksController < ApplicationController
   private
 
   def generate_student_check_params
-    params.require(:student_check).permit(:room_id, :tour_id)
+    { room_id: params[:room_id], tour_id: params[:tour_id] }
   end
 
   def student_check_params

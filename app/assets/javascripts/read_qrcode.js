@@ -1,37 +1,46 @@
-function generateStudentChecks(data) {
-	var request = $.ajax( {
-	  method: "POST",
-	  url: "http://localhost:3000/generate_student_checks",
-		data: {
-			student_check: data
-		}
-	});
-
-	request.done(function(data) {
-		// redirect to new student_checks page and populate the forms
-		var students = data.student_checks
-		studentQuantity = students.length
-		formsSubmitted = 0;
-		var form = $(".student-check-form");
-		form.show();
-
-		for (var i = 0; i < students.length; i++) {
-			student = students[i]
-			if (i === 0 ) {
-				addStudentToForm(student)
-			} else {
-				createStudentForm(student)
-			};
-		};
-	});
+function generateStudentCheckButton(room_id) {
+	var button = $("#generate-student-check-button");
+	var path = button.attr("href");
+	path += "&room_id=" + room_id
+	button.attr("href", path);
+	button.show();
 }
+
+// function generateStudentChecks(data) {
+// 	var request = $.ajax( {
+// 	  method: "POST",
+// 	  url: "http://localhost:3000/generate_student_checks",
+// 		data: {
+// 			student_check: data
+// 		}
+// 	});
+//
+// 	request.done(function(data) {
+// 		// redirect to new student_checks page and populate the forms
+// 		var students = data.student_checks
+// 		studentQuantity = students.length
+// 		formsSubmitted = 0;
+// 		var form = $(".student-check-form");
+// 		form.show();
+//
+// 		for (var i = 0; i < students.length; i++) {
+// 			student = students[i]
+// 			if (i === 0 ) {
+// 				addStudentToForm(student)
+// 			} else {
+// 				createStudentForm(student)
+// 			};
+// 		};
+// 	});
+// }
 
 function onSuccess(data) {
 		document.getElementById('video').setAttribute("style", "border: 3px solid #52e250");
 		console.log('Sucess:', data);
-		var tourId = $(".tour_id").text();
-		var generatorData = { room_id: data, tour_id: tourId }
-		generateStudentChecks(generatorData)
+		// var tourId = $(".tour_id").text();
+		// var generatorData = { room_id: data, tour_id: tourId }
+		// generateStudentChecks(generatorData)
+		generateStudentCheckButton(data)
 }
 
 function onError(err) {

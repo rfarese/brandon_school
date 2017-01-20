@@ -1,10 +1,10 @@
 class GenerateStudentCheck
-  attr_reader :room_id, :tour_id, :checks_and_initials
+  attr_reader :room_id, :tour_id, :student_checks
 
   def initialize(args)
     @room_id = args[:room_id]
     @tour_id = args[:tour_id]
-    @checks_and_initials = []
+    @student_checks = []
   end
 
   def room
@@ -27,9 +27,8 @@ class GenerateStudentCheck
     students.each do |student|
       student_check = StudentCheck.create(student_id: student.id, status: "asleep")
       bind_to_tour(student_check)
-      check_and_initials = { check: student_check, initials: student.initials }
-      checks_and_initials << check_and_initials
+      student_checks << student_check
     end
-    checks_and_initials
+    student_checks
   end
 end

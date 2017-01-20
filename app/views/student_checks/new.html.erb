@@ -1,34 +1,3 @@
 <h1>Student Checks</h1>
 
-<div class="student-check-container">
-  <h2 class='student-initials'>Student: </h2>
-  <form class='student-check-form' data-remote="true" action='http://localhost:3000/update_student_checks', method='post'>
-    <input name='_method' type='hidden' value='put' />
-    <input id='student_check_id' type='hidden' name='student_check[id]' type='text'/>
-    <input id='student_check_id' type='hidden' name='student_check[id]' type='text'/>
-    <div class='row'>
-      <div class='large-12 columns'>
-        <label>Status
-          <select class="select optional" name="student_check[status]" id="student_check_status">
-            <option value='asleep'>Asleep</option>
-            <option value='awake'>Awake</option>
-            <option value='bathroom'>Bathroom</option>
-            <option value='pass'>Pass</option>
-            <option value='off_campus'>Off Campus</option>
-            <option value='missing'>Missing</option>
-            <option value='empty'>Empty</option>
-          </select>
-        </label>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='large-12 columns'>
-        <label>
-          <textarea id='student_check_comment' name='student_check[comment]' placeholder='Comments'></textarea>
-        </label>
-      </div>
-    </div>
-    <input class="student-check-submit-button" type='submit' value='Submit'>
-  </form>
-  <p class="form-notice"></p>
-</div>
+<%= render 'forms' %>
