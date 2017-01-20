@@ -1,3 +1,7 @@
+function allFormsComplete() {
+
+}
+
 $(document).ready(function() {
   $("body").on("click", ".student-check-submit-button", function(event) {
     event.preventDefault();
@@ -6,7 +10,6 @@ $(document).ready(function() {
     var status = form.find("#student_check_status option:selected").attr("value");
     var comment = form.find("#student_check_comment").val();
     var noticeElement = form.parent().find(".form-notice");
-    debugger; 
 
     var request = $.ajax( {
       method: "PUT",
@@ -23,12 +26,16 @@ $(document).ready(function() {
     request.done(function(data) {
       formsSubmitted += 1
 
-      if (formsSubmitted === studentQuantity) {
-        location.reload();
-        // update tour to specify that this room check is complete
-        // check to see if there are any more rooms to check
-        // if there are more rooms, refresh the current page
+      if (data.tour_complete === true) {
+        window.location.pathname = "/"
+      } else {
+        if (formsSubmitted === studentQuantity) {
+          location.reload();
+          // when we reload, we are creating a new tour...which is not right
+          // we need to redirect to a new qr code scan 
+        }
       }
+
       form.hide();
       noticeElement.append(data.notice);
     });

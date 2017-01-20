@@ -8,6 +8,7 @@ function generateStudentChecks(data) {
 	});
 
 	request.done(function(data) {
+		// redirect to new student_checks page and populate the forms
 		var students = data.student_checks
 		studentQuantity = students.length
 		formsSubmitted = 0;
@@ -28,7 +29,7 @@ function generateStudentChecks(data) {
 function onSuccess(data) {
 		document.getElementById('video').setAttribute("style", "border: 3px solid #52e250");
 		console.log('Sucess:', data);
-		var tourId = $("#tour_id").attr("value");
+		var tourId = $(".tour_id").text();
 		var generatorData = { room_id: data, tour_id: tourId }
 		generateStudentChecks(generatorData)
 }

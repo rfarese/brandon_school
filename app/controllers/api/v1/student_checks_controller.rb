@@ -5,10 +5,11 @@ class Api::V1::StudentChecksController < ApplicationController
   # if it is complete,
 
   def generate
+    @current_tour = Tour.find(generate_student_check_params[:tour_id])
     generate_student_checks = GenerateStudentCheck.new(generate_student_check_params)
-    student_checks = generate_student_checks.generate
+    @student_checks = generate_student_checks.generate
 
-    render json: { student_checks: student_checks }
+    render json: { student_checks: student_checks, current_tour: current_tour }
   end
 
   def update
@@ -21,7 +22,7 @@ class Api::V1::StudentChecksController < ApplicationController
     end
 
     student_check_id = student_check_params[:id]
-    render json: { notice: notice, student_check_id: student_check_id, tour_status: tour_complete? }
+    render json: { notice: notice, student_check_id: student_check_id, tour_complete: tour_complete? }
   end
 
   private
