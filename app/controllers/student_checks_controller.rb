@@ -16,7 +16,6 @@ class StudentChecksController < ApplicationController
     @tour = tour
     @student_checks = incomplete_student_checks(student_check)
 
-    # check to see if all rooms have been checked in the tour
     if @student_checks.count == 0
       if tour_complete?
         flash[:notice] = "Tour is complete"

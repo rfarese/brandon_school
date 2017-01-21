@@ -2,6 +2,7 @@ class Tour < ActiveRecord::Base
   belongs_to :house
   has_many :student_checks, as: :checkable
   mount_uploader :selfie, SelfieUploader
+  # change status to 'complete' with true and false values 
   validates :status, presence: true, inclusion: { in: %w(complete incomplete) }
 
   def rooms
