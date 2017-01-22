@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112192602) do
+ActiveRecord::Schema.define(version: 20170120220205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,15 +60,15 @@ ActiveRecord::Schema.define(version: 20170112192602) do
   add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
 
   create_table "student_checks", force: :cascade do |t|
-    t.string   "status",         null: false
+    t.string   "status",                         null: false
     t.text     "comment"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "student_id"
     t.integer  "checkable_id"
     t.string   "checkable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "complete",       default: false
   end
-
-  add_index "student_checks", ["checkable_type", "checkable_id"], name: "index_student_checks_on_checkable_type_and_checkable_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "initials",   limit: 3, null: false
@@ -111,4 +111,5 @@ ActiveRecord::Schema.define(version: 20170112192602) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "qrcodes", "rooms"
+  add_foreign_key "student_checks", "students"
 end

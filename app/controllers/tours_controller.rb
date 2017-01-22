@@ -6,10 +6,10 @@ class ToursController < ApplicationController
   end
 
   def create
-    tour = Tour.new(tour_params)
-    tour.status = "incomplete"
-    tour.save
-    redirect_to new_qrcode_scan_path 
+    @tour = Tour.new(tour_params)
+    @tour.status = "incomplete"
+    @tour.save
+    render new_qrcode_scans_path
   end
 
   private

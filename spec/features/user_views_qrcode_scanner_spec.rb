@@ -9,7 +9,6 @@ RSpec.feature "User views QR code scanner;", type: :feature do
     sign_in(user)
     navigate_to_qrcode_scanner(house)
 
-    expect(current_path).to eq(new_qrcode_scan_path)
     expect(page).to have_content("Scan a QR Code")
   end
 end
