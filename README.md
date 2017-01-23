@@ -13,16 +13,6 @@ Create a RoomCheck class
     - the number of students in the room? (this is really the important info
     but we might need the bed to find the student...)
 
-Remove polymorphic relationship for student checks
-- currently StudentCheck class is polymorphic as "checkable"
-- both Room class and the Tour class have many student checks as "checkable"
-- remove this association
-
-Add has many belongs to relationship between student check and tour
-- tour has many student checks; student check belongs to a tour
-- add a tour_id column in the student checks table
-- this will replace the "checkable" relationship between Tour and StudentCheck  
-
 Remove #status column from Tours table
 - add #complete column to Tour class instead of the #status column
 - make the #complete column in the db boolean (true or false)
