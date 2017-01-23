@@ -53,7 +53,8 @@ class StudentChecksController < ApplicationController
   end
 
   def incomplete_student_checks(student_check)
-    tour = student_check.checkable
+    # need to get tour from student_check like this: student_check.tour
+    tour = student_check.tour 
     tour.student_checks.where(complete: false)
   end
 end

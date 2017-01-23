@@ -6,7 +6,7 @@ RSpec.describe StudentCheck, type: :model do
 
   it { should have_valid(:comment).when("this is the first comment", "this is the 2 or 3'rd comment" )}
 
-  it { should belong_to(:checkable) }
+  it { should belong_to(:tour) }
   it { should belong_to(:student) }
 
   let(:student_check) { FactoryGirl.create(:student_check) }
