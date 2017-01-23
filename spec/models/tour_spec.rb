@@ -7,12 +7,39 @@ RSpec.describe Tour, type: :model do
 
   it { should belong_to(:house) }
 
-  describe "#rooms" do
-    let(:tour) { FactoryGirl.create(:tour) }
-    let(:house) { tour.house }
-    let(:room1) { Room.create(name: "Room1", house_id: house.id) }
-    let(:room2) { Room.create(name: "Room2", house_id: house.id) }
+  let(:tour) { FactoryGirl.create(:tour) }
+  let(:house) { tour.house }
 
+  let(:room1) { FactoryGirl.create(:room, house_id: house.id) }
+  let(:room2) { FactoryGirl.create(:room, house_id: house.id) }
+
+  let(:bed1) { FactoryGirl.create(:bed, room_id: room1.id) }
+  let(:bed2) { FactoryGirl.create(:bed, room_id: room1.id) }
+
+  let(:student1) { FactoryGirl.create(:student, bed_id: bed1.id) }
+  let(:student2) { FactoryGirl.create(:student, bed_id: bed2.id) }
+
+  let(:student_check1) { FactoryGirl.create(:student_check, student_id: student1.id) }
+  let(:student_check2) { FactoryGirl.create(:student_check, student_id: student2.id) }
+
+  def student_checks_array
+    [ student_check1, student_check2 ]
+  end
+
+  def bind_to_tour(student_checks)
+    student_checks.each do |student_check|
+      tour.student_checks << student_check
+    end
+  end
+
+  def commplete_and_save_student_check(student_checks)
+    student_checks.each do |student_check|
+      student_check.complete = true
+      student_check.save
+    end
+  end
+
+  describe "#rooms" do
     it "returns all the rooms associated with the tour" do
       house.rooms << room1
       house.rooms << room2
@@ -22,32 +49,19 @@ RSpec.describe Tour, type: :model do
   end
 
   describe "#beds" do
-    let(:tour) { FactoryGirl.create(:tour) }
-    let(:house) { tour.house }
-    let(:room) { Room.create(name: "Room1", house_id: house.id) }
-    let(:bed) { Bed.create(name: "Bed1", room_id: room.id) }
-
     it "returns all the beds associated with the tour" do
-      house.rooms << room
-      room.beds << bed
+      house.rooms << room1
+      room1.beds << bed1
 
       expect(tour.beds.count).to eq(1)
     end
   end
 
   describe "#students" do
-    let(:tour) { FactoryGirl.create(:tour) }
-    let(:house) { tour.house }
-    let(:room) { Room.create(name: "Room1", house_id: house.id) }
-    let(:bed1) { Bed.create(name: "Bed1", room_id: room.id) }
-    let(:bed2) { Bed.create(name: "Bed2", room_id: room.id) }
-    let(:student1) { Student.create(initials: "ZZ", bed_id: bed1.id) }
-    let(:student2) { Student.create(initials: "AA", bed_id: bed2.id) }
-
     it "returns all the students associated with the tour" do
-      house.rooms << room
-      room.beds << bed1
-      room.beds << bed2
+      house.rooms << room1
+      room1.beds << bed1
+      room1.beds << bed2
       bed1.student = student1
       bed2.student = student2
 
@@ -56,24 +70,17 @@ RSpec.describe Tour, type: :model do
   end
 
   describe "#complete?" do
-    let(:tour) { FactoryGirl.create(:tour) }
-    let(:house) { tour.house }
-    let(:room) { Room.create(name: "Room1", house_id: house.id) }
-    let(:bed1) { Bed.create(name: "Bed1", room_id: room.id) }
-    let(:bed2) { Bed.create(name: "Bed2", room_id: room.id) }
-    let(:student1) { Student.create(initials: "ZZ", bed_id: bed1.id) }
-    let(:student2) { Student.create(initials: "AA", bed_id: bed2.id) }
+    it "returns false if the tour is not finished" do
+      bind_to_tour(student_checks_array)
 
-    it "returns true if the tour has been finished"
+      expect(tour.complete?).to eq(false)
+    end
 
-    # it "returns true if the tour has been finished" do
-    #   house.rooms << room
-    #   room.beds << bed1
-    #   room.beds << bed2
-    #   bed1.student = student1
-    #   bed2.student = student2
-    #
-    #
-    # end
+    it "returns true if the tour has been finished" do
+      bind_to_tour(student_checks_array)
+      commplete_and_save_student_check(student_checks_array)
+
+      expect(tour.complete?).to eq(true)
+    end
   end
 end

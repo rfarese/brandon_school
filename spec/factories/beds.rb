@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bed do
-    sequence(:name) { |n| "Room#{n}" }
+    sequence(:name) { |n| "Bed#{n}" }
     association :room, factory: :room
   end
 end
