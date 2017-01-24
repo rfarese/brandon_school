@@ -3,19 +3,6 @@ Your app description, here.
 
 Todo:  
 
-Remove @student_checks and @tour from the partial 'student_checks/forms'
-- you should never be using an instance variable in a partial
-- instead, pass in locals and render like so:
-  def new
-    ...
-    student_checks = generate_student_checks.generate
-    render 'new', locals: { student_checks: student_checks }
-  end
-- this needs to happen in both the #new and #update actions in the StudentChecksController
-- Note - not sure if I'd also have to have the following when I call render in the view...
-  <%= render 'form', student_checks: student_checks %>
-- You may want to look at creating a helper method for getting the tour 
-
 Create a RoomCheck class
 - doesn't have to be a domain object; just a plain old ruby object (poro)
 - determine if the room is finished being checked
