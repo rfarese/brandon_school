@@ -28,4 +28,12 @@ class Tour < ActiveRecord::Base
   def complete?
     self.student_checks.where(complete: true).count == self.students.count
   end
+
+  def current_room_complete?
+    incomplete_student_checks.count == 0 
+  end
+
+  def incomplete_student_checks
+    self.student_checks.where(complete: false)
+  end
 end
