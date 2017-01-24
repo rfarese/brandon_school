@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def current_tour
+    if params[:action] == "new" && params[:controller] == "student_checks"
+      Tour.find(params[:tour_id])
+    else
+      Tour.find(params[:student_check][:tour_id])
+    end
+  end
+
+  helper_method :current_tour
+
   protected
 
   def configure_permitted_parameters
