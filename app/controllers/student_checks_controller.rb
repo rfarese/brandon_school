@@ -10,10 +10,14 @@ class StudentChecksController < ApplicationController
 
   def update
     student_check = StudentCheck.find(params[:id])
+    # complete: true should be passed in as a param from the form submission
+    # that way we can just have student_check.update(student_check_params)
     student_check.update(status: student_check_params[:status],
       comment: student_check_params[:comment],
       complete: true)
     @tour = tour
+    # just pass in the tour like this incomplete_student_checks(current_tour)
+    # current_tour should probably be a helper method of some kind
     @student_checks = incomplete_student_checks(student_check)
 
     if @student_checks.count == 0
@@ -37,6 +41,7 @@ class StudentChecksController < ApplicationController
   end
 
   def student_check_params
+    # complete: true should be passed in as a param from the form submission
     params.require(:student_check).permit(:status, :comment)
   end
 
@@ -53,8 +58,8 @@ class StudentChecksController < ApplicationController
   end
 
   def incomplete_student_checks(student_check)
-    # need to get tour from student_check like this: student_check.tour
-    tour = student_check.tour 
+    # this method should just accept tour as an argument...
+    tour = student_check.tour
     tour.student_checks.where(complete: false)
   end
 end
