@@ -3,6 +3,16 @@ Your app description, here.
 
 Todo:  
 
+Refactor Qrcode class
+- create a new poro called QrCodeImageCreator
+- read Dan's notes on GitHub
+
+Remove instance variables from student_checks forms partial
+- remove the @student_checks and @tour by passing in locals
+
+Refactor current_tour in ApplicationController
+- move this into StudentChecksController (its not being used by other controllers...)
+
 Create a RoomCheck class
 - doesn't have to be a domain object; just a plain old ruby object (poro)
 - determine if the room is finished being checked
