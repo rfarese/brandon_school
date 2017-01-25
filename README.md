@@ -3,10 +3,6 @@ Your app description, here.
 
 Todo:  
 
-Refactor Qrcode class
-- create a new poro called QrCodeImageCreator
-- read Dan's notes on GitHub
-
 Remove instance variables from student_checks forms partial
 - remove the @student_checks and @tour by passing in locals
 
