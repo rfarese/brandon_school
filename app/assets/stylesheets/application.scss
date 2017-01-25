@@ -4,6 +4,15 @@
 // *= require_self
 // *= require_tree .
 
+.button {
+  border-radius: .5em;
+  font-weight: bold;
+}
+
+.home-heading {
+  margin-top: 5em;
+}
+
 .student-check-form {
   display: none;
 }
@@ -14,4 +23,34 @@
 
 #generate-student-check-button {
   display: none;
+}
+
+nav {
+  margin-top: 1.5em;
+  padding-bottom: 1em;
+  border-bottom: solid 1px #006C3B;
+}
+
+.notice, .alert {
+  text-align: center;
+  background-color: #006C3B;
+  color: white;
+  margin-bottom: 1em;
+}
+
+.session-button {
+  margin-left: 1em;
+}
+
+.sign-in-container {
+  width: 100%;
+}
+
+.footer {
+  background-color: #006C3B;
+  color: white;
+}
+
+.footer p {
+  margin-top: 1em; 
 }

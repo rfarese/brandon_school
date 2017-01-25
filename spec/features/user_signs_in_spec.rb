@@ -15,7 +15,7 @@ RSpec.feature "User sign in;", type: :feature do
 
     fill_in "Name", with: user.name
     fill_in "Password", with: user.password
-    click_button "Log in"
+    click_button "Log In"
 
     expect(page).to have_content("Signed in successfully")
   end
@@ -25,7 +25,7 @@ RSpec.feature "User sign in;", type: :feature do
 
     fill_in "Name", with: ""
     fill_in "Password", with: user.password
-    click_button "Log in"
+    click_button "Log In"
 
     expect(page).to have_content("Invalid")
   end
