@@ -1,6 +1,29 @@
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-  <%= link_to "New Tour", new_tour_path %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-<% end %>
+<nav>
+  <div class="row">
+    <div class="small-4 columns">
+      <%= link_to root_path do %>
+        <%= image_tag("brandon_school_logo.png", size: "200x200") %>
+      <% end %>
+    </div>
+
+    <%if user_signed_in? %>
+      <div class="small-8 columns">
+        <ul class="vertical medium-horizontal menu float-right">
+          <li><%= link_to "New Tour", new_tour_path %></li>
+          <li><%= link_to "Reports", "#" %></li>
+          <li><%= link_to "Houses", "#" %></li>
+          <li><%= link_to "Rooms", "#" %></li>
+          <li><%= link_to "Beds", "#" %></li>
+          <li><%= link_to "Check-In's", "#" %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, class: "button session-button", method: :delete %></li>
+        </ul>
+      </div>
+    <% else %>
+      <div class="small-8 columns">
+        <ul class="vertical medium-horizontal menu float-right">
+          <li><%= link_to "Sign In", new_user_session_path, class: "button session-button" %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</nav>

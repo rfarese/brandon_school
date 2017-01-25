@@ -3,6 +3,6 @@ module UserSignInHelper
     visit new_user_session_path
     fill_in 'Name', with: user.name
     fill_in "Password", with: user.password
-    click_button "Log in"
+    click_button "Log In"
   end
 end
