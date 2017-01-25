@@ -1,0 +1,7 @@
+<h1>New House</h1>
+
+<%= simple_form_for @house do |f| %>
+  <%= f.input :name, placeholder: "Name", label: false %>
+
+  <%= f.button :submit, value: "Submit" %>
+<% end %>
