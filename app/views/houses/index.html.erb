@@ -20,8 +20,8 @@
         <td class="text-center"><%= house.rooms.count %></td>
         <td class="text-center"><%= house.beds.count %></td>
         <td class="text-center"><%= house.students.count %></td>
-        <td class="text-center"><%= link_to "update", "#" %><br>
-          <%= link_to "delete", "#"%></td>
+        <td class="text-center"><%= link_to "edit", edit_house_path(house) %><br>
+          <%= link_to "delete", house_path(house), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
