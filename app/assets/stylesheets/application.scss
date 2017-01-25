@@ -61,11 +61,16 @@ nav {
 }
 
 .table-title-container {
-  margin-top: 2em; 
+  margin-top: 2em;
 }
 
 .table-title {
   background-color: #006C3B;
   color: white;
   border-radius: .5em .5em 0em 0em;
+}
+
+.new-resource-button {
+  margin: 1em; 
+  font-size: 1.25em;
 }
