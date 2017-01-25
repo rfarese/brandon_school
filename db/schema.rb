@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123212758) do
+ActiveRecord::Schema.define(version: 20170125133842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170123212758) do
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "qrcodes", force: :cascade do |t|
-    t.string   "image"
+    t.string   "image",      null: false
     t.integer  "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
