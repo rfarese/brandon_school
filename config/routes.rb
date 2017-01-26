@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "homes#index"
   resources :tours, only: [:new, :create]
   resource :qrcode_scans, only: [:new]
-  resources :rooms, only: [:new, :create]
+  resources :rooms
   resources :student_checks, only: [:update]
   resources :houses
 
