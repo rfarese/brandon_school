@@ -1,0 +1,48 @@
+<div class="row table-title-container">
+  <div class="small-12 columns text-center">
+  <h1 class="table-title">Rooms</h1>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="text-center">House Name</th>
+      <th class="text-center">Total Beds</th>
+      <th class="text-center">Total Students</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.name %></td>
+        <td class="text-center"><%= room.house.name %></td>
+        <td class="text-center"><%= room.beds.count %></td>
+        <td class="text-center"><%= room.students.count %></td>
+        <td class="text-center"><%= link_to "edit", edit_room_path(room) %><br>
+          <a data-open='deleteModal<%="#{room.id}"%>'>delete</a>
+
+          <div id='deleteModal<%="#{room.id}"%>' class="reveal" data-reveal>
+            <h2 class="text-center">Are you sure?</h2>
+            <div class="text-center">
+              <%= link_to "Delete Room", room_path(room), method: :delete, class: "button delete-resource-button" %>
+            </div>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @rooms %>
+
+<div class="row">
+  <div class="small-12 columns text-center">
+    <%= link_to "New Room", new_room_path, class: "button new-resource-button" %>
+  </div>
+</div>

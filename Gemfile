@@ -11,6 +11,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'rqrcode'
+gem 'kaminari'
 
 group :development, :test do
   gem 'capybara'

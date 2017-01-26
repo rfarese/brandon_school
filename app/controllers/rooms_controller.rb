@@ -1,4 +1,9 @@
 class RoomsController < ApplicationController
+  def index
+    @rooms = Room.all
+    @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(7)
+  end
+
   def new
     @room = Room.new
     @houses = current_user.houses

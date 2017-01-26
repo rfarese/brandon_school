@@ -79,9 +79,23 @@ nav {
   outline: 2px solid #006C3B;
 }
 
-.delete-house-button {
+.delete-resource-button {
   margin-top: 1em;
-  margin-bottom: 1em; 
+  margin-bottom: 1em;
   font-size: 1.15em;
   font-weight: normal;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination span a {
+  color: #A3258C;
+  display: inline;
+}
+
+.pagination .current {
+  background-color: #A3258C;
+  opacity: .5;
 }
