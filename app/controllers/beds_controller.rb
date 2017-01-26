@@ -26,15 +26,14 @@ class BedsController < ApplicationController
 
   def edit
     @bed = Bed.find(params[:id])
-    @houses = House.all
     @rooms = Room.all
   end
 
   def update
     @bed = Bed.find(params[:id])
     if @bed.update(bed_params)
-      flash[:notice] = "Bed Edited"
-      redirect_to rooms_path
+      flash[:notice] = "Bed Updated"
+      redirect_to beds_path
     else
       flash[:notice] = "Please provide valid information."
       @houses = House.all
