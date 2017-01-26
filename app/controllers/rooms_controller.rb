@@ -7,11 +7,9 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @houses = House.all
-    # @houses = current_user.houses
   end
 
   def create
-    # binding.pry
     @room = Room.new(room_params)
     if @room.save
       flash[:notice] = "A room was successfully created."
