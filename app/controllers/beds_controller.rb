@@ -1,0 +1,64 @@
+class BedsController < ApplicationController
+  def index
+    @beds = Bed.all
+  end
+
+  def new
+    @bed = Bed.new
+    @houses = House.all
+    @rooms = Room.all
+  end
+
+  def create
+    @bed = Bed.new(bed_params)
+    if @bed.save
+      flash[:notice] = "New Bed Saved"
+      redirect_to beds_path
+    else
+      flash[:notice] = "Please provide valid information"
+      @houses = House.all
+      @rooms = Room.all
+      render "new"
+    end
+  end
+
+  def show
+  end
+
+  def edit
+    @bed = Bed.find(params[:id])
+    @houses = House.all
+    @rooms = Room.all
+  end
+
+  def update
+    @bed = Bed.find(params[:id])
+    if @bed.update(bed_params)
+      flash[:notice] = "Bed Edited"
+      redirect_to rooms_path
+    else
+      flash[:notice] = "Please provide valid information."
+      @houses = House.all
+      @rooms = Room.all
+      render 'edit'
+    end
+  end
+
+
+  def destroy
+    bed = Bed.find(params[:id])
+    if bed.destroy
+      flash[:notice] = "Bed Deleted"
+    else
+      flash[:notice] = "Bed Not Deleted"
+    end
+    redirect_to beds_path
+  end
+
+
+  private
+
+  def room_params
+    params.require(:bed).permit(:name, :room_id)
+  end
+end
