@@ -1,4 +1,4 @@
-require_relative 'qrcode_image_creator'
+require_relative 'qr_code_image_creator'
 
 class Qrcode < ActiveRecord::Base
   belongs_to :room

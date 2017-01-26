@@ -19,25 +19,23 @@ RSpec.feature "User views all rooms;", type: :feature do
     end
   end
 
-  scenario "User navigates to the room index page" do
-    sign_in_and_navigate_to_rooms_index
-
-    expect(current_path).to eq(rooms_path)
-  end
-
-  scenario "User views all existing rooms" do
+  scenario "User successfully edits a room" do
     room
-    room2
     sign_in_and_navigate_to_rooms_index
+    click_link "edit"
+    fill_in "Name", with: "New Room Name"
+    click_button "Submit"
 
-    expect(page).to have_content(room.name)
-    expect(page).to have_content(room2.name)
+    expect(page).to have_content("New Room Name")
   end
 
-  scenario "User views pagination feature for rooms" do
-    create_rooms(10)
+  scenario "User does not provide valid information" do
+    room
     sign_in_and_navigate_to_rooms_index
+    click_link "edit"
+    fill_in "Name", with: ""
+    click_button "Submit"
 
-    expect(page).to have_css("nav.pagination")
+    expect(page).to have_content("Please provide valid information.")
   end
 end
