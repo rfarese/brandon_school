@@ -2,6 +2,7 @@
 
 // *= require foundation_and_overrides
 // *= require_self
+// *= require sweetalert2
 // *= require_tree .
 
 .button {
@@ -71,6 +72,10 @@ nav {
 }
 
 .new-resource-button {
-  margin: 1em; 
+  margin: 1em;
   font-size: 1.25em;
+}
+
+.house-delete-notice {
+  display: none; 
 }
