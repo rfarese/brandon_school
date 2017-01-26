@@ -1,0 +1,6 @@
+<%= simple_form_for @bed do |f| %>
+  <%= f.input :room_id, collection: @rooms, placeholder: "Room", label: false %>
+  <%= f.input :name, placeholder: "Name", label: false %>
+
+  <%= f.button :submit, value: "Submit" %>
+<% end %>
