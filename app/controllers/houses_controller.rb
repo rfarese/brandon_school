@@ -33,6 +33,19 @@ class HousesController < ApplicationController
     end
   end
 
+  def show
+  end 
+
+  def destroy
+    house = House.find(params[:id])
+    if house.destroy
+      flash[:notice] = "House Deleted"
+    else
+      flash[:notice] = "House Not Deleted"
+    end
+    redirect_to houses_path
+  end
+
   private
   def house_params
     params.require(:house).permit(:name)

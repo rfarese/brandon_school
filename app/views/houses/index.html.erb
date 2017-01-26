@@ -21,7 +21,19 @@
         <td class="text-center"><%= house.beds.count %></td>
         <td class="text-center"><%= house.students.count %></td>
         <td class="text-center"><%= link_to "edit", edit_house_path(house) %><br>
-          <%= link_to "delete", house_path(house), method: :delete %></td>
+          <a data-open='deleteModal<%="#{house.id}"%>'>delete</a>
+
+          <div id='deleteModal<%="#{house.id}"%>' class="reveal" data-reveal>
+            <h2 class="text-center">Are you sure?</h2>
+            <div class="text-center">
+              <%= link_to "Delete House", house_path(house), method: :delete, class: "button delete-house-button" %>
+            </div>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
       </tr>
     <% end %>
   </tbody>
