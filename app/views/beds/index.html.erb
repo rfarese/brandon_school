@@ -1,0 +1,46 @@
+<div class="row table-title-container">
+  <div class="small-12 columns text-center">
+  <h1 class="table-title">Beds</h1>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="text-center">House Name</th>
+      <th class="text-center">Room Name</th>
+      <th class="text-center">Student Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @beds.each do |bed| %>
+      <tr>
+        <td><%= bed.name %></td>
+        <td class="text-center"><%= bed.house.name %></td>
+        <td class="text-center"><%= bed.room.name %></td>
+        <td class="text-center"><%= render 'empty_bed_check', bed: bed %></td>
+        <td class="text-center"><%= link_to "edit", edit_bed_path(bed) %><br>
+          <a data-open='deleteModal<%="#{bed.id}"%>'>delete</a>
+
+          <div id='deleteModal<%="#{bed.id}"%>' class="reveal" data-reveal>
+            <h2 class="text-center">Are you sure?</h2>
+            <div class="text-center">
+              <%= link_to "Delete Bed", bed_path(bed), method: :delete, class: "button delete-resource-button" %>
+            </div>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="small-12 columns text-center">
+    <%= link_to "New Bed", new_bed_path, class: "button new-resource-button" %>
+  </div>
+</div>

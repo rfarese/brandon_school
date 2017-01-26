@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :rooms
   resources :student_checks, only: [:update]
   resources :houses
+  resources :beds 
 
   post 'generate_student_checks' => 'student_checks#new'
 end
