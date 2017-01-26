@@ -5,7 +5,6 @@ class BedsController < ApplicationController
 
   def new
     @bed = Bed.new
-    @houses = House.all
     @rooms = Room.all
   end
 
@@ -15,7 +14,7 @@ class BedsController < ApplicationController
       flash[:notice] = "New Bed Saved"
       redirect_to beds_path
     else
-      flash[:notice] = "Please provide valid information"
+      flash[:notice] = "Please provide valid information."
       @houses = House.all
       @rooms = Room.all
       render "new"
@@ -58,7 +57,7 @@ class BedsController < ApplicationController
 
   private
 
-  def room_params
+  def bed_params
     params.require(:bed).permit(:name, :room_id)
   end
 end
