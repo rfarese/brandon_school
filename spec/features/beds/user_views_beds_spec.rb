@@ -26,6 +26,6 @@ RSpec.feature "User views all beds;", type: :feature do
     expect(page).to have_content(bed.name)
     expect(page).to have_content(bed.house.name)
     expect(page).to have_content(bed.room.name)
-    expect(page).to have_content("Student Name")
+    expect(page).to have_content("Student Initials")
   end
 end
