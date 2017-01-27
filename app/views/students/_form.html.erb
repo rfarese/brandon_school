@@ -1,0 +1,6 @@
+<%= simple_form_for @student do |f| %>
+  <%= f.input :bed_id, collection: @beds %>
+  <%= f.input :initials %>
+
+  <%= f.button :submit, value: "Submit" %>
+<% end %>
