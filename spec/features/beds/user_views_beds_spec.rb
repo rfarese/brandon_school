@@ -9,6 +9,7 @@ RSpec.feature "User views all beds;", type: :feature do
 
   def sign_in_and_navigate_to_beds_index
     user.role = "admin"
+    user.save
     sign_in(user)
     click_link "Beds"
   end

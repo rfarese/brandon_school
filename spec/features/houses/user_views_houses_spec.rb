@@ -7,6 +7,7 @@ RSpec.feature "User views all houses;", type: :feature do
 
   def sign_in_and_navigate_to_houses_index
     user.role = "admin"
+    user.save
     sign_in(user)
     click_link "Houses"
   end

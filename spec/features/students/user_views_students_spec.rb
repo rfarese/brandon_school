@@ -11,6 +11,7 @@ RSpec.feature "User views all students;", type: :feature do
 
   def sign_in_and_navigate_to_students_index
     user.role = "admin"
+    user.save
     sign_in(user)
     click_link "Students"
   end

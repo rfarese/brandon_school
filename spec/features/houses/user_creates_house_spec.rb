@@ -7,6 +7,7 @@ RSpec.feature "User creates a house;", type: :feature do
 
   def sign_in_and_navigate_to_houses_index
     user.role = "admin"
+    user.save
     sign_in(user)
     click_link "Houses"
   end
@@ -35,6 +36,6 @@ RSpec.feature "User creates a house;", type: :feature do
     click_button "Submit"
 
     expect(House.count).to eq(1)
-    expect(page).to have_content("House Not Saved")    
+    expect(page).to have_content("House Not Saved")
   end
 end
