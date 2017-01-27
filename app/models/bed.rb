@@ -12,6 +12,6 @@ class Bed < ActiveRecord::Base
       return true
     else
       return false
-    end 
+    end
   end
 end

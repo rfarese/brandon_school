@@ -1,0 +1,46 @@
+<div class="row table-title-container">
+  <div class="small-12 columns text-center">
+  <h1 class="table-title">Students</h1>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Initials</th>
+      <th class="text-center">Bed Name</th>
+      <th class="text-center">Recent Check-In</th>
+      <th class="text-center">Comment</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.initials %></td>
+        <td class="text-center"><%= student.bed.name %></td>
+        <td class="text-center"><%= render 'student_status', student: student %></td>
+        <td class="text-center"><%= render 'student_comment', student: student %></td>
+        <td class="text-center"><%= link_to "edit", edit_student_path(student) %><br>
+          <a data-open='deleteModal<%="#{student.id}"%>'>delete</a>
+
+          <div id='deleteModal<%="#{student.id}"%>' class="reveal" data-reveal>
+            <h2 class="text-center">Are you sure?</h2>
+            <div class="text-center">
+              <%= link_to "Delete Student", student_path(student), method: :delete, class: "button delete-resource-button" %>
+            </div>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="small-12 columns text-center">
+    <%= link_to "New Student", new_student_path, class: "button new-resource-button" %>
+  </div>
+</div>
