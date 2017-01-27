@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def current_tour
@@ -10,8 +9,20 @@ class ApplicationController < ActionController::Base
       Tour.find(params[:student_check][:tour_id])
     end
   end
-
   helper_method :current_tour
+
+  def admin_signed_in?
+    current_user.role == "admin"
+  end
+  helper_method :admin_signed_in?
+
+  def authorize_admin
+    if current_user.role != "admin"
+      flash[:notice] = "ERROR! Page Does Not Exist"
+      redirect_to root_path
+    end
+  end
+  helper_method :authorize_admin
 
   protected
 

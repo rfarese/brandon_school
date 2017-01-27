@@ -1,4 +1,6 @@
 class BedsController < ApplicationController
+  before_action :authorize_admin
+
   def index
     @beds = Bed.all
   end

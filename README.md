@@ -28,5 +28,11 @@ Remove #status column from Tours table
   - knows how many rooms there are in the house to check
   - knows how many rooms have been completed
 
-Create a TourStatusCreator Poro class
-- instantiate by passing in a
+Refactor Models
+- go through each model
+- check how they are relating to each other
+- some of the initial relationships weren't necessary while others were necessary
+- there are probably several methods and relationships in different models that could be removed
+
+Fix Mobile Views
+- go through each page and fix the view bugs on mobile and tablets 

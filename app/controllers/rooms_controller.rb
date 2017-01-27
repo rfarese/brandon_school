@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authorize_admin
+
   def index
     @rooms = Room.all
     @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(7)

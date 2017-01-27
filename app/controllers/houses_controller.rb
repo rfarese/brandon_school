@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+  before_action :authorize_admin
+
   def index
     @houses = House.all
   end
@@ -34,7 +36,7 @@ class HousesController < ApplicationController
   end
 
   def show
-  end 
+  end
 
   def destroy
     house = House.find(params[:id])
