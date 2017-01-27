@@ -6,6 +6,8 @@ RSpec.feature "User creates a room;", type: :feature do
   let(:house) { permission.house }
 
   def sign_in_and_navigate
+    user.role = "admin"
+    user.save
     sign_in(user)
     visit new_room_path
   end

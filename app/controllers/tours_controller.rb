@@ -1,5 +1,4 @@
 class ToursController < ApplicationController
-
   def new
     @tour = Tour.new
     @houses = current_user.houses
