@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125133842) do
+ActiveRecord::Schema.define(version: 20170129145307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 20170125133842) do
   add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
 
   create_table "student_checks", force: :cascade do |t|
-    t.string   "status",                     null: false
+    t.string   "status",                      null: false
     t.text     "comment"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "student_id"
-    t.boolean  "complete",   default: false
     t.integer  "tour_id"
+    t.integer  "complete_status", default: 0
   end
 
   create_table "students", force: :cascade do |t|
@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(version: 20170125133842) do
   add_index "students", ["bed_id"], name: "index_students_on_bed_id", using: :btree
 
   create_table "tours", force: :cascade do |t|
-    t.string   "status",     null: false
-    t.string   "selfie",     null: false
+    t.string   "selfie",                 null: false
     t.integer  "house_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "status",     default: 0
   end
 
   add_index "tours", ["house_id"], name: "index_tours_on_house_id", using: :btree

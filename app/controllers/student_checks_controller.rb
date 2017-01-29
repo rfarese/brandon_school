@@ -8,7 +8,11 @@ class StudentChecksController < ApplicationController
 
   def update
     student_check = StudentCheck.find(params[:id])
-    student_check.update(student_check_params)
+    student_check.assign_attributes(student_check_params)
+    if student_check.valid?
+      student_check.complete_status = 1
+      student_check.save
+    end
     @student_checks = @tour.incomplete_student_checks
     complete_checker
   end
@@ -19,7 +23,7 @@ class StudentChecksController < ApplicationController
   end
 
   def student_check_params
-    params.require(:student_check).permit(:status, :comment, :complete)
+    params.require(:student_check).permit(:status, :comment)
   end
 
   def get_current_tour
