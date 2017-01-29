@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all
+    @students = Kaminari.paginate_array(@students).page(params[:page]).per(5)
   end
 
   def new
