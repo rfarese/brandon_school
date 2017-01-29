@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :students
   resources :report_dashboards, only: [:index]
 
-  get 'rooms_report' => "report_dashboards#rooms"
+  get 'status_report' => "report_dashboards#status"
+  get 'check_ins_report' => "report_dashboards#check_ins"
 
   post 'generate_student_checks' => 'student_checks#new'
 end

@@ -99,3 +99,9 @@ nav {
   background-color: #A3258C;
   opacity: .5;
 }
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  color: grey;
+}

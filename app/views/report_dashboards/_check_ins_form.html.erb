@@ -1,0 +1,15 @@
+<a data-open='checkInsSelector'>Check-Ins</a>
+
+<div id='checkInsSelector' class="reveal" data-reveal>
+  <h2 class="text-center">Check-Ins</h2>
+  <div class="text-center">
+    <%= simple_form_for :choosen_check_ins, url: status_report_path, method: :get do |f| %>
+      <%=   f.collection_radio_buttons :status, [[:all, 'All'] ,[:complete, 'Complete'], [:incomplete, 'Incomplete']], :first, :last %>
+      <%= f.input :check_in_ids, as: :hidden, input_html: { value: check_in_ids }%>
+      <%= f.button :submit, value: "Submit" %>
+    <% end %>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

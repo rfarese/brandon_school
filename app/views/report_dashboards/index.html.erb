@@ -1,1 +1,23 @@
-<h1>Reports<h1>
+<h1 class="text-center">Reports</h1>
+
+<div class="row text-center">
+  <div class="small-2 columns">
+    <%= render 'houses_form', houses: @houses %>
+  </div>
+
+  <div class="small-2 columns">
+    <%= render 'check_ins_form', check_in_ids: @check_in_ids %>
+  </div>
+
+  <div class="small-2 columns">
+    <span>Status</span>
+  </div>
+
+  <div class="small-2 columns">
+    <span>Student</span>
+  </div>
+
+  <div class="small-2 columns">
+    <span>Date</span>
+  </div>
+</div>

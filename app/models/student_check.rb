@@ -11,4 +11,16 @@ class StudentCheck < ActiveRecord::Base
   def room
     bed.room
   end
+
+  def self.ids_by_house(houses)
+    ids = []
+    houses.each do |house|
+      house.tours.each do |tour|
+        tour.student_checks.each do |student_check|
+          ids << student_check.id
+        end
+      end
+    end
+    ids.flatten
+  end
 end
