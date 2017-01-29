@@ -2,8 +2,7 @@ class Tour < ActiveRecord::Base
   belongs_to :house
   has_many :student_checks
   mount_uploader :selfie, SelfieUploader
-  # change status to 'complete' with true and false values
-  validates :status, presence: true, inclusion: { in: %w(complete incomplete) }
+  enum status: { incomplete: 0, complete: 1 }
 
   def rooms
     house.rooms
@@ -30,7 +29,7 @@ class Tour < ActiveRecord::Base
   end
 
   def current_room_complete?
-    incomplete_student_checks.count == 0 
+    incomplete_student_checks.count == 0
   end
 
   def incomplete_student_checks

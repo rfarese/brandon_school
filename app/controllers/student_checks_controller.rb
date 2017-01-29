@@ -10,6 +10,7 @@ class StudentChecksController < ApplicationController
     student_check = StudentCheck.find(params[:id])
     student_check.update(student_check_params)
     @student_checks = @tour.incomplete_student_checks
+    binding.pry
     complete_checker
   end
 
