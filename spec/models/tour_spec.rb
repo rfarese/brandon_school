@@ -33,7 +33,7 @@ RSpec.describe Tour, type: :model do
 
   def commplete_and_save_student_check(student_checks)
     student_checks.each do |student_check|
-      student_check.complete = true
+      student_check.complete_status = 1
       student_check.save
     end
   end
