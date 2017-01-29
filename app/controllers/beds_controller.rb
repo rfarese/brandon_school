@@ -3,6 +3,7 @@ class BedsController < ApplicationController
 
   def index
     @beds = Bed.all
+    @beds = Kaminari.paginate_array(@beds).page(params[:page]).per(7)
   end
 
   def new

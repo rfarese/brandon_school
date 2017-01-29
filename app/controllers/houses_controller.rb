@@ -3,6 +3,7 @@ class HousesController < ApplicationController
 
   def index
     @houses = House.all
+    @houses = Kaminari.paginate_array(@houses).page(params[:page]).per(7)
   end
 
   def new
