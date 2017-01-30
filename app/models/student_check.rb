@@ -13,6 +13,8 @@ class StudentCheck < ActiveRecord::Base
   end
 
   def self.ids_by_house(houses)
+    # think about how this could be a straight query and a pluck
+    # the pluck should grab the id's
     ids = []
     houses.each do |house|
       house.tours.each do |tour|
@@ -22,5 +24,10 @@ class StudentCheck < ActiveRecord::Base
       end
     end
     ids.flatten
+  end
+
+# this is the same method as StudentCheck.incomplete
+  def self.from_incomplete_tours
+    joins(:tour).where(tours: { status: 0 } )
   end
 end

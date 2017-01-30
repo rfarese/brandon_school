@@ -5,6 +5,7 @@ class ReportDashboardsController < ApplicationController
 
   def check_ins
     houses = House.where(id: houses_params)
+    # refactor ids_by_house by using pluck and a better query 
     @check_in_ids = StudentCheck.ids_by_house(houses)
     render 'index'
   end
