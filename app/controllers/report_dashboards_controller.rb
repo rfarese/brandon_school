@@ -40,9 +40,8 @@ class ReportDashboardsController < ApplicationController
     # filter all the student_checks by student initals
       # iterate over all the student initials
       # pass each initial into a filter method that iterates over the student checks to find the ones that are associated with that students initials
-
-
     binding.pry
+    render 'index'
   end
 
   private
@@ -68,11 +67,11 @@ class ReportDashboardsController < ApplicationController
   end
 
   def student_initials_params
-    params[:student_status_selections][:initials]
+    params[:student_initials_selections][:initials]
   end
 
   def student_intials_id_params
-    params[:student_status_selections][:filtered_student_check_ids]
+    params[:student_initials_selections][:filtered_check_ids]
   end
   # end params
 
@@ -117,7 +116,7 @@ class ReportDashboardsController < ApplicationController
     student_checks.each do |student_check|
       initials << student_check.student.initials
     end
-    initials
+    initials.uniq
   end
 
   def find_checks_by_initials(student_checks, initials)
@@ -126,7 +125,6 @@ class ReportDashboardsController < ApplicationController
       checks << find_check_by_inital(student_checks, initial)
     end
     checks
-    binding.pry
   end
 
   def find_check_by_inital(student_checks, initial)

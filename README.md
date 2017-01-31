@@ -40,14 +40,7 @@ Fix Mobile Views
 
 Reports Strategy
 - Report class
-- have a form on the index page where the user chooses from a series of dropdowns for each model
-- all the forms dropdowns are greyed out until the previous one is chosen (you need to choose which house before you choose the rooms or beds or students, etc.)
-- Step #1 - user selects one house, all houses, or a group of houses (group of houses could be tough...)
-- Step #2 - user selects all, complete, or incomplete check-ins (from student checks) that are associated with the house(s) they chose 
-- Step #3 - user selects the student_check status's they want to pull (all, asleep, awake, etc.)
-- Step #4 - user selects the date ranges (do this last)
-- each step is a GET request and it'll return all the objects for that resource
-  - when user clicks on "Houses", have a pop up come up
-  - user will be presented with a series of houses to choose from and click a submit button
-  - the controller will return all the houses along with all the rooms associated with that house
-  - now the rooms dropdown will be activated...the user will click on rooms, see a pop up of all the rooms, and the process will repeat until the correct data is returned to the user and displayed in the dashboard
+- have a traditional setup - index, new, update, delete, etc.
+- move all the old logic for the ReportDashboards into the Report model
+  - all the controller code in the ReportDashboardsController should be moved into a
+    helper class (follow Ryan Bates Helper tutorials)
