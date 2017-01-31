@@ -1,0 +1,22 @@
+<a data-open='studentInitialsSelector'>Student Initials</a>
+
+<div id='studentInitialsSelector' class="reveal" data-reveal>
+  <h2 class="text-center">Student Initials</h2>
+  <div class="text-center">
+    <%= simple_form_for :student_initials_selections, url: date_report_path, method: :get do |f| %>
+
+    <%= f.input :initials,
+      collection: student_initials,
+      as: :check_boxes,
+      label: false,
+      input_html: { class: 'multiselectinitials', multiple: true },
+      include_hidden: false %>
+
+      <%= f.input :filtered_check_ids, as: :hidden, input_html: { value: filtered_check_ids }%>
+      <%= f.button :submit, value: "Submit" %>
+    <% end %>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

@@ -10,11 +10,11 @@
   </div>
 
   <div class="small-2 columns">
-    <span>Status</span>
+    <%= render 'status_form', filtered_student_check_ids: @filtered_student_check_ids %>
   </div>
 
   <div class="small-2 columns">
-    <span>Student</span>
+      <%= render 'student_initials_form', { student_initials: @student_initials, filtered_check_ids: @filtered_check_ids } %>
   </div>
 
   <div class="small-2 columns">

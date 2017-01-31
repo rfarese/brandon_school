@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'status_report' => "report_dashboards#status"
   get 'check_ins_report' => "report_dashboards#check_ins"
+  get 'student_report' => "report_dashboards#students"
+  get 'date_report' => "report_dashboards#date"
 
   post 'generate_student_checks' => 'student_checks#new'
 end

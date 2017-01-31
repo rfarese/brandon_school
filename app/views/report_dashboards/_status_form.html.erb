@@ -1,0 +1,24 @@
+<a data-open='statusSelector'>Student Status</a>
+
+<div id='statusSelector' class="reveal" data-reveal>
+  <h2 class="text-center">Student Status</h2>
+  <div class="text-center">
+    <%= simple_form_for :student_status_selections, url: student_report_path, method: :get do |f| %>
+      <%=   f.collection_radio_buttons :student_status, [
+              [:all, 'All'],
+              [:asleep, 'Asleep'],
+              [:awake, 'Awake'],
+              [:bathroom, 'Bathroom'],
+              [:pass, 'Pass'],
+              [:off_campus, 'Off Campus'],
+              [:missing, 'Missing'],
+              [:empty, 'Empty']],
+              :first, :last %>
+      <%= f.input :filtered_student_check_ids, as: :hidden, input_html: { value: filtered_student_check_ids }%>
+      <%= f.button :submit, value: "Submit" %>
+    <% end %>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
