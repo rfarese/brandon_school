@@ -9,13 +9,13 @@ class ReportDashboardsController < ApplicationController
   end
 
   def check_ins
-    houses = House.where(id: houses_params)
     # refactor ids_by_house by using pluck and a better query
-    @check_in_ids = StudentCheck.ids_by_house(houses)
+    @student_checks_by_house = StudentCheck.from_houses(houses_params)
     render 'index'
   end
 
   def status
+    binding.pry
     check_in_ids = check_in_ids_params.split(" ").map { |i| i.to_i }
     checks = StudentCheck.where(id: check_in_ids)
     @filtered_student_check_ids = filter_student_checks(status_params, checks)

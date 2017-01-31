@@ -105,3 +105,34 @@ nav {
   cursor: default;
   color: grey;
 }
+
+.report-filters-container {
+  border: black 1px solid;
+  padding: 1em;
+}
+
+.report-filter-title-container {
+  margin-top: 2em;
+}
+
+.report-filter-title {
+  background-color: #006C3B;
+  color: white;
+  border-radius: .5em .5em 0em 0em;
+  margin-bottom: 0;
+}
+
+.tabs a {
+  font-size: 1em; 
+  color: #A3258C;
+}
+
+.tabs a:hover {
+  color: #A3258C;
+  opacity: .5;
+}
+
+a:focus, .tabs-title > a[aria-selected='true'] {
+  color: white;
+  background-color: #A3258C;
+}
