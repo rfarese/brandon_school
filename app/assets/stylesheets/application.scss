@@ -132,13 +132,13 @@ nav {
   opacity: .5;
 }
 
-a:focus, .tabs-title > a[aria-selected='true'] {
+#filter-tabs a:focus, .tabs-title > a[aria-selected='true'] {
   color: white;
   background-color: #A3258C;
 }
 
 #filter-button-container {
-  margin-top: 1em; 
+  margin-top: 1em;
 }
 
 #filter-button {
