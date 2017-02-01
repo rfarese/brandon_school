@@ -37,3 +37,6 @@ Clean up routes
 
 Fix Mobile Views
 - go through each page and fix the view bugs on mobile and tablets
+
+Reports
+- ensure that only admins can reach the reports page 
