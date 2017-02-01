@@ -4,9 +4,10 @@ class ReportsController < ApplicationController
   end
 
   def filters
+    # need to add all, complete, or incomplete filter to query
     filters = params[:filters]
     args = generate_args(filters)
-    @houses = House.all 
+    @houses = House.all
     @student_checks = StudentCheck.filters(args)
 
     render 'index'

@@ -137,6 +137,14 @@ nav {
   background-color: #A3258C;
 }
 
+.tabs {
+  border-top: none;
+}
+
+.tabs-title {
+  float: none;
+}
+
 .filter-button-container {
   margin-top: 1em;
 }
@@ -154,10 +162,28 @@ nav {
 #filter-submit-button {
   border-top-right-radius: 0em;
   border-bottom-right-radius: 0em;
-  border-right: white 1px solid;  
+  border-right: white 1px solid;
 }
 
 #filter-reset-button-container {
+  padding-left: 0;
+}
+
+#houses-tab-container {
+  padding-right: 0;
+}
+
+#check-ins-tab-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#student-status-tab-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#date-range-tab-container {
   padding-left: 0;
 }
 
