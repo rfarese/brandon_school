@@ -6,6 +6,7 @@ class ReportsController < ApplicationController
   def filters
     filters = params[:filters]
     args = generate_args(filters)
+    @houses = House.all 
     @student_checks = StudentCheck.filters(args)
 
     render 'index'

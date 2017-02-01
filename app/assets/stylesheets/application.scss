@@ -137,10 +137,30 @@ nav {
   background-color: #A3258C;
 }
 
-#filter-button-container {
+.filter-button-container {
   margin-top: 1em;
 }
 
-#filter-button {
+.filter-button {
   width: 50%;
+}
+
+#filter-reset-button {
+  border-top-left-radius: 0em;
+  border-bottom-left-radius: 0em;
+  border-left: white 1px solid;
+}
+
+#filter-submit-button {
+  border-top-right-radius: 0em;
+  border-bottom-right-radius: 0em;
+  border-right: white 1px solid;  
+}
+
+#filter-reset-button-container {
+  padding-left: 0;
+}
+
+#filter-submit-button-container {
+  padding-right: 0;
 }

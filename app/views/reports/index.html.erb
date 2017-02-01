@@ -79,11 +79,14 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row filter-button-container">
 
-    <div class="small-12 columns text-center" id="filter-button-container">
-      <%= f.button :submit, value: "Submit", id: "filter-button" %>
+    <div class="small-6 columns text-right" id="filter-submit-button-container">
+      <%= f.button :submit, value: "Submit Filters", class: "filter-button", id: "filter-submit-button" %>
     </div>
 
+    <div class="small-6 columns text-left" id="filter-reset-button-container">
+      <%= link_to "Reset Form", reports_path, class: "button filter-button", id: "filter-reset-button" %>
+    </div>
   </div>
 <% end %>
