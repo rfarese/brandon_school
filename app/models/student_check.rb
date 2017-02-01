@@ -27,9 +27,4 @@ class StudentCheck < ActiveRecord::Base
   def room
     bed.room
   end
-
-# this is the same method as StudentCheck.incomplete
-  def self.from_incomplete_tours
-    joins(:tour).where(tours: { status: 0 } )
-  end
 end
