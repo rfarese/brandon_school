@@ -37,13 +37,3 @@ Clean up routes
 
 Fix Mobile Views
 - go through each page and fix the view bugs on mobile and tablets
-
-Reports
-- index will return all the houses
-- on the index page will be a form to select any or all of the houses
-- be able to select "all", "complete", or "incomplete" for Check-In's (StudentCheck #complete_status)
-- be able to select "all", "asleep", "awake", "bathroom", "pass", "off campus", "missing", and "empty" for StudentCheck #status
-- a start date
-- an end date 
-- all of these values will be passed back to the controller to generate a single query and return all the correct StudentChecks
-- any additional data that needs to be displayed in the dashboard will be gather on the backend

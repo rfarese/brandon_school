@@ -4,19 +4,11 @@ class ReportsController < ApplicationController
   end
 
   def filters
-    # need to add all, complete, or incomplete filter to query
     filters = params[:filters]
     args = generate_args(filters)
     status = params[:filters][:status]
     @houses = House.all
-
-    if status == "complete"
-      @student_checks = StudentCheck.complete.filters(args)
-    elsif status == "incomplete"
-      @student_checks = StudentCheck.incomplete.filters(args)
-    else
-      @student_checks = StudentCheck.filters(args)
-    end
+    @student_checks = student_check_generator(args, filters[:status])
 
     render 'index'
   end
@@ -35,11 +27,19 @@ class ReportsController < ApplicationController
   end
 
   def new_start_date(filters)
-    Date.new(filters["start_date(1i)"].to_i, filters["start_date(2i)"].to_i, filters["start_date(3i)"].to_i)
+    Date.new(filters["start_date(1i)"].to_i,
+      filters["start_date(2i)"].to_i,
+      filters["start_date(3i)"].to_i)
   end
 
   def new_end_date(filters)
-    Date.new(filters["end_date(1i)"].to_i, filters["end_date(2i)"].to_i, filters["end_date(3i)"].to_i)
+    Date.new(filters["end_date(1i)"].to_i,
+      filters["end_date(2i)"].to_i,
+      filters["end_date(3i)"].to_i)
   end
 
+  def student_check_generator(args, status)
+    return StudentCheck.send(status).filters(args) unless status == "all"
+    StudentCheck.filters(args)
+  end
 end

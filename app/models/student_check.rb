@@ -12,8 +12,6 @@ class StudentCheck < ActiveRecord::Base
     { start_date: start_date, end_date: end_date })
   }
 
-  scope :since, -> (date) { where("created_at >= :date", { date: date }) }
-
   scope :filters, -> (args) {
     by_date_range(args[:start_date], args[:end_date]).
     from(StudentCheck.by_houses(args[:houses]).
@@ -30,9 +28,5 @@ class StudentCheck < ActiveRecord::Base
 
   def house
     tour.house
-  end
-
-  def start_date
-
   end
 end
