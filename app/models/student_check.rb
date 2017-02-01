@@ -27,4 +27,12 @@ class StudentCheck < ActiveRecord::Base
   def room
     bed.room
   end
+
+  def house
+    tour.house
+  end
+
+  def start_date
+    
+  end
 end
