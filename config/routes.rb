@@ -8,12 +8,8 @@ Rails.application.routes.draw do
   resources :houses
   resources :beds
   resources :students
-  resources :report_dashboards, only: [:index]
+  resources :reports, only: [:index]
 
-  get 'status_report' => "report_dashboards#status"
-  get 'check_ins_report' => "report_dashboards#check_ins"
-  get 'student_report' => "report_dashboards#students"
-  get 'date_report' => "report_dashboards#date"
-
+  get 'report_filters' => "reports#filters"
   post 'generate_student_checks' => 'student_checks#new'
 end

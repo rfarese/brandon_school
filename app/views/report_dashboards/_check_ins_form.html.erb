@@ -1,6 +1,0 @@
-<%= simple_form_for :choosen_check_ins, url: status_report_path, method: :get do |f| %>
-  <%=   f.collection_radio_buttons :status, [[:all, 'All'] ,[:complete, 'Complete'], [:incomplete, 'Incomplete']], :first, :last %>
-  <%= f.input :student_checks_by_house,
-      collection: student_checks_by_house, as: :hidden, input_html: { value: student_checks_by_house }%>
-  <%= f.button :submit, value: "Next Filter" %>
-<% end %>
