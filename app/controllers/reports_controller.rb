@@ -1,9 +1,4 @@
 class ReportsController < ApplicationController
-
-  ###################################################################################
-  #######  Most of this extra code should be moved into a report dashboard model ####
-  ###################################################################################
-
   def index
     @houses = House.all
   end
