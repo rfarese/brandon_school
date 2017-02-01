@@ -7,8 +7,16 @@ class ReportsController < ApplicationController
     # need to add all, complete, or incomplete filter to query
     filters = params[:filters]
     args = generate_args(filters)
+    status = params[:filters][:status]
     @houses = House.all
-    @student_checks = StudentCheck.filters(args)
+
+    if status == "complete"
+      @student_checks = StudentCheck.complete.filters(args)
+    elsif status == "incomplete"
+      @student_checks = StudentCheck.incomplete.filters(args)
+    else
+      @student_checks = StudentCheck.filters(args)
+    end
 
     render 'index'
   end
