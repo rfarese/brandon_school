@@ -1,0 +1,89 @@
+<ul class="tabs" data-tabs id="filter-tabs">
+  <div class="row">
+    <div class="small-3 columns text-center" id="houses-tab-container">
+      <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Houses</a></li>
+    </div>
+
+    <div class="small-3 columns text-center" id="check-ins-tab-container">
+      <li class="tabs-title"><a href="#panel2">Check In's</a></li>
+    </div>
+
+    <div class="small-3 columns text-center" id="student-status-tab-container">
+      <li class="tabs-title"><a href="#panel3">Student Status</a></li>
+    </div>
+
+    <div class="small-3 columns text-center" id="date-range-tab-container">
+      <li class="tabs-title"><a href="#panel4">Date Range</a></li>
+    </div>
+  </div>
+</ul>
+
+<%= simple_form_for :filters, url: report_filters_path, method: :get do |f| %>
+  <div class="tabs-content" data-tabs-content="filter-tabs">
+
+    <div class="tabs-panel is-active" id="panel1">
+      <%= f.input :houses,
+        collection: houses,
+        as: :check_boxes,
+        label: false,
+        input_html: { class: 'multiselecthouse', multiple: true },
+        include_hidden: false
+      %>
+    </div>
+
+    <div class="tabs-panel" id="panel2">
+      <%= f.collection_radio_buttons :status, [
+        [:all, 'All'],
+        [:complete, 'Complete'],
+        [:incomplete, 'Incomplete']
+        ], :first, :last
+      %>
+    </div>
+
+    <div class="tabs-panel" id="panel3">
+      <%=   f.collection_check_boxes :student_status, [
+          [:asleep, 'Asleep'],
+          [:awake, 'Awake'],
+          [:bathroom, 'Bathroom'],
+          [:pass, 'Pass'],
+          [:off_campus, 'Off Campus'],
+          [:missing, 'Missing'],
+          [:empty, 'Empty'],
+          [:unchecked, 'Unchecked']
+        ], :first, :last,
+        include_hidden: false
+      %>
+    </div>
+
+    <div class="tabs-panel" id="panel4">
+      <div class="row">
+        <div class="small-6 columns">
+          <h4>Start Date</h4>
+          <%= f.input :start_date, :as => :date, :start_year => Date.today.year,
+            :end_year => 1900,
+            :order => [ :month, :day, :year], :required => true, label: false
+          %>
+        </div>
+
+        <div class="small-6 columns">
+          <h4>End Date</h4>
+          <%= f.input :end_date, :as => :date, :start_year => Date.today.year,
+            :end_year => 1900,
+            :order => [ :month, :day, :year], :required => true, label: false
+          %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row filter-button-container">
+
+    <div class="small-6 columns text-right" id="filter-submit-button-container">
+      <%= f.button :submit, value: "Submit Filters", class: "filter-button", id: "filter-submit-button" %>
+    </div>
+
+    <div class="small-6 columns text-left" id="filter-reset-button-container">
+      <%= link_to "Reset Form", reports_path, class: "button filter-button", id: "filter-reset-button" %>
+    </div>
+  </div>
+<% end %>

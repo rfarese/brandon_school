@@ -99,3 +99,98 @@ nav {
   background-color: #A3258C;
   opacity: .5;
 }
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  color: grey;
+}
+
+.report-filters-container {
+  border: black 1px solid;
+  padding: 1em;
+}
+
+.report-filter-title-container {
+  margin-top: 2em;
+}
+
+.report-filter-title {
+  background-color: #006C3B;
+  color: white;
+  border-radius: .5em .5em 0em 0em;
+  margin-bottom: 0;
+}
+
+.tabs a {
+  font-size: 1em;
+  color: #A3258C;
+}
+
+.tabs a:hover {
+  color: #A3258C;
+  opacity: .5;
+}
+
+#filter-tabs a:focus, .tabs-title > a[aria-selected='true'] {
+  color: white;
+  background-color: #A3258C;
+}
+
+.tabs {
+  border-top: none;
+}
+
+.tabs-title {
+  float: none;
+}
+
+.filter-button-container {
+  margin-top: 1em;
+}
+
+.filter-button {
+  width: 50%;
+}
+
+#filter-reset-button {
+  border-top-left-radius: 0em;
+  border-bottom-left-radius: 0em;
+  border-left: white 1px solid;
+}
+
+#filter-submit-button {
+  border-top-right-radius: 0em;
+  border-bottom-right-radius: 0em;
+  border-right: white 1px solid;
+}
+
+#filter-reset-button-container {
+  padding-left: 0;
+}
+
+#houses-tab-container {
+  padding-right: 0;
+}
+
+#check-ins-tab-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#student-status-tab-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#date-range-tab-container {
+  padding-left: 0;
+}
+
+#filter-submit-button-container {
+  padding-right: 0;
+}
+
+#report-results-table {
+  margin-top: 1em; 
+}

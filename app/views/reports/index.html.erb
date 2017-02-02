@@ -1,0 +1,9 @@
+<div class="row report-filter-title-container">
+  <div class="small-12 columns text-center">
+  <h1 class="report-filter-title">Report Filters</h1>
+  </div>
+</div>
+
+<%= render 'filters_form', houses: @houses %>
+
+<%= render 'filtered_results', student_checks: @student_checks %>

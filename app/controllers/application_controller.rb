@@ -24,6 +24,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :authorize_admin
 
+  def find_ids(status, student_checks)
+    ids = []
+
+    student_checks.each do |student_check|
+      if status == "all"
+        ids << student_check.id
+      else
+        ids << student_check.id if student_check.status == status
+      end
+    end
+    ids
+  end
+  helper_method :find_ids
+
   protected
 
   def configure_permitted_parameters

@@ -25,7 +25,7 @@ class GenerateStudentCheck
 
   def generate
     students.each do |student|
-      student_check = StudentCheck.create(student_id: student.id, status: "asleep")
+      student_check = StudentCheck.create(student_id: student.id, status: "unchecked")
       bind_to_tour(student_check)
       student_checks << student_check
     end

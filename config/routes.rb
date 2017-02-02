@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :student_checks, only: [:update]
   resources :houses
   resources :beds
-  resources :students 
+  resources :students
+  resources :reports, only: [:index]
 
+  get 'report_filters' => "reports#filters"
   post 'generate_student_checks' => 'student_checks#new'
 end
