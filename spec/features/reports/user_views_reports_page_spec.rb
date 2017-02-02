@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User visits reporting dashboard;", type: :feature do
+RSpec.feature "User visits reports page;", type: :feature do
   let(:permission) { FactoryGirl.create(:permission) }
   let(:user) { permission.user }
   let(:house) { permission.house }
@@ -14,7 +14,7 @@ RSpec.feature "User visits reporting dashboard;", type: :feature do
     click_link "Reports"
   end
 
-  scenario "User can navigate to the reports dashboard" do
+  scenario "User can navigate to the reports index page" do
     sign_in_and_navigate_to_reports_index
 
     expect(current_path).to eq(reports_path)
@@ -60,16 +60,5 @@ RSpec.feature "User visits reporting dashboard;", type: :feature do
     expect(page).to have_content("Off Campus")
     expect(page).to have_content("Missing")
     expect(page).to have_content("Unchecked")
-  end
-
-  scenario "User can select a date range" do
-    sign_in_and_navigate_to_reports_index
-
-    expect(page).to have_content("Start Date")
-    expect(page).to have_content("End Date")
-  end
-
-  scenario "User successfully creates a report" do
-
   end
 end
