@@ -15,7 +15,8 @@ class StudentCheck < ActiveRecord::Base
   scope :filters, -> (args) {
     by_date_range(args[:start_date], args[:end_date]).
     from(StudentCheck.by_houses(args[:houses]).
-    by_status(args[:statuses]), :student_checks)
+    by_status(args[:statuses]), :student_checks).
+    order(created_at: :desc)
   }
 
   def bed
