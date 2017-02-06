@@ -26,4 +26,3 @@ Reports
 - in the reports, an unfinished tour doesn't report that a student hasn't been checked on.
   This is because we are creating a student_check when the qr code is scanned instead of
   creating all the student checks for the given tour when the tour starts.
-- order the reports by date 
