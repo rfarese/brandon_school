@@ -9,8 +9,6 @@ class ReportsController < ApplicationController
     report_data = ReportGenerator.new(filters)
     @student_checks = report_data.build_student_checks
 
-    binding.pry
-
     render 'index'
   end
 end
