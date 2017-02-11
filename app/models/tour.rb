@@ -4,24 +4,18 @@ class Tour < ActiveRecord::Base
   mount_uploader :selfie, SelfieUploader
   enum status: { incomplete: 0, complete: 1 }
 
+  # add a scope to collect all the students for a given tour
+
   def rooms
     house.rooms
   end
 
-  def beds
-    b = []
-    rooms.each do |room|
-      b << room.beds
-    end
-    b.flatten
-  end
-
   def students
     s = []
-    beds.each do |bed|
-      s << bed.student if bed.student
+    rooms.each do |room|
+      s << room.students
     end
-    s
+    s.flatten
   end
 
   def complete?
@@ -34,5 +28,9 @@ class Tour < ActiveRecord::Base
 
   def incomplete_student_checks
     self.student_checks.where(complete_status: 0)
+  end
+
+  def build_student_checks
+    StudentCheckBuilder.new(self).generate
   end
 end

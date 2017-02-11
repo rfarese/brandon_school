@@ -2,6 +2,8 @@ class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:new, :update]
 
   def new
+    # change the GenerateStudentCheck to StudentCheckFinder
+    # use the tour_id and the room_id to find all the student checks 
     generate_student_checks = GenerateStudentCheck.new(generate_student_check_params)
     @student_checks = generate_student_checks.generate
   end

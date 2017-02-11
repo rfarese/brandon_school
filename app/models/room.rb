@@ -3,7 +3,7 @@ class Room < ActiveRecord::Base
   has_many :beds
   has_one :qrcode, dependent: :destroy
   validates :name, presence: true
-  validates :house_id, presence: true 
+  validates :house_id, presence: true
   after_save :create_new_qr_code
 
   def create_new_qr_code
