@@ -9,12 +9,9 @@ class StudentChecksController < ApplicationController
     student_check = StudentCheck.find(params[:id])
     current_room = student_check.room
     student_check.assign_attributes(student_check_params)
-    if student_check.valid?
-      student_check.complete_status = 1
-      student_check.save
-    end
+    is_student_check_valid?(student_check)
     @student_checks = incomplete_student_checks_by_room(current_room)
-    complete_checker(@student_checks)
+    room_complete_checker(@student_checks)
   end
 
   private
@@ -50,7 +47,7 @@ class StudentChecksController < ApplicationController
     render 'qrcode_scans/new'
   end
 
-  def complete_checker(student_checks)
+  def room_complete_checker(student_checks)
     if student_checks.count == 0
       tour_complete_check
     else
@@ -61,5 +58,12 @@ class StudentChecksController < ApplicationController
   def incomplete_student_checks_by_room(room)
     args = { tour_id: current_tour.id, room_id: room.id }
     StudentCheckFinder.new(args).incomplete_by_room_and_tour
+  end
+
+  def is_student_check_valid?(student_check)
+    if student_check.valid?
+      student_check.complete_status = 1
+      student_check.save
+    end
   end
 end
