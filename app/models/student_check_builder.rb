@@ -13,7 +13,11 @@ class StudentCheckBuilder
 
   def generate
     students.each do |student|
-      student_check = StudentCheck.create(student_id: student.id, status: "unchecked")
+      student_check = StudentCheck.create(
+                        student_id: student.id,
+                        status: "unchecked",
+                        room_id: student.room.id
+                        )
       bind_to_tour(student_check)
       student_checks << student_check
     end

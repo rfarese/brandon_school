@@ -2,7 +2,11 @@ class Student < ActiveRecord::Base
   belongs_to :bed
   has_many :student_checks
   validates :initials, presence: true, length: { maximum: 3 }
-  validates :bed, presence: true 
+  validates :bed, presence: true
+
+  def room
+    bed.room 
+  end
 
   def recent_check
     self.student_checks.last

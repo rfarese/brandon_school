@@ -2,19 +2,15 @@ class StudentCheckFinder
   attr_reader :room_id, :tour_id
 
   def initialize(args)
-    @room = Room.find(args[:room_id])
-    @tour = Tour.find(args[:tour_id])
+    @room_id = args[:room_id]
+    @tour_id = args[:tour_id]
   end
 
-  def all_student_checks
-    tour.student_checks
+  def by_room_and_tour
+    StudentCheck.where(room_id: room_id, tour_id: tour_id)
   end
 
-  def student_checks_by_room
-    s = []
-    all_student_checks.each do |student_check|
-      s << student_check if student_check.room == room
-    end
-    s
-  end 
+  def incomplete_by_room_and_tour
+    StudentCheck.where(room_id: room_id, tour_id: tour_id, complete_status: 0)
+  end
 end

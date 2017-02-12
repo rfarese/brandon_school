@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129145307) do
+ActiveRecord::Schema.define(version: 20170212171712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170129145307) do
     t.integer  "student_id"
     t.integer  "tour_id"
     t.integer  "complete_status", default: 0
+    t.integer  "room_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170129145307) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "qrcodes", "rooms"
+  add_foreign_key "student_checks", "rooms"
   add_foreign_key "student_checks", "students"
   add_foreign_key "student_checks", "tours"
 end
