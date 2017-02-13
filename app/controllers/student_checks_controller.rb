@@ -2,7 +2,7 @@ class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:new, :update]
 
   def new
-    @student_checks = StudentCheckFinder.new(finder_params).by_room_and_tour
+    @student_checks = StudentCheck.by_room_and_tour(finder_params)
   end
 
   def update
@@ -10,7 +10,7 @@ class StudentChecksController < ApplicationController
     current_room = student_check.room
     student_check.assign_attributes(student_check_params)
     is_student_check_valid?(student_check)
-    @student_checks = incomplete_student_checks_by_room(current_room)
+    @student_checks = incomplete_student_checks(current_room)
     room_complete_checker(@student_checks)
   end
 
@@ -55,9 +55,9 @@ class StudentChecksController < ApplicationController
     end
   end
 
-  def incomplete_student_checks_by_room(room)
+  def incomplete_student_checks(room)
     args = { tour_id: current_tour.id, room_id: room.id }
-    StudentCheckFinder.new(args).incomplete_by_room_and_tour
+    StudentCheck.by_room_and_tour(args).incomplete
   end
 
   def is_student_check_valid?(student_check)

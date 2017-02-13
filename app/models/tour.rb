@@ -4,8 +4,6 @@ class Tour < ActiveRecord::Base
   mount_uploader :selfie, SelfieUploader
   enum status: { incomplete: 0, complete: 1 }
 
-  # add a scope to collect all the students for a given tour
-
   def rooms
     house.rooms
   end
