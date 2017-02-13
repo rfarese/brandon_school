@@ -1,8 +1,14 @@
 class StudentCheck < ActiveRecord::Base
   belongs_to :tour
   belongs_to :student
+  belongs_to :room
   enum complete_status: { incomplete: 0, complete: 1 }
   validates :status, presence: true, inclusion: { in: %w(asleep awake bathroom pass off_campus missing empty unchecked) }
+
+  scope :by_room_and_tour, ->(args) { where(
+    room_id: args[:room_id],
+    tour_id: args[:tour_id])
+  }
 
   scope :by_houses, -> (houses) { joins(tour: :house).where(houses: { id: houses }) }
   scope :by_status, -> (statuses) { where(status: statuses) }

@@ -2,23 +2,20 @@ class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:new, :update]
 
   def new
-    generate_student_checks = GenerateStudentCheck.new(generate_student_check_params)
-    @student_checks = generate_student_checks.generate
+    @student_checks = StudentCheck.by_room_and_tour(finder_params)
   end
 
   def update
     student_check = StudentCheck.find(params[:id])
+    current_room = student_check.room
     student_check.assign_attributes(student_check_params)
-    if student_check.valid?
-      student_check.complete_status = 1
-      student_check.save
-    end
-    @student_checks = @tour.incomplete_student_checks
-    complete_checker
+    is_student_check_valid?(student_check)
+    @student_checks = incomplete_student_checks(current_room)
+    room_complete_checker(@student_checks)
   end
 
   private
-  def generate_student_check_params
+  def finder_params
     { room_id: params[:room_id], tour_id: params[:tour_id] }
   end
 
@@ -50,11 +47,23 @@ class StudentChecksController < ApplicationController
     render 'qrcode_scans/new'
   end
 
-  def complete_checker
-    if @tour.current_room_complete?
+  def room_complete_checker(student_checks)
+    if student_checks.count == 0
       tour_complete_check
     else
       render 'new'
+    end
+  end
+
+  def incomplete_student_checks(room)
+    args = { tour_id: current_tour.id, room_id: room.id }
+    StudentCheck.by_room_and_tour(args).incomplete
+  end
+
+  def is_student_check_valid?(student_check)
+    if student_check.valid?
+      student_check.complete_status = 1
+      student_check.save
     end
   end
 end

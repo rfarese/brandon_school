@@ -47,15 +47,6 @@ RSpec.describe Tour, type: :model do
     end
   end
 
-  describe "#beds" do
-    it "returns all the beds associated with the tour" do
-      house.rooms << room1
-      room1.beds << bed1
-
-      expect(tour.beds.count).to eq(1)
-    end
-  end
-
   describe "#students" do
     it "returns all the students associated with the tour" do
       house.rooms << room1
