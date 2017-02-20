@@ -35,4 +35,8 @@ class Tour < ActiveRecord::Base
   def build_student_checks
     StudentCheckBuilder.new(self).generate
   end
+
+  def build_student_checks_by_beds
+    StudentCheckBuilder.new(self).generate_by_beds
+  end
 end

@@ -9,7 +9,9 @@ class ToursController < ApplicationController
     @tour.status = "incomplete"
     @tour.save
     # generate the student checks for the entire tour
-    @tour.build_student_checks
+    @tour.build_student_checks_by_beds
+    binding.pry
+    # @tour.build_student_checks
     render new_qrcode_scans_path
   end
 
