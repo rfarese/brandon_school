@@ -10,6 +10,7 @@
         <th class="text-center">Student Status</th>
         <th class="text-center">Check-In Complete</th>
         <th class="text-center">Comment</th>
+        <th class="text-center">Picture</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
           <td class="text-center"><%= student_check.status %></td>
           <td class="text-center"><%= student_check.complete? %></td>
           <td class="text-center"><%= student_check.comment %></td>
+          <td class="text-center"><%= image_tag(student_check.tour.selfie_pic) %></td>
         </tr>
       <% end %>
     </tbody>

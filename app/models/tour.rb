@@ -4,6 +4,10 @@ class Tour < ActiveRecord::Base
   mount_uploader :selfie, SelfieUploader
   enum status: { incomplete: 0, complete: 1 }
 
+  def selfie_pic
+    selfie.file.url
+  end
+
   def rooms
     house.rooms
   end
