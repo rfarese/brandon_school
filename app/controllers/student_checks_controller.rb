@@ -1,6 +1,7 @@
 class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:new, :update]
 
+  # this is really an edit method...the student check has already been created
   def new
     @student_checks = StudentCheck.by_room_and_tour(finder_params)
   end
@@ -20,7 +21,7 @@ class StudentChecksController < ApplicationController
   end
 
   def student_check_params
-    params.require(:student_check).permit(:status, :comment)
+    params.require(:student_check).permit(:status, :comment, :initials)
   end
 
   def get_current_tour

@@ -21,7 +21,7 @@ class Tour < ActiveRecord::Base
   end
 
   def complete?
-    student_checks.where(complete_status: 1).count == students.count
+    student_checks.where(complete_status: 1).count == house.beds.count
   end
 
   def current_room_complete?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212171712) do
+ActiveRecord::Schema.define(version: 20170221222301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170212171712) do
     t.integer  "tour_id"
     t.integer  "complete_status", default: 0
     t.integer  "room_id"
+    t.string   "initials"
   end
 
   create_table "students", force: :cascade do |t|

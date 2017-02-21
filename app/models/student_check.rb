@@ -29,10 +29,6 @@ class StudentCheck < ActiveRecord::Base
     self.student.bed
   end
 
-  def room
-    bed.room
-  end
-
   def house
     tour.house
   end
