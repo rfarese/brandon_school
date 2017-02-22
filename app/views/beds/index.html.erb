@@ -9,7 +9,6 @@
       <th>Name</th>
       <th class="text-center">House Name</th>
       <th class="text-center">Room Name</th>
-      <th class="text-center">Student Initials</th>
       <th></th>
     </tr>
   </thead>
@@ -19,7 +18,6 @@
         <td><%= bed.name %></td>
         <td class="text-center"><%= bed.house.name %></td>
         <td class="text-center"><%= bed.room.name %></td>
-        <td class="text-center"><%= render 'empty_bed_check', bed: bed %></td>
         <td class="text-center"><%= link_to "edit", edit_bed_path(bed) %><br>
           <a data-open='deleteModal<%="#{bed.id}"%>'>delete</a>
 

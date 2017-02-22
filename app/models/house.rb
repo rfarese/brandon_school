@@ -14,12 +14,4 @@ class House < ActiveRecord::Base
     end
     b
   end
-
-  def students
-    s = []
-    self.beds.each do |bed|
-      s << bed.student if bed.student
-    end
-    s
-  end
 end

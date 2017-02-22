@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221222301) do
+ActiveRecord::Schema.define(version: 20170221235123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,21 +64,11 @@ ActiveRecord::Schema.define(version: 20170221222301) do
     t.text     "comment"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "student_id"
     t.integer  "tour_id"
     t.integer  "complete_status", default: 0
     t.integer  "room_id"
     t.string   "initials"
   end
-
-  create_table "students", force: :cascade do |t|
-    t.string   "initials",   limit: 3, null: false
-    t.integer  "bed_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "students", ["bed_id"], name: "index_students_on_bed_id", using: :btree
 
   create_table "tours", force: :cascade do |t|
     t.string   "selfie",                 null: false
@@ -113,6 +103,5 @@ ActiveRecord::Schema.define(version: 20170221222301) do
 
   add_foreign_key "qrcodes", "rooms"
   add_foreign_key "student_checks", "rooms"
-  add_foreign_key "student_checks", "students"
   add_foreign_key "student_checks", "tours"
 end

@@ -1,6 +1,5 @@
 class StudentCheck < ActiveRecord::Base
   belongs_to :tour
-  belongs_to :student
   belongs_to :room
   enum complete_status: { incomplete: 0, complete: 1 }
   validates :status, presence: true, inclusion: { in: %w(asleep awake bathroom pass off_campus missing empty unchecked) }
@@ -24,10 +23,6 @@ class StudentCheck < ActiveRecord::Base
     by_status(args[:statuses]), :student_checks).
     order(created_at: :desc)
   }
-
-  def bed
-    self.student.bed
-  end
 
   def house
     tour.house

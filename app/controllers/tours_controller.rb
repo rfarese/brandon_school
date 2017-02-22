@@ -8,7 +8,7 @@ class ToursController < ApplicationController
     @tour = Tour.new(tour_params)
     @tour.status = "incomplete"
     @tour.save
-    @tour.build_student_checks_by_beds
+    @tour.build_student_checks
     render new_qrcode_scans_path
   end
 
