@@ -16,11 +16,4 @@ RSpec.describe Room, type: :model do
       expect(room).to respond_to(:qrcode)
     end
   end
-
-  describe "#students" do
-    it 'returns all the students in the room' do
-      expect(room).to respond_to(:students)
-      expect(room.students).to be_a_kind_of(Array)
-    end
-  end
 end

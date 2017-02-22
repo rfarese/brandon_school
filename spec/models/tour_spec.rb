@@ -15,11 +15,8 @@ RSpec.describe Tour, type: :model do
   let(:bed1) { FactoryGirl.create(:bed, room_id: room1.id) }
   let(:bed2) { FactoryGirl.create(:bed, room_id: room1.id) }
 
-  let(:student1) { FactoryGirl.create(:student, bed_id: bed1.id) }
-  let(:student2) { FactoryGirl.create(:student, bed_id: bed2.id) }
-
-  let(:student_check1) { FactoryGirl.create(:student_check, student_id: student1.id) }
-  let(:student_check2) { FactoryGirl.create(:student_check, student_id: student2.id) }
+  let(:student_check1) { FactoryGirl.create(:student_check, room_id: room1.id) }
+  let(:student_check2) { FactoryGirl.create(:student_check, room_id: room2.id) }
 
   def student_checks_array
     [ student_check1, student_check2 ]
@@ -47,21 +44,12 @@ RSpec.describe Tour, type: :model do
     end
   end
 
-  describe "#students" do
-    it "returns all the students associated with the tour" do
-      house.rooms << room1
-      room1.beds << bed1
-      room1.beds << bed2
-      bed1.student = student1
-      bed2.student = student2
-
-      expect(tour.students.count).to eq(2)
-    end
-  end
-
   describe "#complete?" do
     it "returns false if the tour is not finished" do
+      house << [room1, room2]
+
       bind_to_tour(student_checks_array)
+      binding.pry
 
       expect(tour.complete?).to eq(false)
     end
