@@ -1,6 +1,6 @@
 <% @student_checks.each do |student_check| %>
-  <h2>Student Check for: <%= student_check.student.initials %></h2>
   <%= simple_form_for student_check do |f| %>
+    <%= f.input :initials %>
     <%= f.input :status, as: :select, collection: [['asleep', :asleep], ['awake', :awake], ['bathroom', :bathroom], ['pass', :pass], ['off campus', :off_campus], ['missing', :missing], ['empty', :empty]] %>
     <%= f.input :comment, as: :text %>
     <%= f.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>

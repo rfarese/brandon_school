@@ -12,16 +12,8 @@ class Tour < ActiveRecord::Base
     house.rooms
   end
 
-  def students
-    s = []
-    rooms.each do |room|
-      s << room.students
-    end
-    s.flatten
-  end
-
   def complete?
-    student_checks.where(complete_status: 1).count == students.count
+    student_checks.where(complete_status: 1).count == house.beds.count
   end
 
   def current_room_complete?

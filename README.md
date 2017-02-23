@@ -27,4 +27,4 @@ Reports
   This is because we are creating a student_check when the qr code is scanned instead of
   creating all the student checks for the given tour when the tour starts.
 - add ability to export report in a CSV file
-- add pagination to reports 
+- add pagination to reports

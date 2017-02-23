@@ -9,7 +9,6 @@
       <th>Name</th>
       <th class="text-center">Total Rooms</th>
       <th class="text-center">Total Beds</th>
-      <th class="text-center">Total Students</th>
       <th></th>
     </tr>
   </thead>
@@ -19,7 +18,6 @@
         <td><%= house.name %></td>
         <td class="text-center"><%= house.rooms.count %></td>
         <td class="text-center"><%= house.beds.count %></td>
-        <td class="text-center"><%= house.students.count %></td>
         <td class="text-center"><%= link_to "edit", edit_house_path(house) %><br>
           <a data-open='deleteModal<%="#{house.id}"%>'>delete</a>
 

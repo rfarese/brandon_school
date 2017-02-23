@@ -45,6 +45,7 @@ class RoomsController < ApplicationController
 
   def destroy
     room = Room.find(params[:id])
+    
     if room.destroy
       flash[:notice] = "Room Deleted"
     else

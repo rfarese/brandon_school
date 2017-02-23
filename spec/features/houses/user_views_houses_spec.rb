@@ -24,6 +24,5 @@ RSpec.feature "User views all houses;", type: :feature do
     expect(page).to have_content(house.name)
     expect(page).to have_content(house.rooms.count)
     expect(page).to have_content(house.beds.count)
-    expect(page).to have_content(house.students.count)
   end
 end

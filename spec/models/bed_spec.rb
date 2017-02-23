@@ -5,5 +5,4 @@ RSpec.describe Bed, type: :model do
   it { should_not have_valid(:name).when(nil, "") }
 
   it { should belong_to(:room) }
-  it { should have_one(:student) }
-end
+ end
