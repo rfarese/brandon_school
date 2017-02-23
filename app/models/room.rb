@@ -14,4 +14,21 @@ class Room < ActiveRecord::Base
     qr_code.save
     self.qrcode = qr_code
   end
+
+  def complete?
+    true
+  end
+
+  def student_checks_by_room_and_tour(tour)
+    StudentCheck.by_room_and_tour(tour_id: tour.id, room_id: self.id)
+  end
+
+  def complete_checker(tour)
+    student_checks = student_checks_by_room_and_tour(tour)
+    self.complete? = false if student_checks_incomplete?(student_checks)
+  end
+
+  def student_checks_incomplete?(student_checks)
+    student_checks.any? { |student_check| student_check.complete_status == "incomplete" }
+  end
 end

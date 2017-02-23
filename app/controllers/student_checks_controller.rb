@@ -4,6 +4,10 @@ class StudentChecksController < ApplicationController
   # this is really an edit method...the student check has already been created
   def new
     @student_checks = StudentCheck.by_room_and_tour(finder_params)
+    @rooms = current_tour.rooms
+    @rooms.each do |room|
+      room.complete_checker(current_tour)
+    end
   end
 
   def update

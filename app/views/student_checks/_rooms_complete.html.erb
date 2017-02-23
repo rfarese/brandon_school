@@ -1,0 +1,17 @@
+<h2>Rooms</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Complete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rooms.each do |room| %>
+      <tr>
+        <td><%= room.name %></td>
+        <td><%= room.complete? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
