@@ -46,15 +46,17 @@ RSpec.describe Tour, type: :model do
 
   describe "#complete?" do
     it "returns false if the tour is not finished" do
-      house << [room1, room2]
+      room1.beds << [bed1, bed2]
+      house.rooms << [room1, room2]
 
       bind_to_tour(student_checks_array)
-      binding.pry
 
       expect(tour.complete?).to eq(false)
     end
 
     it "returns true if the tour has been finished" do
+      room1.beds << [bed1, bed2]
+      house.rooms << [room1, room2]
       bind_to_tour(student_checks_array)
       commplete_and_save_student_check(student_checks_array)
 
