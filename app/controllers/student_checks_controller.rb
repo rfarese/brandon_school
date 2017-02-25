@@ -1,10 +1,10 @@
 class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:new, :update]
+  before_action :get_current_rooms, only: [:new, :update]
 
   # this is really an edit method...the student check has already been created
   def new
     @student_checks = StudentCheck.by_room_and_tour(finder_params)
-    @rooms = current_tour.rooms
     @rooms.each do |room|
       room.complete_checker(current_tour)
     end
@@ -16,6 +16,9 @@ class StudentChecksController < ApplicationController
     student_check.assign_attributes(student_check_params)
     is_student_check_valid?(student_check)
     @student_checks = incomplete_student_checks(current_room)
+    @rooms.each do |room|
+      room.complete_checker(current_tour)
+    end
     room_complete_checker(@student_checks)
   end
 
@@ -30,6 +33,10 @@ class StudentChecksController < ApplicationController
 
   def get_current_tour
     @tour = current_tour
+  end
+
+  def get_current_rooms
+    @rooms = current_tour.rooms
   end
 
   def tour_complete_check
