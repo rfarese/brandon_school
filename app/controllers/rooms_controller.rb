@@ -42,10 +42,19 @@ class RoomsController < ApplicationController
     end
   end
 
+  def new_qrcode
+    room = Room.find(qrcode_params[:room_id])
+    room.qrcode.destroy
+    room.create_new_qr_code
+    room.save
+    @rooms = Room.all
+
+    redirect_to rooms_path
+  end
 
   def destroy
     room = Room.find(params[:id])
-    
+
     if room.destroy
       flash[:notice] = "Room Deleted"
     else
@@ -59,5 +68,9 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :house_id)
+  end
+
+  def qrcode_params
+    params.require(:qrcode).permit(:room_id)
   end
 end
