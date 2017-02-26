@@ -25,4 +25,8 @@ class Qrcode < ActiveRecord::Base
   def room_name
     Room.find(self.room_id).name
   end
+
+  def room
+    Room.find(self.room_id).generate_qrcode_identifier
+  end
 end

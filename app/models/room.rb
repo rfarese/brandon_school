@@ -1,4 +1,7 @@
 class Room < ActiveRecord::Base
+  # add unique qrcode identifier column to room
+  # generate a unique qrcode identifier number
+  # use this unique qrcode identifier number to generate the qr code
   attr_accessor :complete
 
   belongs_to :house
@@ -15,6 +18,11 @@ class Room < ActiveRecord::Base
     qr_code.image_builder
     qr_code.save
     self.qrcode = qr_code
+  end
+
+  def generate_qrcode_identifier
+    room_id  = Room.pluck(:id).last
+    room_id + rand(1..10000)
   end
 
   def student_checks_by_room_and_tour(tour)
