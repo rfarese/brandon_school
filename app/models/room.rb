@@ -21,7 +21,7 @@ class Room < ActiveRecord::Base
   end
 
   def generate_qrcode_identifier
-    room_id  = Room.pluck(:id).last
+    room_id = Room.pluck(:id).last
     room_id + rand(1..10000)
   end
 
