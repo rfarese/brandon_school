@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authorize_admin
+  # before_action :build_qrcode, only: [:create]
 
   def index
     @rooms = Room.all
@@ -11,8 +12,14 @@ class RoomsController < ApplicationController
     @houses = House.all
   end
 
+  # before create, build the unique qrcode identifier
+  # it'll get saved to the database when the room is saved
+  #
+
   def create
     @room = Room.new(room_params)
+    @room.qrcode_identifier = @room.generate_qrcode_identifier
+
     if @room.save
       flash[:notice] = "A room was successfully created."
       redirect_to rooms_path
@@ -65,7 +72,6 @@ class RoomsController < ApplicationController
 
 
   private
-
   def room_params
     params.require(:room).permit(:name, :house_id)
   end

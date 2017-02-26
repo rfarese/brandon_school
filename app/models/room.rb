@@ -20,11 +20,6 @@ class Room < ActiveRecord::Base
     self.qrcode = qr_code
   end
 
-  def generate_qrcode_identifier
-    room_id = Room.pluck(:id).last
-    room_id + rand(1..10000)
-  end
-
   def student_checks_by_room_and_tour(tour)
     StudentCheck.by_room_and_tour(tour_id: tour.id, room_id: self.id)
   end
@@ -40,5 +35,9 @@ class Room < ActiveRecord::Base
 
   def student_checks_incomplete?(student_checks)
     student_checks.any? { |student_check| student_check.complete_status == "incomplete" }
+  end
+
+  def generate_qrcode_identifier
+    Room.maximum(:qrcode_identifier) + 1
   end
 end

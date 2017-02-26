@@ -6,6 +6,7 @@ class Qrcode < ActiveRecord::Base
 
   def image_builder
     tmp_path = Rails.root.join('tmp', "Room#{self.room_id}_qrcode.png")
+    # qrcode = NewQrCodeImageCreator.new(qrcode_identifier)
     qrcode = QrCodeImageCreator.new(self.room_id.to_s)
     qrcode.build_image.save(tmp_path)
     open_image_file(tmp_path)
@@ -24,9 +25,5 @@ class Qrcode < ActiveRecord::Base
 
   def room_name
     Room.find(self.room_id).name
-  end
-
-  def unique_identifier 
-    Room.find(self.room_id).generate_qrcode_identifier
   end
 end
