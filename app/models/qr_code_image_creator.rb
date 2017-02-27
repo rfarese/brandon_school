@@ -1,12 +1,12 @@
 class QrCodeImageCreator
-  attr_reader :room_id, :image
+  attr_reader :identifier, :image
 
-  def initialize(room_id)
-    @room_id = room_id
+  def initialize(identifier)
+    @identifier = identifier
   end
 
   def build_image
-    @image = RQRCode::QRCode.new(room_id)
+    @image = RQRCode::QRCode.new(identifier)
     build_png
   end
 

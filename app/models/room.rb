@@ -1,4 +1,7 @@
 class Room < ActiveRecord::Base
+  # add unique qrcode identifier column to room
+  # generate a unique qrcode identifier number
+  # use this unique qrcode identifier number to generate the qr code
   attr_accessor :complete
 
   belongs_to :house
@@ -12,7 +15,7 @@ class Room < ActiveRecord::Base
   def create_new_qr_code
     qr_code = Qrcode.new
     qr_code.room_id = self.id
-    qr_code.image_builder
+    qr_code.image_builder(self.qrcode_identifier)
     qr_code.save
     self.qrcode = qr_code
   end
@@ -32,5 +35,10 @@ class Room < ActiveRecord::Base
 
   def student_checks_incomplete?(student_checks)
     student_checks.any? { |student_check| student_check.complete_status == "incomplete" }
+  end
+
+  def generate_qrcode_identifier
+    num = Room.maximum(:qrcode_identifier) || 1
+    num + 1
   end
 end

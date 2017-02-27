@@ -9,7 +9,7 @@ RSpec.describe Qrcode, type: :model do
   describe "#image_builder" do
     it "builds a QR code image" do
       qrcode = Qrcode.new(room_id: room.id)
-      qrcode.image_builder
+      qrcode.image_builder(1)
       image = qrcode.image.file
 
       expect(image.content_type).to eq("image/png")
