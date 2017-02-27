@@ -50,7 +50,8 @@ class RoomsController < ApplicationController
   end
 
   def new_qrcode
-    room = Room.find(qrcode_params[:room_id])
+    room = Room.find_by(qrcode_identifier: qrcode_params[:identifier])
+    room.qrcode_identifier = room.generate_qrcode_identifier
     room.qrcode.destroy
     room.create_new_qr_code
     room.save
@@ -77,6 +78,6 @@ class RoomsController < ApplicationController
   end
 
   def qrcode_params
-    params.require(:qrcode).permit(:room_id)
+    params.require(:qrcode).permit(:identifier)
   end
 end
