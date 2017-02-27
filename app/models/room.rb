@@ -38,6 +38,7 @@ class Room < ActiveRecord::Base
   end
 
   def generate_qrcode_identifier
-    Room.maximum(:qrcode_identifier) + 1
+    num = Room.maximum(:qrcode_identifier) || 1
+    num + 1
   end
 end

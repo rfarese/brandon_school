@@ -6,10 +6,13 @@ RSpec.describe QrCodeImageCreator, type: :model do
 
   describe "#build_image" do
     it "builds a QR code image" do
-      qrcode = QrCodeImageCreator.new(room.id.to_s)
+      room.qrcode_identifier = room.generate_qrcode_identifier
+      room.save
+
+      qrcode = QrCodeImageCreator.new(room.qrcode_identifier.to_s)
       qrcode.build_image
 
-      expect(qrcode.room_id).to eq(room.id.to_s)
+      expect(qrcode.identifier).to eq(room.qrcode_identifier.to_s)
     end
   end
 end
