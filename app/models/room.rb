@@ -15,7 +15,7 @@ class Room < ActiveRecord::Base
   def create_new_qr_code
     qr_code = Qrcode.new
     qr_code.room_id = self.id
-    qr_code.image_builder
+    qr_code.image_builder(self.qrcode_identifier)
     qr_code.save
     self.qrcode = qr_code
   end
