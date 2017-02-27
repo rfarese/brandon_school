@@ -1,7 +1,7 @@
-function generateStudentCheckButton(room_id) {
+function generateStudentCheckButton(identifier) {
 	var button = $("#generate-student-check-button");
 	var path = button.attr("href");
-	path += "&room_id=" + room_id
+	path += "&qrcode_identifier=" + identifier
 	button.attr("href", path);
 	button.show();
 }

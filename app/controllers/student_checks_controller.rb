@@ -4,7 +4,9 @@ class StudentChecksController < ApplicationController
 
   # this is really an edit method...the student check has already been created
   def new
-    @student_checks = StudentCheck.by_room_and_tour(finder_params)
+    room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
+    args = { room_id: room.id, tour_id: finder_params[:tour_id] }
+    @student_checks = StudentCheck.by_room_and_tour(args)
     @rooms.each do |room|
       room.complete_checker(current_tour)
     end
@@ -24,7 +26,7 @@ class StudentChecksController < ApplicationController
 
   private
   def finder_params
-    { room_id: params[:room_id], tour_id: params[:tour_id] }
+    { qrcode_identifier: params[:qrcode_identifier], tour_id: params[:tour_id] }
   end
 
   def student_check_params
