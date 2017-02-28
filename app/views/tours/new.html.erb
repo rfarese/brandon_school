@@ -1,6 +1,17 @@
-<%= simple_form_for @tour do |f| %>
-  <%= f.input :house_id, collection: @houses %>
-  <%= f.input :selfie, label: "Take a Selfie", as: :file %>
 
-  <%= f.button :submit, value: "Upload" %>
-<% end %>
+<div class="row">
+  <div class="small-1 medium-3 large-4 columns"> </div>
+
+  <div class="small-10 small-centered medium-6 large-4 columns">
+    <h2>New Tour</h2>
+    <%= simple_form_for @tour do |f| %>
+    <div class="form-fields">
+      <%= f.input :house_id, collection: @houses %>
+      <%= f.input :selfie, label: "Take a Selfie", as: :file %>
+    </div>
+      <%= f.button :submit, value: "Upload" %>
+    <% end %>
+  </div>
+
+  <div class="small-1 medium-3 large-4 columns"></div>
+</div>
