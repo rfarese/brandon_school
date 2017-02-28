@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if (top.location.pathname === "/tours" || top.location.pathname == "/generate_student_checks") {
+  if (top.location.pathname === "/tours" || top.location.pathname == "/generate_student_checks" || top.location.pathname.includes("/student_checks/")) {
     // set the time we are counting down too
     var tourStartTime = $(".tour-time").text();
 
