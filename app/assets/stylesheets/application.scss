@@ -192,5 +192,20 @@ nav {
 }
 
 #report-results-table {
-  margin-top: 1em; 
+  margin-top: 1em;
+}
+
+.tour-time {
+  display: none;
+}
+
+.tour-timer {
+  text-align: center;
+  color: #A3258C;
+}
+
+.new-tour-form {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
