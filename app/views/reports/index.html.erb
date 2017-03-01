@@ -6,4 +6,14 @@
 
 <%= render 'filters_form', houses: @houses %>
 
+<div class="row csv-download-container">
+  <div class="small-4 columns"></div>
+
+  <div class="small-4 small-centered columns text-center">
+    <%= link_to "Download CSV", "#", class: "button text-center", id: "export" %>
+  </div>
+
+  <div class="small-4 columns"></div>
+</div>
+
 <%= render 'filtered_results', student_checks: @student_checks %>
