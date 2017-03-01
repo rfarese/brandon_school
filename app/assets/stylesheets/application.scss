@@ -218,7 +218,27 @@ nav {
   padding: .85em 8em;
 }
 
+.top-bar {
+  background-color: white;
+}
 
+.top-bar-right {
+  background-color: white;
+  padding-top: .75em;
+  padding-right: 1em;
+}
+
+.top-bar-left .dropdown {
+  background-color: white;
+}
+
+.top-bar-right li {
+  background-color: white;
+}
+
+.off-canvas-wrapper {
+  border-bottom: solid 1px #006C36;
+}
 
 // custom large 1135px and up
 @media screen and (min-width: 70.9375em) {
@@ -249,26 +269,31 @@ nav {
 
 }
 
-// custom medium screens; 641px - 720px
-@media screen and (min-width: 40em) and (max-width: 45em) {
-
-}
-
-// small screens only; 640px and under
-@media screen and (max-width: 39.99em) {
+// custom medium screens and smaller; 1024px and under
+@media screen and (max-width: 64em) {
   .title-bar {
+    margin: 1em;
     background-color: white;
     color: black;
   }
 
   .menu-icon::after {
     background: black;
-    box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
+    box-shadow: 0 7px 0 black, 0 14px 0 black;
   }
 
-  .title-bar-left .menu-icon {
-    display: none; 
+  #offCanvasRight {
+    background-color: #A3258C;
   }
+
+  #offCanvasRight ul li a {
+    color: white;
+  }
+}
+
+// small screens only; 640px and under
+@media screen and (max-width: 39.99em) {
+
 }
 
 // custom small screens; 515px - 613px
