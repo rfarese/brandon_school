@@ -1,30 +1,30 @@
-# Brandon School
-Your app description, here.
+# Brandon School Check-In Application
 
-Todo:  
+## Overview
+This application is used to monitor overnight students.  QR codes are placed outside
+of the doors of the student dorm rooms.  By scanning the QR code, the application
+identifies how many students (beds actually) are in the room and need to be checked in on.
 
-Remove instance variables from student_checks forms partial
-- remove the @student_checks and @tour by passing in locals
+To begin the process, an overnight staff member creates a new tour.  To create a new tour
+the staff member must identify which house they are in and upload a selfie to indicate
+which staff member is conducting the tour.  Once this is completed, the staff member
+is redirected to a QR code scanning page.  
 
-Refactor current_tour in ApplicationController
-- move this into StudentChecksController (its not being used by other controllers...)
+Once the tour is started, the staff member has 20 minutes to complete the tour.  A
+countdown timer is displaying how much time the staff member has left to complete the tour
+before it is terminated and they have to start over.
 
-Refactor Models
-- go through each model
-- check how they are relating to each other
-- some of the initial relationships weren't necessary while others were necessary
-- there are probably several methods and relationships in different models that could be removed
+The staff member then scans a QR code outside of one of the rooms and is presented with a
+series of forms (one for each bed / student).  Information such as the students initials,
+the students status (asleep, awake, off campus, etc.), and any relevant comments are entered
+by the staff member. Once all forms are completed, the staff member is redirected to scan
+another QR code.  This process continues until all the rooms in the current house have been
+checked and the tour is complete.
 
-Clean up routes
-- go through all the routes you aren't using (including devise) and remove them
-
-Fix Mobile Views
-- go through each page and fix the view bugs on mobile and tablets
-
-Reports
-- ensure that only admins can reach the reports page
-- in the reports, an unfinished tour doesn't report that a student hasn't been checked on.
-  This is because we are creating a student_check when the qr code is scanned instead of
-  creating all the student checks for the given tour when the tour starts.
-- add ability to export report in a CSV file
-- add pagination to reports
+An administrative user of the application has access to reporting capabilities to see
+how many tours were created, what time they were created at, were the tours complete or incomplete,
+and much more. Additionally, the administrative users have access to CRUD functionality for the
+domain objects (house, room, and bed) to be able to manipulate and change the applications structure
+based on the current houses are set up.  For example, beds often move in and out of rooms
+which would require a different number of forms to be displayed for that room.  Admin's have the flexibility
+to alter the application based on their current needs.
