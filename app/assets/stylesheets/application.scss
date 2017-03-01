@@ -24,7 +24,7 @@
 #generate-student-check-button {
   display: none;
   padding-right: 4em;
-  padding-left: 4em; 
+  padding-left: 4em;
 }
 
 nav {
@@ -298,9 +298,11 @@ nav {
 
 }
 
-// custom small screens; 515px - 613px
-@media screen and (min-width: 32.1875em) and (max-width: 38.3125em) {
-
+// custom small screens; 525px and under
+@media screen and (max-width: 32.8125em) {
+  #filter-submit-button, #filter-reset-button {
+    font-size: .7em; 
+  }
 }
 
 // custom small screens; 614px - 640px
