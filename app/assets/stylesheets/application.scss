@@ -215,5 +215,68 @@ nav {
 }
 
 .csv-download-container a {
-  padding: .85em 8em; 
+  padding: .85em 8em;
+}
+
+
+
+// custom large 1135px and up
+@media screen and (min-width: 70.9375em) {
+
+}
+
+// custom medium 899px to 1134px
+@media screen and (min-width: 56.1875em) and (max-width: 70.875em) {
+
+}
+
+// large screens only; 1025px and up
+@media screen and (min-width: 64.063em) {
+
+}
+
+// custom large screens and up; 1024px - 1115px and up
+@media screen and (min-width: 64em) and (max-width: 69.6875em) {
+
+}
+
+// custom medium screens; 818px - 1023px
+@media screen and (min-width: 51.125em) and (max-width: 63.9375em) {
+
+}
+// medium screens only; 641px - 1024px
+@media screen and (min-width: 40em) and (max-width: 64em) {
+
+}
+
+// custom medium screens; 641px - 720px
+@media screen and (min-width: 40em) and (max-width: 45em) {
+
+}
+
+// small screens only; 640px and under
+@media screen and (max-width: 39.99em) {
+  .title-bar {
+    background-color: white;
+    color: black;
+  }
+
+  .menu-icon::after {
+    background: black;
+    box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
+  }
+
+  .title-bar-left .menu-icon {
+    display: none; 
+  }
+}
+
+// custom small screens; 515px - 613px
+@media screen and (min-width: 32.1875em) and (max-width: 38.3125em) {
+
+}
+
+// custom small screens; 614px - 640px
+@media screen and (min-width: 38.3175em) and (max-width: 39.99em) {
+
 }
