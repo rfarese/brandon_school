@@ -20,10 +20,31 @@
         <td class="text-center"><%= room.house.name %></td>
         <td class="text-center"><%= room.beds.count %></td>
         <td class="text-center"><%= image_tag(room.qrcode.image) %></td>
-        <td class="text-center"><%= link_to "edit", edit_room_path(room) %><br>
+        <td class="text-center">
+          <a data-open='editModal<%="#{room.id}"%>'>edit</a><br>
           <a data-open='deleteModal<%="#{room.id}"%>'>delete</a>
 
-          <div id='deleteModal<%="#{room.id}"%>' class="reveal" data-reveal>
+          <div id='editModal<%="#{room.id}"%>' class="reveal" data-reveal data-options="showDelay:350; hideDelay:350">
+            <h2 class="text-center">Edit Room</h2>
+
+            <%= simple_form_for room do |f| %>
+              <%= f.input :house_id, collection: @houses %>
+              <%= f.input :name %>
+
+              <%= f.button :submit, value: "Submit" %>
+            <% end %>
+
+            <%= simple_form_for :qrcode, url: new_qrcode_path do |f| %>
+              <%= f.hidden_field :identifier, :value => room.qrcode_identifier %>
+              <%= f.button :submit, value: "Replace Existing QR Code" %>
+            <% end %>
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div id='deleteModal<%="#{room.id}"%>' class="reveal" data-reveal data-options="showDelay:350; hideDelay:350">
             <h2 class="text-center">Are you sure?</h2>
             <div class="text-center">
               <%= link_to "Delete Room", room_path(room), method: :delete, class: "button delete-resource-button" %>
