@@ -11,14 +11,16 @@ RSpec.feature "User creates a new bed;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Beds"
+    within(".top-bar-right") do
+      click_on("Beds")
+    end
   end
 
   scenario "User successfully creates a new bed" do
     bed
     room
     sign_in_and_navigate_to_beds_index
-    click_link "edit"
+    visit edit_bed_path(bed)
     fill_in "Name", with: "New Bed Name"
     select(room.name, from: 'bed[room_id]')
     click_button "Submit"
@@ -31,7 +33,7 @@ RSpec.feature "User creates a new bed;", type: :feature do
     bed
     room
     sign_in_and_navigate_to_beds_index
-    click_link "edit"
+    visit edit_bed_path(bed)
     fill_in "Name", with: ""
     click_button "Submit"
 

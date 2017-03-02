@@ -7,6 +7,14 @@ class ReportGenerator
     @args = generate_args(filters)
   end
 
+  # you should just be able to remove @args = generate_args(filters) from initialize
+  # then, in generate_args method, just add @args = { start_date: ... }
+  # then you can remove all the (filters) arguments and parameters to
+  # generate_args, find_houses, new_start_date, and new_end_date
+  # however, you will have to look in your controllers and see where you'll have
+  # to call generate_args because you are calling it automatically when the object
+  # is instanciated 
+
   def generate_args(filters)
     { start_date: new_start_date(filters),
       end_date: new_end_date(filters),

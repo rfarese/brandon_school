@@ -11,7 +11,9 @@ RSpec.feature "User creates a new bed;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Beds"
+    within(".top-bar-right") do
+      click_on("Beds")
+    end
   end
 
   scenario "User successfully creates a new bed" do

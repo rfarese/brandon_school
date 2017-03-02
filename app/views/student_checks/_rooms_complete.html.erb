@@ -1,17 +1,23 @@
-<h2>Rooms</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Complete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% rooms.each do |room| %>
-      <tr>
-        <td><%= room.name %></td>
-        <td><%= room.complete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2 class="text-center">Rooms</h2>
+<div class="row">
+  <div class="small-1 medium-2 large-3 columns"></div>
+  <div class="small-10 small-centered medium-8 large-6 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Complete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rooms.each do |room| %>
+          <tr>
+            <td><%= room.name %></td>
+            <td><%= room.complete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="small-1 medium-2 large-3 columns"></div>
+</div>

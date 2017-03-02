@@ -9,7 +9,9 @@ RSpec.feature "User deletes a house;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Houses"
+    within(".top-bar-right") do
+      click_on("Houses")
+    end
   end
 
   scenario "User views ability to delete a house" do

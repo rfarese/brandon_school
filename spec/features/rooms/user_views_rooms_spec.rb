@@ -11,7 +11,9 @@ RSpec.feature "User views all rooms;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Rooms"
+    within(".top-bar-right") do
+      click_on("Rooms")
+    end
   end
 
   def create_rooms(num)

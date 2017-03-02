@@ -11,7 +11,9 @@ RSpec.feature "User views all beds;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Beds"
+    within(".top-bar-right") do
+      click_on("Beds")
+    end
   end
 
   scenario "User navigates to the bed index page" do

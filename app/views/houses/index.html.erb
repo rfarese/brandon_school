@@ -18,10 +18,26 @@
         <td><%= house.name %></td>
         <td class="text-center"><%= house.rooms.count %></td>
         <td class="text-center"><%= house.beds.count %></td>
-        <td class="text-center"><%= link_to "edit", edit_house_path(house) %><br>
+        <td class="text-center">
+          <a data-open='editModal<%="#{house.id}"%>'>edit</a><br>
           <a data-open='deleteModal<%="#{house.id}"%>'>delete</a>
 
-          <div id='deleteModal<%="#{house.id}"%>' class="reveal" data-reveal>
+          <div id='editModal<%="#{house.id}"%>' class="reveal" data-reveal data-options="showDelay:350; hideDelay:350">
+            <h2 class="text-center">Edit House</h2>
+
+            <%= simple_form_for house do |f| %>
+              <%= f.input :name, placeholder: "Name", label: false %>
+
+              <%= f.button :submit, value: "Submit" %>
+            <% end %>
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+          <div id='deleteModal<%="#{house.id}"%>' class="reveal" data-reveal data-options="showDelay:350; hideDelay:350">
             <h2 class="text-center">Are you sure?</h2>
             <div class="text-center">
               <%= link_to "Delete House", house_path(house), method: :delete, class: "button delete-resource-button" %>

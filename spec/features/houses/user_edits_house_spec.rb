@@ -9,19 +9,21 @@ RSpec.feature "User edits a house;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Houses"
+    within(".top-bar-right") do
+      click_on("Houses")
+    end
   end
 
   scenario "User navigates to the new house page" do
     sign_in_and_navigate_to_houses_index
-    click_link "edit"
+    visit edit_house_path(house)
 
     expect(current_path).to eq(edit_house_path(house))
   end
 
   scenario "User successfully edits a house" do
     sign_in_and_navigate_to_houses_index
-    click_link "edit"
+    visit edit_house_path(house)
     fill_in "Name", with: "Edited House Name"
     click_button "Submit"
 
@@ -31,7 +33,7 @@ RSpec.feature "User edits a house;", type: :feature do
 
   scenario "User does not provide valid information" do
     sign_in_and_navigate_to_houses_index
-    click_link "edit"
+    visit edit_house_path(house)
     fill_in "Name", with: ""
     click_button "Submit"
 

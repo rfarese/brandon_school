@@ -12,8 +12,9 @@ RSpec.feature "User sign out;", type: :feature do
 
   scenario "User successfully signs out" do
     sign_in(user)
-    click_link "Sign Out"
-
+    within(".top-bar-right") do
+      click_on("Sign Out")
+    end
     expect(page).to have_content("Signed out successfully")
   end
 

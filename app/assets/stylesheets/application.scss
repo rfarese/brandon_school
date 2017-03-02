@@ -23,6 +23,8 @@
 
 #generate-student-check-button {
   display: none;
+  padding-right: 4em;
+  padding-left: 4em;
 }
 
 nav {
@@ -215,5 +217,95 @@ nav {
 }
 
 .csv-download-container a {
-  padding: .85em 8em; 
+  padding: .85em 8em;
+}
+
+.top-bar {
+  background-color: white;
+}
+
+.top-bar-right {
+  background-color: white;
+  padding-top: 1.85em;
+  padding-right: 1em;
+}
+
+.top-bar-left .dropdown {
+  background-color: white;
+}
+
+.top-bar-right li {
+  background-color: white;
+}
+
+.off-canvas-wrapper {
+  border-bottom: solid 1px #006C36;
+}
+
+// custom large 1135px and up
+@media screen and (min-width: 70.9375em) {
+
+}
+
+// custom medium 899px to 1134px
+@media screen and (min-width: 56.1875em) and (max-width: 70.875em) {
+
+}
+
+// large screens only; 1025px and up
+@media screen and (min-width: 64.063em) {
+
+}
+
+// custom large screens and up; 1024px - 1115px and up
+@media screen and (min-width: 64em) and (max-width: 69.6875em) {
+
+}
+
+// custom medium screens; 818px - 1023px
+@media screen and (min-width: 51.125em) and (max-width: 63.9375em) {
+
+}
+// medium screens only; 641px - 1024px
+@media screen and (min-width: 40em) and (max-width: 64em) {
+
+}
+
+// custom medium screens and smaller; 1024px and under
+@media screen and (max-width: 64em) {
+  .title-bar {
+    margin: 1em;
+    background-color: white;
+    color: black;
+  }
+
+  .menu-icon::after {
+    background: black;
+    box-shadow: 0 7px 0 black, 0 14px 0 black;
+  }
+
+  #offCanvasRight {
+    background-color: #A3258C;
+  }
+
+  #offCanvasRight ul li a {
+    color: white;
+  }
+}
+
+// small screens only; 640px and under
+@media screen and (max-width: 39.99em) {
+
+}
+
+// custom small screens; 525px and under
+@media screen and (max-width: 32.8125em) {
+  #filter-submit-button, #filter-reset-button {
+    font-size: .7em; 
+  }
+}
+
+// custom small screens; 614px - 640px
+@media screen and (min-width: 38.3175em) and (max-width: 39.99em) {
+
 }

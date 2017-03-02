@@ -1,33 +1,67 @@
-<nav>
-  <div class="row">
-    <div class="small-4 columns">
-      <%= link_to root_path do %>
-        <%= image_tag("brandon_school_logo.png", size: "200x200") %>
-      <% end %>
+<div class="off-canvas-wrapper">
+  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+    <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="large">
+      <div class="title-bar-left">
+        <span class="title-bar-title"><%= link_to image_tag("brandon_school_logo.png", size: "150x150"), root_path %></span>
+      </div>
+      <div class="title-bar-right">
+        <span class="title-bar-title"></span>
+        <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
+      </div>
     </div>
 
-    <%if user_signed_in? %>
-    <div class="small-8 columns">
-      <ul class="vertical medium-horizontal menu float-right">
-        <li><%= link_to "New Tour", new_tour_path %></li>
+    <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
+      <ul class="vertical dropdown menu" data-dropdown-menu>
+        <% if user_signed_in? %>
+          <li><%= link_to "New Tour", new_tour_path %></li>
 
-        <% if admin_signed_in? %>
-          <li><%= link_to "Reports", reports_path %></li>
-          <li><%= link_to "Houses", houses_path %></li>
-          <li><%= link_to "Rooms", rooms_path %></li>
-          <li><%= link_to "Beds", beds_path %></li>
+          <% if admin_signed_in? %>
+            <li><%= link_to "Reports", reports_path %></li>
+            <li><%= link_to "Houses", houses_path %></li>
+            <li><%= link_to "Rooms", rooms_path %></li>
+            <li><%= link_to "Beds", beds_path %></li>
+          <% end %>
+
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+
+        <% else %>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
         <% end %>
-
-        <li><%= link_to "Sign Out", destroy_user_session_path, class: "button session-button", method: :delete %></li>
       </ul>
     </div>
 
-    <% else %>
-      <div class="small-8 columns">
-        <ul class="vertical medium-horizontal menu float-right">
-          <li><%= link_to "Sign In", new_user_session_path, class: "button session-button" %></li>
+    <div id="widemenu" class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text"><%= link_to image_tag("brandon_school_logo.png", size: "200x200"), root_path %></li>
         </ul>
       </div>
-    <% end %>
+      <div class="top-bar-right">
+        <%if user_signed_in? %>
+        <div>
+          <ul class="vertical medium-horizontal menu float-right">
+            <li><%= link_to "New Tour", new_tour_path %></li>
+
+            <% if admin_signed_in? %>
+              <li><%= link_to "Reports", reports_path %></li>
+              <li><%= link_to "Houses", houses_path %></li>
+              <li><%= link_to "Rooms", rooms_path %></li>
+              <li><%= link_to "Beds", beds_path %></li>
+            <% end %>
+
+            <li><%= link_to "Sign Out", destroy_user_session_path, class: "button session-button", method: :delete %></li>
+          </ul>
+        </div>
+
+        <% else %>
+          <div>
+            <ul class="vertical medium-horizontal menu float-right">
+              <li><%= link_to "Sign In", new_user_session_path, class: "button session-button" %></li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</nav>
+</div>

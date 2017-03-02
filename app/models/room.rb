@@ -1,7 +1,4 @@
 class Room < ActiveRecord::Base
-  # add unique qrcode identifier column to room
-  # generate a unique qrcode identifier number
-  # use this unique qrcode identifier number to generate the qr code
   attr_accessor :complete
 
   belongs_to :house
