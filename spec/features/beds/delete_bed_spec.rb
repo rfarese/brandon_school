@@ -9,9 +9,11 @@ RSpec.feature "User creates a new bed;", type: :feature do
 
   def sign_in_and_navigate_to_beds_index
     user.role = "admin"
-    user.save 
+    user.save
     sign_in(user)
-    click_link "Beds"
+    within(".top-bar-right") do
+      click_on("Beds")
+    end    
   end
 
   scenario "User views ability to delete a bed" do

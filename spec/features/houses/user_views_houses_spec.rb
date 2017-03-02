@@ -9,7 +9,9 @@ RSpec.feature "User views all houses;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Houses"
+    within(".top-bar-right") do
+      click_on("Houses")
+    end
   end
 
   scenario "User navigates to the house index page" do

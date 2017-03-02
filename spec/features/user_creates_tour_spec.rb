@@ -7,15 +7,19 @@ RSpec.feature "User creates a tour;", type: :feature do
 
   scenario "user views link to create a new tour" do
     sign_in(user)
-    click_link "New Tour"
+    within(".top-bar-right") do
+      click_on("New Tour")
+    end
 
     expect(page).to have_content("Take a Selfie")
   end
 
   scenario "user successfully uploads a selfie to create a new tour" do
     sign_in(user)
-    click_link "New Tour"
-
+    within(".top-bar-right") do
+      click_on("New Tour")
+    end
+    
     expect(Tour.count).to eq(0)
 
     attach_file :tour_selfie, "#{Rails.root}/spec/support/images/photo.jpg"

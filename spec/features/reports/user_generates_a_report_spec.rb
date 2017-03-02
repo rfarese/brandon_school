@@ -11,7 +11,9 @@ RSpec.feature "User generates a new report;", type: :feature do
     user.role = "admin"
     user.save
     sign_in(user)
-    click_link "Reports"
+    within(".top-bar-right") do
+      click_on("Reports")
+    end
   end
 
   scenario "User can select a date range" do
