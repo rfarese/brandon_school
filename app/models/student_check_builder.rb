@@ -2,6 +2,7 @@ class StudentCheckBuilder
   attr_reader :student_checks, :tour, :rooms
 
   def initialize(tour)
+    # should just call tour.rooms here...
     @rooms = tour.house.rooms
     @tour = tour
     @student_checks = []
