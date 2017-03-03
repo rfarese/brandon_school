@@ -3,20 +3,3 @@
     <h1>Student Check-In</h1>
   </div>
 </div>
-
-<% if @tour %>
-  <div class="row">
-    <div class="small-12 columns tour-timer">
-      <h3>New Tour Required In:</h3>
-      <h4 id="new-tour-countdown"></h4>
-    </div>
-  </div>
-
-  <div class="tour-end-time">
-    <%= @tour.created_at %>
-  </div>
-
-  <div class="house-name">
-    <%= @tour.house.name %>
-  </div>
-<% end %>
