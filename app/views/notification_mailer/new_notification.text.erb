@@ -1,6 +1,10 @@
 NO NEW TOUR ALERT!
 
-There has been no new tours within the past hour at <%= @house_name %>.
+There have been no new tours at <%= @house_name %>.
+
+This email is sent when:
+  1. It has been 60 minutes or more since the last tour was completed.
+  2. The most recent tour is incomplete and it has been 80 minutes or more since that tour was created.
 
 Please take the appropriate steps.
 
