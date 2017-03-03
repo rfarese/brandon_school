@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'report_filters' => "reports#filters"
   post 'generate_student_checks' => 'student_checks#new'
   post 'new_qrcode' => 'rooms#new_qrcode'
+  post 'new_notification' => 'notification_emails#new'
 end

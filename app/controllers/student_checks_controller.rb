@@ -44,7 +44,7 @@ class StudentChecksController < ApplicationController
   def tour_complete_check
     if @tour.complete?
       tour_completer
-      redirect_to root_path
+      render "homes/index"
     else
       scan_next_qrcode
     end
@@ -54,6 +54,9 @@ class StudentChecksController < ApplicationController
     flash[:notice] = "Tour is complete"
     @tour.status = "complete"
     @tour.save
+    # start the timer for notification email
+
+    # @notification_timer = NotificationTimer.new(pass in something here)
   end
 
   def scan_next_qrcode
@@ -65,7 +68,6 @@ class StudentChecksController < ApplicationController
     if student_checks.count == 0
       tour_complete_check
     else
-      # @tour
       render 'new'
     end
   end

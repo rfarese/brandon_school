@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  before_action :authorize_admin
+
   def index
     @houses = House.all
   end
