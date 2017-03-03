@@ -1,5 +1,6 @@
 class NotificationEmailsController < ApplicationController
   def new
+    binding.pry
     @house_name = notification_params[:house_name]
     NotificationMailer.new_notification(@house_name).deliver_later
     redirect_to root_path

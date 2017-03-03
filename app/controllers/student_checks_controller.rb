@@ -44,7 +44,7 @@ class StudentChecksController < ApplicationController
   def tour_complete_check
     if @tour.complete?
       tour_completer
-      redirect_to root_path
+      render "homes/index"
     else
       scan_next_qrcode
     end
@@ -68,7 +68,6 @@ class StudentChecksController < ApplicationController
     if student_checks.count == 0
       tour_complete_check
     else
-      # @tour
       render 'new'
     end
   end
