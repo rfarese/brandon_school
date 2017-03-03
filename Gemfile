@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'rqrcode'
 gem 'kaminari'
+gem 'puma'
 
 group :development, :test do
   gem 'capybara'
