@@ -4,6 +4,10 @@ class ToursController < ApplicationController
     @houses = current_user.houses
   end
 
+  # See about creating an AJAX request that sends the selfie back to the tours controller
+  # Perhaps name the action "begin_create"
+  # Create a new tour with the selfie 
+
   def create
     @tour = Tour.new(tour_params)
     @tour.status = "incomplete"

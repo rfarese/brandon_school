@@ -4,6 +4,8 @@
 // *= require_self
 // *= require_tree .
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 .button {
   border-radius: .5em;
   font-weight: bold;
@@ -301,7 +303,7 @@ nav {
 // custom small screens; 525px and under
 @media screen and (max-width: 32.8125em) {
   #filter-submit-button, #filter-reset-button {
-    font-size: .7em; 
+    font-size: .7em;
   }
 }
 
