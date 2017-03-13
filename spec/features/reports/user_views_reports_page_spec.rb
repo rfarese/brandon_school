@@ -29,7 +29,7 @@ RSpec.feature "User visits reports page;", type: :feature do
 
     expect(page).to have_link("Houses")
     expect(page).to have_link("Check In's")
-    expect(page).to have_link("Student Status")
+    expect(page).to have_link("Bed Status")
     expect(page).to have_link("Date Range")
   end
 
@@ -53,7 +53,7 @@ RSpec.feature "User visits reports page;", type: :feature do
 
   scenario "User can select the status of the student during a check in" do
     sign_in_and_navigate_to_reports_index
-    click_link "Student Status"
+    click_link "Bed Status"
 
     expect(page).to have_content("Asleep")
     expect(page).to have_content("Awake")
