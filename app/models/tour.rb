@@ -27,4 +27,8 @@ class Tour < ActiveRecord::Base
   def build_student_checks
     StudentCheckBuilder.new(self).generate
   end
+
+  def self.most_recent_by_house
+    Tour.includes(:house).where(id: (Tour.group(:house_id).maximum(:id).values))
+  end
 end
