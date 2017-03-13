@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#index"
-  resources :tours, only: [:new, :create]
+  resources :tours
   resource :qrcode_scans, only: [:new]
   resources :rooms
   resources :student_checks, only: [:update]
@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post 'generate_student_checks' => 'student_checks#new'
   post 'new_qrcode' => 'rooms#new_qrcode'
   post 'new_notification' => 'notification_emails#new'
+  post 'selfie_upload' => 'tours#selfie_upload'
 end

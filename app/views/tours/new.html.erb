@@ -31,11 +31,9 @@
     <%= simple_form_for @tour do |f| %>
     <div class="form-fields">
       <%= f.input :house_id, collection: @houses %>
-      <%= f.input :selfie, label: "Upload Selfie", as: :file %>
     </div>
       <%= f.button :submit, value: "Upload", id: "new-tour-button" %>
     <% end %>
   </div>
-
   <div class="small-1 medium-3 large-4 columns"></div>
 </div>
