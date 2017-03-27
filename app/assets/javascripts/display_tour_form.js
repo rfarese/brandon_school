@@ -38,6 +38,7 @@ $(document).ready(function() {
       $("#new-tour-container").show();
       $(".container").hide();
       $("#selfie-header").hide();
+      $("#tour_id").val(data.tour_id);  
     });
   });
 });
