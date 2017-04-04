@@ -54,9 +54,6 @@ class StudentChecksController < ApplicationController
     flash[:notice] = "Tour is complete"
     @tour.status = "complete"
     @tour.save
-    # start the timer for notification email
-
-    # @notification_timer = NotificationTimer.new(pass in something here)
   end
 
   def scan_next_qrcode

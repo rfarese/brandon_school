@@ -25,18 +25,12 @@ RSpec.feature "User visits tours in progress dashboard;", type: :feature do
     expect(current_path).to eq(tours_in_progress_path)
   end
 
-  scenario "User views tours seperated by house" 
+  scenario "User views tours seperated by house"
 
   scenario "User views the tour start time, staff selfie, and tour status"
 
   scenario "User views all tours in the last 24 hours"
-    # this might need to be in the model spec to test that we are only returning
-    # tours conducted in the last 24 hours
 
   scenario "User can select select a tour to view its details"
-    # display each bed check and its status
-      # initals
-      # bed status
-      # comment
-      # selfie pic
+
 end

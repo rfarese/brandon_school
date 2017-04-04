@@ -14,12 +14,16 @@ class House < ActiveRecord::Base
   scope :tours_today, -> { includes(:tours).joins(:tours).merge(Tour.today) }
 
   def beds
-    b = []
-    self.rooms.each do |room|
-      room.beds.each do |bed|
-        b << bed
-      end
-    end
-    b
+    Bed.by_houses(self)
   end
+
+  # def beds
+  #   b = []
+  #   self.rooms.each do |room|
+  #     room.beds.each do |bed|
+  #       b << bed
+  #     end
+  #   end
+  #   b
+  # end
 end
