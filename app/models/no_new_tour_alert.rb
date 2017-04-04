@@ -4,7 +4,19 @@ class NoNewTourAlert
   def initialize(args={})
     @house_name = args[:house_name]
     @tour = args[:tour]
-    @current_time = Time.now
+    @current_time = set_current_time
+  end
+
+  def is_edt?
+    Time.now + 4.hour if Time.now.zone == "EDT"
+  end
+
+  def is_est?
+    Time.now + 5.hour if Time.now.zone == "EST"
+  end
+
+  def set_current_time
+    is_edt? || is_est?
   end
 
   def correct_time?
@@ -16,7 +28,7 @@ class NoNewTourAlert
   end
 
   def between_12_and_6?
-    current_time >= (Time.parse "12:00 am") && current_time <= (Time.parse "6:00 am")
+    current_time >= (Time.parse "12:00 am") && current_time <= (Time.parse "6:05 am")
   end
 
   def time_passed_too_long?
