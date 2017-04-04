@@ -16,14 +16,4 @@ class House < ActiveRecord::Base
   def beds
     Bed.by_houses(self)
   end
-
-  # def beds
-  #   b = []
-  #   self.rooms.each do |room|
-  #     room.beds.each do |bed|
-  #       b << bed
-  #     end
-  #   end
-  #   b
-  # end
 end
