@@ -4,6 +4,8 @@ class Tour < ActiveRecord::Base
   mount_uploader :selfie, SelfieUploader
   enum status: { incomplete: 0, complete: 1 }
 
+  scope :today, -> { includes(:student_checks).where(updated_at: (Time.now - 24.hours)..Time.now) }
+
   def selfie_pic
     selfie.file.url
   end

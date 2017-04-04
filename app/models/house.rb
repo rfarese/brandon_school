@@ -9,7 +9,9 @@ class House < ActiveRecord::Base
   # add a class method onto the Bed model
   # have that class method return all the beds for a given house
   # inside the beds method below (in the house model), pass the house (self)
-  # as a parameter to the bed class method 
+  # as a parameter to the bed class method
+
+  scope :tours_today, -> { includes(:tours).joins(:tours).merge(Tour.today) }
 
   def beds
     b = []
