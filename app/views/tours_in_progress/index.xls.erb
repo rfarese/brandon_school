@@ -1,0 +1,26 @@
+<h1>Tours in Progress</h1>
+
+<table>
+  <tr>
+    <th>House</th>
+    <th>Tour Start Time</th>
+    <th>Tour Status</th>
+    <th>Bed Check Initials</th>
+    <th>Bed Check Status</th>
+    <th>Bed Check Comment</th>
+  </tr>
+  <% @houses.each do |house| %>
+    <% house.tours.each do |tour| %>
+      <% tour.student_checks.each do |student_check| %>
+        <tr>
+          <td><%= house.name %></td>
+          <td><%= tour.created_at.strftime("%b. %d, %Y, %H:%M") %></td>
+          <td><%= tour.status %></td>
+          <td><%= student_check.initials %></td>
+          <td><%= student_check.status %></td>
+          <td><%= student_check.comment %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
