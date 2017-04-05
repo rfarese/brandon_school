@@ -10,6 +10,5 @@ task :email_notification => :environment do
     if alerter.correct_time? && alerter.time_passed_too_long?
       alerter.send_alert
     end
-    binding.pry
   end
 end
