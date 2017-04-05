@@ -3,18 +3,53 @@ class ReportsController < ApplicationController
 
   def index
     @houses = House.all
+    deleted_cached_filters if cached_filters?
   end
 
-  # see how you can cache the houses
-  # either in Rails or in the browser so that we don't have to make another
-  # database call to collect all the houses again in the filters action
   def filters
-    filters = params[:filters]
+    filters = filter_params
     @houses = House.all
     report_data = ReportGenerator.new(filters)
     @student_checks = report_data.build_student_checks
-    @student_checks = Kaminari.paginate_array(@student_checks).page(params[:page]).per(10)
 
-    render 'index'
+    unless params[:format] == "xls"
+      @student_checks = Kaminari.paginate_array(@student_checks).page(params[:page]).per(10)
+    end
+
+    respond_to do |format|
+      format.html { render 'index' }
+      format.csv
+      format.xls
+    end
+  end
+
+  private
+
+  def filter_params
+    if params[:format] == "xls"
+      filters = fetch_cached_filters
+    else
+      filters = params[:filters]
+      cache_filters
+    end
+    filters
+  end
+
+  def cached_filters?
+    Rails.cache.exist?("filter_parameters")
+  end
+
+  def deleted_cached_filters
+    Rails.cache.delete("filter_parameters")
+  end
+
+  def fetch_cached_filters
+    Rails.cache.fetch("filter_parameters")
+  end
+
+  def cache_filters
+    Rails.cache.fetch("filter_parameters", expires_in: 1.hour) do
+      params[:filters]
+    end
   end
 end
