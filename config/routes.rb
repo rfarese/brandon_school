@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   post 'new_qrcode' => 'rooms#new_qrcode'
   post 'new_notification' => 'notification_emails#new'
   post 'selfie_upload' => 'tours#selfie_upload'
+  get 'tours_in_progress' => 'tours_in_progress#index'
 end

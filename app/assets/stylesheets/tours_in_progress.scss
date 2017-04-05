@@ -1,0 +1,82 @@
+.tours-in-progress-top-container {
+  margin-bottom: 3em;
+}
+
+.tours-in-progress-container {
+  padding-bottom: 1em;
+}
+
+.tours-in-progress-container, h2 {
+  margin-bottom: 0;
+}
+
+.tours-in-progress-house-container {
+  border: 1px solid #c8c8c8;
+  border-top: none;
+}
+
+.tours-in-progress-header {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  font-size: 1.25em;
+  // padding-left: 1em;
+  background-color: rgba(184,128,9,.75);
+  color: white;
+}
+
+.tours-in-progress {
+  margin: 0em 0em 0em 0em !important;
+  // padding-left: .75em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.tours-in-progress .selfie-container {
+  // padding-right: 0;
+}
+
+.tours-in-progress, img {
+  padding-top: .25em;
+  padding-bottom: .25em;
+}
+
+.tour-info {
+  padding-top: 1.5em;
+}
+
+.tours-in-progress-details {
+  display: none;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 2em;
+  // padding-left: 1.25em;
+}
+
+.display-tour-details {
+  color: black;
+}
+
+.display-tour-details:hover {
+  color: black;
+  .tours-in-progress {
+    background-color: #f8f8f8;
+  }
+}
+
+.tours-in-progress-details > h4 {
+  background-color: rgba(184,128,9,.75);
+  color: white;
+}
+
+.tours-in-progress-details-headers {
+  font-size: 1.15em; 
+}
+
+.bed-check-details-initials-header {
+  padding-left: 1.75em;
+}
+
+.bed-check-details-initials {
+  padding-left: 2.5em;
+  // margin-left: 1em;
+}
