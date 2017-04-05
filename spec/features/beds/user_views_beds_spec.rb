@@ -5,7 +5,7 @@ RSpec.feature "User views all beds;", type: :feature do
   let(:user)        { permission.user }
   let(:house)       { permission.house }
   let(:room)        { FactoryGirl.create(:room, house_id: house.id) }
-  let(:bed)         { FactoryGirl.create(:bed, room_id: room.id) }
+  let(:bed)         { FactoryGirl.create(:bed, room_id: room.id, house_id: house.id) }
 
   def sign_in_and_navigate_to_beds_index
     user.role = "admin"

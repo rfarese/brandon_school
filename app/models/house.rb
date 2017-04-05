@@ -3,13 +3,10 @@ class House < ActiveRecord::Base
   has_many :users, through: :permissions
   has_many :rooms, dependent: :destroy
   has_many :tours
+  has_many :beds
   validates :name, presence: true
 
   scope :tours_today, -> { includes(:tours).joins(:tours).merge(Tour.today) }
-
-  def beds
-    Bed.by_houses(self)
-  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
