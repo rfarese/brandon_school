@@ -1,30 +1,28 @@
-<% if student_checks %>
-  <table id="report-results-table">
-    <thead>
+<table id="report-results-table">
+  <thead>
+    <tr>
+      <th>House Name</th>
+      <th class="text-center">Tour Complete</th>
+      <th class="text-center">Start Date</th>
+      <th class="text-center">Initials</th>
+      <th class="text-center">Bed Status</th>
+      <th class="text-center">Check-In Complete</th>
+      <th class="text-center">Comment</th>
+      <th class="text-center">Picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% student_checks.each do |student_check| %>
       <tr>
-        <th>House Name</th>
-        <th class="text-center">Tour Complete</th>
-        <th class="text-center">Start Date</th>
-        <th class="text-center">Student</th>
-        <th class="text-center">Bed Status</th>
-        <th class="text-center">Check-In Complete</th>
-        <th class="text-center">Comment</th>
-        <th class="text-center">Picture</th>
+        <td><%= student_check.house.name %></td>
+        <td class="text-center"><%= student_check.tour.complete? %></td>
+        <td class="text-center"><%= (student_check.created_at - 5.hours).strftime("%b. %d, %Y, %H:%M") %></td>
+        <td class="text-center"><%= student_check.initials %></td>
+        <td class="text-center"><%= student_check.status %></td>
+        <td class="text-center"><%= student_check.complete? %></td>
+        <td class="text-center"><%= student_check.comment %></td>
+        <td class="text-center"><%= image_tag(student_check.tour.selfie_pic, size: "100x100") %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% student_checks.each do |student_check| %>
-        <tr>
-          <td><%= student_check.house.name %></td>
-          <td class="text-center"><%= student_check.tour.complete? %></td>
-          <td class="text-center"><%= (student_check.created_at - 5.hours).strftime("%b. %d, %Y, %H:%M") %></td>
-          <td class="text-center"><%= student_check.initials %></td>
-          <td class="text-center"><%= student_check.status %></td>
-          <td class="text-center"><%= student_check.complete? %></td>
-          <td class="text-center"><%= student_check.comment %></td>
-          <td class="text-center"><%= image_tag(student_check.tour.selfie_pic, size: "100x100") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>
