@@ -36,9 +36,9 @@ class ReportGenerator
 
   def build_student_checks
     if status == "all"
-      StudentCheck.filters(args)
+      StudentCheck.includes(tour: :house).filters(args)
     else
-      StudentCheck.send(status).filters(args) unless status == "all"
+      StudentCheck.includes(tour: :house).send(status).filters(args)
     end
   end
 end
