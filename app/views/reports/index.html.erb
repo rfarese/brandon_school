@@ -16,4 +16,7 @@
   <div class="small-4 columns"></div>
 </div>
 
-<%= render 'filtered_results', student_checks: @student_checks %>
+<% if @student_checks %>
+  <%= render 'filtered_results', student_checks: @student_checks %>
+  <%= paginate @student_checks %>
+<% end %>
