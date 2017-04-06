@@ -12,8 +12,8 @@ RSpec.describe Tour, type: :model do
   let(:room1) { FactoryGirl.create(:room, house_id: house.id) }
   let(:room2) { FactoryGirl.create(:room, house_id: house.id) }
 
-  let(:bed1) { FactoryGirl.create(:bed, room_id: room1.id) }
-  let(:bed2) { FactoryGirl.create(:bed, room_id: room1.id) }
+  let(:bed1) { FactoryGirl.create(:bed, room_id: room1.id, house_id: house.id) }
+  let(:bed2) { FactoryGirl.create(:bed, room_id: room1.id, house_id: house.id) }
 
   let(:student_check1) { FactoryGirl.create(:student_check, room_id: room1.id) }
   let(:student_check2) { FactoryGirl.create(:student_check, room_id: room2.id) }

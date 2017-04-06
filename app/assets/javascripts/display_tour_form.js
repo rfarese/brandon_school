@@ -1,13 +1,3 @@
-// $(document).ready(function() {
-//   $("body").on("click", "#download-photo", function(event) {
-//     debugger;
-//     $("#new-tour-container").show();
-//     $(".container").hide();
-//     $("#selfie-header").hide();
-//   });
-// });
-
-
 $(document).ready(function() {
   $("body").on("click", "#download-photo", function(event) {
     var dataURL = canvas.toDataURL('image/jpg');
@@ -38,7 +28,7 @@ $(document).ready(function() {
       $("#new-tour-container").show();
       $(".container").hide();
       $("#selfie-header").hide();
-      $("#tour_id").val(data.tour_id);  
+      $("#tour_id").val(data.tour_id);
     });
   });
 });

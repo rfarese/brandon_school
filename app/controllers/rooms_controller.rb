@@ -1,9 +1,8 @@
 class RoomsController < ApplicationController
   before_action :authorize_admin
-  # before_action :build_qrcode, only: [:create]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.includes(:house, :beds, :qrcode).all
     @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(7)
   end
 
@@ -11,10 +10,6 @@ class RoomsController < ApplicationController
     @room = Room.new
     @houses = House.all
   end
-
-  # before create, build the unique qrcode identifier
-  # it'll get saved to the database when the room is saved
-  #
 
   def create
     @room = Room.new(room_params)

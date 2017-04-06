@@ -5,7 +5,7 @@ RSpec.feature "User creates a new bed;", type: :feature do
   let(:user)        { permission.user }
   let(:house)       { permission.house }
   let(:room)        { FactoryGirl.create(:room, house_id: house.id) }
-  let(:bed)         { FactoryGirl.create(:bed, room_id: room.id) }
+  let(:bed)         { FactoryGirl.create(:bed, room_id: room.id, house_id: house.id) }
 
   def sign_in_and_navigate_to_beds_index
     user.role = "admin"
@@ -13,7 +13,7 @@ RSpec.feature "User creates a new bed;", type: :feature do
     sign_in(user)
     within(".top-bar-right") do
       click_on("Beds")
-    end    
+    end
   end
 
   scenario "User views ability to delete a bed" do

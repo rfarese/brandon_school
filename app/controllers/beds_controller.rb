@@ -2,7 +2,7 @@ class BedsController < ApplicationController
   before_action :authorize_admin
 
   def index
-    @beds = Bed.all
+    @beds = Bed.includes(:house, :room).all
     @beds = Kaminari.paginate_array(@beds).page(params[:page]).per(7)
   end
 
@@ -60,6 +60,11 @@ class BedsController < ApplicationController
   private
 
   def bed_params
-    params.require(:bed).permit(:name, :room_id)
+    bed_parameters = params.require(:bed).permit(:name, :room_id)
+
+    unless bed_parameters[:room_id] == ""
+      room = Room.includes(:house).find(bed_parameters[:room_id])
+      bed_parameters.merge!(house_id: room.house.id)
+    end
   end
 end
