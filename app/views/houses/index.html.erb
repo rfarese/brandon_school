@@ -16,8 +16,8 @@
     <% @houses.each do |house| %>
       <tr>
         <td><%= house.name %></td>
-        <td class="text-center"><%= house.rooms.size %></td>
-        <td class="text-center"><%= house.beds.size %></td>
+        <td class="text-center"><%= house.rooms_count %></td>
+        <td class="text-center"><%= house.beds_count %></td>
         <td class="text-center">
           <a data-open='editModal<%="#{house.id}"%>'>edit</a><br>
           <a data-open='deleteModal<%="#{house.id}"%>'>delete</a>
