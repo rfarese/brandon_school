@@ -45,6 +45,9 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.11)
     builder (3.2.2)
+    bullet (5.5.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
@@ -228,6 +231,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.10.0)
     valid_attribute (2.0.0)
     warden (1.2.6)
       rack (>= 1.0)
@@ -238,6 +242,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bullet
   capybara
   carrierwave
   database_cleaner
@@ -266,4 +271,4 @@ RUBY VERSION
    ruby 2.2.3p173
 
 BUNDLED WITH
-   1.12.5
+   1.14.6

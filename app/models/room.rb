@@ -1,8 +1,8 @@
 class Room < ActiveRecord::Base
   attr_accessor :complete
 
-  belongs_to :house
-  has_many :beds
+  belongs_to :house, counter_cache: true
+  has_many :beds, dependent: :destroy 
   has_many :student_checks
   has_one :qrcode, dependent: :destroy
   validates :name, presence: true

@@ -14,6 +14,11 @@ gem 'rqrcode'
 gem 'kaminari'
 gem 'puma'
 
+group :development do
+  gem 'bullet'
+end
+
+
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'

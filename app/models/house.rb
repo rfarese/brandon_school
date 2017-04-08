@@ -3,7 +3,7 @@ class House < ActiveRecord::Base
   has_many :users, through: :permissions
   has_many :rooms, dependent: :destroy
   has_many :tours
-  has_many :beds
+  has_many :beds, dependent: :destroy 
   validates :name, presence: true
 
   scope :tours_today, -> { includes(:tours).joins(:tours).merge(Tour.today) }

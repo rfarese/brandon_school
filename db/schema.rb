@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405213450) do
+ActiveRecord::Schema.define(version: 20170408142715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20170405213450) do
   add_index "beds", ["room_id"], name: "index_beds_on_room_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "rooms_count", default: 0, null: false
+    t.integer  "beds_count",  default: 0, null: false
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -53,11 +55,12 @@ ActiveRecord::Schema.define(version: 20170405213450) do
   add_index "qrcodes", ["room_id"], name: "index_qrcodes_on_room_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "name",              null: false
+    t.string   "name",                          null: false
     t.integer  "house_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "qrcode_identifier"
+    t.integer  "beds_count",        default: 0, null: false
   end
 
   add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree

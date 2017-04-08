@@ -18,7 +18,7 @@
       <tr>
         <td><%= room.name %></td>
         <td class="text-center"><%= room.house.name %></td>
-        <td class="text-center"><%= room.beds.size %></td>
+        <td class="text-center"><%= room.beds_count %></td>
         <td class="text-center"><%= image_tag(room.qrcode.image) %></td>
         <td class="text-center">
           <a data-open='editModal<%="#{room.id}"%>'>edit</a><br>

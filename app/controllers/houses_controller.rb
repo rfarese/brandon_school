@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   before_action :authorize_admin
 
   def index
-    @houses = House.includes(:rooms, :beds).all
+    @houses = House.all
     @houses = Kaminari.paginate_array(@houses).page(params[:page]).per(7)
   end
 
