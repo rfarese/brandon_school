@@ -6,9 +6,7 @@ task :email_notification => :environment do
     house_name = tour.house.name
     args = { house_name: house_name, tour: tour }
     alerter = NoNewTourAlert.new(args)
-
-    if alerter.correct_time? && alerter.time_passed_too_long?
-      alerter.send_alert
-    end
+    alerter.send_alert if alerter.should_send_alert?
+    binding.pry
   end
 end
