@@ -7,6 +7,5 @@ task :email_notification => :environment do
     args = { house_name: house_name, tour: tour }
     alerter = NoNewTourAlert.new(args)
     alerter.send_alert if alerter.should_send_alert?
-    binding.pry
   end
 end
