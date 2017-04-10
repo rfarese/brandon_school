@@ -32,7 +32,11 @@ $(document).ready(function() {
     }
 
     request.done(function(data) {
-      debugger; 
+      if (data.house_status) {
+        console.log("We have a house.");
+      } else {
+        console.log("No house assigned.")
+      }
       showNewTourContainer(data);
     });
   });
