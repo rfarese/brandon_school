@@ -6,10 +6,10 @@ class ToursController < ApplicationController
   end
 
   def selfie_upload
-    @tour = Tour.new(selfie: params[:image].tempfile)
+    @tour = Tour.new(set_selfie_attributes)
     @tour.save
     @houses = current_user.houses
-    render json: { tour_id: @tour.id }
+    render json: { tour_id: @tour.id, house_status: @tour.house }
   end
 
   def create
@@ -24,5 +24,11 @@ class ToursController < ApplicationController
   private
   def tour_params
     params_hash = params.require(:tour).permit(:house_id, :id)
+  end
+
+  def set_selfie_attributes
+    selfie = params[:image].tempfile
+    house_id = current_user.houses.pluck(:id).first
+    { house_id: house_id, selfie: selfie }
   end
 end
