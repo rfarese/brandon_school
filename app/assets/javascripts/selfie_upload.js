@@ -24,11 +24,15 @@ $(document).ready(function() {
       contentType: false
     });
 
-    request.done(function(data) {
+    function showNewTourContainer(data) {
       $("#new-tour-container").show();
       $(".container").hide();
       $("#selfie-header").hide();
       $("#tour_id").val(data.tour_id);
+    }
+
+    request.done(function(data) {
+      showNewTourContainer(data); 
     });
   });
 });
