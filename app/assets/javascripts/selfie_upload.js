@@ -32,7 +32,8 @@ $(document).ready(function() {
     }
 
     request.done(function(data) {
-      showNewTourContainer(data); 
+      debugger; 
+      showNewTourContainer(data);
     });
   });
 });
