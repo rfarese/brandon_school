@@ -24,6 +24,23 @@ class StudentChecksController < ApplicationController
     room_complete_checker(@student_checks)
   end
 
+  def update_all
+    binding.pry
+    @current_room = ""
+    student_checks_params = params[:student_checks][:student_checks]
+    student_checks_params.each do |check_params|
+      check_id = check_params.first
+      student_check = StudentCheck.find(check_id)
+      new_params = check_params.last
+      # @current_room = student_check.room
+      student_check.update_attributes(initials: new_params[:initials], status: new_params[:status], comment: new_params[:comment])
+      binding.pry
+      # is_student_check_valid?(student_check)
+
+    end
+
+  end
+
   private
   def finder_params
     { qrcode_identifier: params[:qrcode_identifier], tour_id: params[:tour_id] }

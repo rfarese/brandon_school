@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="small-1 medium-2 large-3 columns"></div>
+    <%= simple_form_for :student_checks, url: update_student_checks_path, method: :patch do |f| %>
+      <div class="small-10 small-centered medium-8 large-6 columns">
+        <% @student_checks.each do |student_check| %>
+          <%= f.simple_fields_for "student_checks[]", student_check do |sf| %>
+            <%= sf.input :initials %>
+            <%= sf.input :status, as: :select, collection: [['asleep', :asleep], ['awake', :awake], ['bathroom', :bathroom], ['pass', :pass], ['off campus', :off_campus], ['missing', :missing], ['empty', :empty]] %>
+            <%= sf.input :comment, as: :text %>
+            <%= sf.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
+          <% end %>
+        <% end %>
+        <%= f.button :submit, value: "Submit", id: "student-check-form-button" %>
+      </div>
+    <% end %>
+  <div class="small-1 medium-2 large-3 columns"></div>
+</div>
