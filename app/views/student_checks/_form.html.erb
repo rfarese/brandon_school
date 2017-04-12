@@ -9,6 +9,8 @@
             <%= sf.input :comment, as: :text %>
             <%= sf.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
           <% end %>
+          <br>
+          <br>
         <% end %>
         <%= f.button :submit, value: "Submit", id: "student-check-form-button" %>
       </div>

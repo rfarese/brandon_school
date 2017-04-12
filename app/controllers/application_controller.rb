@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   def current_tour
     if params[:action] == "new" && params[:controller] == "student_checks"
       Tour.find(params[:tour_id])
+    elsif params[:action] == 'update_all' && params[:controller] == 'student_checks'
+      Tour.find(params[:student_checks][:student_checks].first[1][:tour_id])
     else
       Tour.find(params[:student_check][:tour_id])
     end

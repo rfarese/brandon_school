@@ -1,11 +1,11 @@
 class StudentChecksController < ApplicationController
-  before_action :get_current_tour, only: [:new, :update]
-  before_action :get_current_rooms, only: [:new, :update]
+  before_action :get_current_tour, only: [:new, :update, :update_all]
+  before_action :get_current_rooms, only: [:new, :update, :update_all]
 
   # this is really an edit method...the student check has already been created
   def new
-    room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
-    args = { room_id: room.id, tour_id: finder_params[:tour_id] }
+    @room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
+    args = { room_id: @room.id, tour_id: finder_params[:tour_id] }
     @student_checks = StudentCheck.by_room_and_tour(args)
     @rooms.each do |room|
       room.complete_checker(current_tour)
@@ -25,20 +25,18 @@ class StudentChecksController < ApplicationController
   end
 
   def update_all
-    binding.pry
-    @current_room = ""
     student_checks_params = params[:student_checks][:student_checks]
-    student_checks_params.each do |check_params|
-      check_id = check_params.first
-      student_check = StudentCheck.find(check_id)
-      new_params = check_params.last
-      # @current_room = student_check.room
-      student_check.update_attributes(initials: new_params[:initials], status: new_params[:status], comment: new_params[:comment])
-      binding.pry
-      # is_student_check_valid?(student_check)
 
+    student_checks_params.each do |student_check_params|
+      student_check_id = student_check_params.first
+      student_check = StudentCheck.find(student_check_id)
+      @current_room ||= student_check.room
+      new_params = student_check_params.last
+      student_check.assign_attributes(initials: new_params[:initials], status: new_params[:status], comment: new_params[:comment])
+      is_student_check_valid?(student_check)
     end
-
+    @student_checks = incomplete_student_checks(@current_room)
+    room_complete_checker(@student_checks)
   end
 
   private
