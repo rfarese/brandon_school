@@ -17,4 +17,10 @@ Rails.application.routes.draw do
   post 'new_notification' => 'notification_emails#new'
   post 'selfie_upload' => 'tours#selfie_upload'
   get 'tours_in_progress' => 'tours_in_progress#index'
+
+  namespace :api do
+    namespace :v1 do
+      get 'tours_in_progress' => 'tours_in_progress#index'
+    end
+  end
 end
