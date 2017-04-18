@@ -1,17 +1,11 @@
 class Api::V1::ToursInProgressController < Api::V1::ApiController
   def index
     houses = House.tours_today
-    render json: houses
+    presenter = ToursInProgressPresenter.new(houses)
+    presenter.build_data
+    data = presenter.data 
+    render json: { houses: data }
   end
-
-  private
-  def set_tours(houses)
-    tours = []
-    houses.each do |house|
-
-    end
-  end
-
 end
 
 
@@ -23,7 +17,7 @@ end
 #         {
 #           start_time: tour.created_at,
 #           status: tour.status,
-#           selfie: tour.selfie
+#           selfie: tour.selfie_pic
 #           student_checks: [
 #             {
 #               initials: student_check.initials,
@@ -40,7 +34,7 @@ end
 #         {
 #           start_time: tour.created_at,
 #           status: tour.status,
-#           selfie: tour.selfie
+#           selfie: tour.selfie_pic
 #           student_checks: [
 #             {
 #               initials: student_check.initials,
