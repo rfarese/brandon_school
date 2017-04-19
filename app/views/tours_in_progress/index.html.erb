@@ -17,7 +17,7 @@
       <% house.tours.each do |tour| %>
         <a href="#tour<%=tour.id%>-details" class="display-tour-details">
           <div class="row tours-in-progress">
-            <div class="small-3 small-offset-1 columns tour-info"><%= tour.created_at.strftime("%b. %d, %Y, %H:%M") %></div>
+            <div class="small-3 small-offset-1 columns tour-info"><%= tour.created_at.strftime("%b %d %Y %H:%M") %></div>
             <div class="small-4 columns tour-info text-center"><%= tour.status %></div>
             <div class="small-4 columns text-center selfie-container"><%= image_tag(tour.selfie_pic, size: "100x100") %></div>
           </div>

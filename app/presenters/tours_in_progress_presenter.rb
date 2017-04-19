@@ -16,9 +16,11 @@ class ToursInProgressPresenter
   end
 
   def add_tours(house)
+    data[house.name][:tours] = []
+
     house.tours.each do |tour|
-      data[house.name][:tours] = []
       data[house.name][:tours] << {
+        id: tour.id,
         start_time: tour.created_at,
         status: tour.status,
         selfie: tour.selfie_pic,
