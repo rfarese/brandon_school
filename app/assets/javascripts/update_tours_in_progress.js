@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (top.location.pathname === "/tours_in_progress" ) {
-    function refreshToursInProgress(){
+    let refreshToursInProgress = () => {
       $.getJSON('/api/v1/tours_in_progress', function(data) {
 
         $(".tours-in-progress-container").remove();
@@ -10,6 +10,6 @@ $(document).ready(function() {
         console.log(new Date(Date.now()));
       });
     }
-    setInterval(refreshToursInProgress, 10000);
+    // setInterval(refreshToursInProgress, 10000);
   }
 });
