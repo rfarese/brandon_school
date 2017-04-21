@@ -1,25 +1,25 @@
 class ToursInProgressPresenter
-  attr_reader :houses, :tours, :student_checks, :data
+  attr_reader :houses, :data
 
   def initialize(houses)
     @houses = houses
-    @tours = []
-    @student_checks = []
-    @data = {}
+    @data = []
   end
 
   def build_data
     houses.each do |house|
-      data[house.name] = {}
-      add_tours(house)
+      data << {
+        name: house.name,
+        tours: add_tours(house)
+      }
     end
   end
 
   def add_tours(house)
-    data[house.name][:tours] = []
+    tours = []
 
     house.tours.each do |tour|
-      data[house.name][:tours] << {
+      tours << {
         id: tour.id,
         start_time: tour.created_at,
         status: tour.status,
@@ -27,6 +27,8 @@ class ToursInProgressPresenter
         student_checks: add_student_checks(tour)
       }
     end
+
+    tours
   end
 
   def add_student_checks(tour)
@@ -42,5 +44,4 @@ class ToursInProgressPresenter
 
     student_checks
   end
-
 end
