@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (top.location.pathname === "/tours_in_progress" ) {
-    let refreshToursInProgress = () => {
+    function refreshToursInProgress() {
       $.getJSON('/api/v1/tours_in_progress', function(data) {
 
         $(".tours-in-progress-container").remove();
