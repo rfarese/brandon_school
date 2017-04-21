@@ -10,6 +10,6 @@ $(document).ready(function() {
         console.log(new Date(Date.now()));
       });
     }
-    // setInterval(refreshToursInProgress, 10000);
+    setInterval(refreshToursInProgress, 10000);
   }
 });

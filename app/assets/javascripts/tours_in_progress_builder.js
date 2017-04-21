@@ -23,17 +23,22 @@ let buildNewToursInProgress = (houses) => {
   }
 }
 
+let createTourDate = (dateTime) => {
+  let year = dateTime.slice(0,4);
+  let month = dateTime.slice(5,7) - 1;
+  let day = dateTime.slice(8,10);
+  let hour = dateTime.slice(11,13);
+  let minute = dateTime.slice(14,16);
+  let tourDate = new Date(year, month, day, hour, minute);
+  return tourDate.toString().slice(4,21);
+}
+
+
 let addTours = (tours, updatedHouseContainer) => {
 // function addTours(tours, updatedHouseContainer) {
   for(let tourCount = 0; tourCount < tours.length; tourCount++) {
     let tour = tours[tourCount];
-    let year = tour.start_time.slice(0,4);
-    let month = tour.start_time.slice(5,7) - 1;
-    let day = tour.start_time.slice(8,10);
-    let hour = tour.start_time.slice(11,13);
-    let minute = tour.start_time.slice(14,16);
-    let tourDate = new Date(year, month, day, hour, minute);
-    tourDate = tourDate.toString().slice(4,21);
+    let tourDate = createTourDate(tour.start_time);
     let displayTourDetails = "<a href='" + tour.id + "-details' class='display-tour-details'></a>"
     let tourData = "<div class='row tours-in-progress'>";
     tourData += "<div class='small-3 small-offset-1 columns tour-info'>";
@@ -84,11 +89,3 @@ let addStudentChecks = (studentChecks, updatedBedCheckContainer) => {
     $(updatedBedCheckContainer).append(studentCheckData);
   }
 }
-
-// code above works but we'll try and refactor a little here by capturing the
-// current structure of the page and using that to add the values returned from the api
-
-// The process:
-  // get the top level div (tours-in-progress-container)
-  // make a new instance of this div for each new house
-  // populate this instance with the data from the API
