@@ -47,8 +47,4 @@ class ToursInProgressReport
   def email_report
     ToursInProgressMailer.new_report.deliver_later
   end
-  # 
-  # def open_report
-  #   @report = open_file
-  # end
 end
