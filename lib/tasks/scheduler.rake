@@ -12,10 +12,8 @@ end
 
 desc "Called by the Heroku scheduler for sending tours in progress email"
 task :tours_in_progress_email => :environment do
-  # everything is working but we need to test to see if the time is correct
-  # build out the correct_time? method in the ToursInProgressReport class 
   tours_in_progress = ToursInProgressReport.new
   tours_in_progress.csv_generator
-  # ToursInProgressMailer.new_report.deliver_later
+  tours_in_progress.email_report if tours_in_progress.correct_time?
   tours_in_progress.remove_csv_file
 end
