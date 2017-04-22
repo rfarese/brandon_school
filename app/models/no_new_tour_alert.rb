@@ -1,19 +1,10 @@
 class NoNewTourAlert
-  attr_reader :current_time, :house_name, :tour
+  attr_reader :house_name, :tour
+  include SetTime
 
   def initialize(args={})
     @house_name = args[:house_name]
     @tour = args[:tour]
-    @current_time = set_current_time
-  end
-
-  def set_current_time
-    set_time_zone
-    Time.zone.now
-  end
-
-  def set_time_zone
-    Time.zone = 'Eastern Time (US & Canada)'
   end
 
   def should_send_alert?
