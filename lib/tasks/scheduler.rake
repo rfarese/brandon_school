@@ -15,5 +15,5 @@ task :tours_in_progress_email => :environment do
   tours_in_progress = ToursInProgressReport.new
   tours_in_progress.csv_generator
   tours_in_progress.email_report if tours_in_progress.right_time?
-  tours_in_progress.remove_csv_file
+  tours_in_progress.remove_file
 end
