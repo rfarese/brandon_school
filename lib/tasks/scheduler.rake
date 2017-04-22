@@ -9,3 +9,11 @@ task :email_notification => :environment do
     alerter.send_alert if alerter.should_send_alert?
   end
 end
+
+desc "Called by the Heroku scheduler for sending tours in progress email"
+task :tours_in_progress_email => :environment do
+  tours_in_progress = ToursInProgressReport.new
+  tours_in_progress.csv_generator
+  tours_in_progress.email_report if tours_in_progress.correct_time?
+  tours_in_progress.remove_csv_file
+end

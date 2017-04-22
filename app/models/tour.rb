@@ -6,6 +6,11 @@ class Tour < ActiveRecord::Base
 
   scope :today, -> { includes(:student_checks).where(updated_at: (Time.now - 24.hours)..Time.now) }
 
+  scope :last_night, -> {
+    includes([:student_checks, :house]).
+    where(updated_at: ((Time.parse "11:00 pm") - 24.hours)..Time.now)
+  }
+
   def selfie_pic
     selfie.file.url
   end
