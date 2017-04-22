@@ -1,6 +1,7 @@
 class ToursInProgressReport
-  attr_reader :tours, :report, :tmp_path
+  attr_reader :tours, :report
   include TimeChecker
+  include TmpAide
 
   def initialize()
     @tours = Tour.last_night
@@ -27,9 +28,9 @@ class ToursInProgressReport
   end
 
   def csv_generator
-    @tmp_path = Rails.root.join('tmp', "last_nights_tours.csv")
+    path("last_nights_tours.csv")
     build_csv
-    open_csv_file
+    @report = open_file
   end
 
   def build_csv
@@ -46,14 +47,8 @@ class ToursInProgressReport
   def email_report
     ToursInProgressMailer.new_report.deliver_later
   end
-
-  def open_csv_file
-    File.open(tmp_path) do |file|
-      @report = file
-    end
-  end
-
-  def remove_csv_file
-    File.delete(tmp_path)
-  end
+  # 
+  # def open_report
+  #   @report = open_file
+  # end
 end
