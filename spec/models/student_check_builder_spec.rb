@@ -13,18 +13,17 @@ RSpec.describe StudentCheckBuilder, type: :model do
       expect(generator).to respond_to(:tour)
     end
 
+    it 'creates a beds instance variable' do
+      expect(generator).to respond_to(:beds)
+    end
+
+    it 'creates a house istance variable' do
+      expect(generator).to respond_to(:house)
+    end
+
     it 'creates a student_checks instance variable' do
       expect(generator).to respond_to(:student_checks)
       expect(generator.student_checks).to be_kind_of(Array)
-    end
-  end
-
-  describe "#beds" do
-    let(:tour) { FactoryGirl.create(:tour) }
-    let(:generator) { StudentCheckBuilder.new(tour) }
-
-    it "returns an array of the beds for the current tour" do
-      expect(generator.beds).to be_kind_of(Array)
     end
   end
 
@@ -40,10 +39,11 @@ RSpec.describe StudentCheckBuilder, type: :model do
       )}
     let(:generator) { StudentCheckBuilder.new(tour) }
 
-    it 'creates and returns a student check for each student' do
-      room.beds << [bed1, bed2]
+    it 'creates all the student checks for a given room' do
+      generator.rooms.first.beds << [bed1, bed2]
+      generator.beds << [bed1, bed2]
+      generator.generate
 
-      expect(generator.generate).to eq(generator.student_checks)
       expect(generator.student_checks.count).to eq(2)
     end
   end
