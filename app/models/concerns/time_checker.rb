@@ -1,4 +1,4 @@
-module SetTime
+module TimeChecker
   def current_time
     set_current_time
   end
@@ -10,5 +10,9 @@ module SetTime
 
   def set_time_zone
     Time.zone = 'Eastern Time (US & Canada)'
+  end
+
+  def correct_time?(start_time, end_time)
+    current_time >= start_time && current_time <= end_time
   end
 end

@@ -1,13 +1,21 @@
 class ToursInProgressReport
   attr_reader :tours, :report, :tmp_path
-  include SetTime
+  include TimeChecker
 
   def initialize()
     @tours = Tour.last_night
   end
 
-  def correct_time?
-    current_time >= (Time.zone.parse "8:55 am") && current_time <= (Time.zone.parse "9:05 am")
+  def start_time
+    Time.zone.parse "8:55 am"
+  end
+
+  def end_time
+    Time.zone.parse "9:05 am"
+  end
+
+  def right_time?
+    correct_time?(start_time, end_time)
   end
 
   def student_checks
@@ -35,7 +43,7 @@ class ToursInProgressReport
     end
   end
 
-  def email_report 
+  def email_report
     ToursInProgressMailer.new_report.deliver_later
   end
 

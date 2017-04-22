@@ -1,27 +1,22 @@
 class NoNewTourAlert
-  attr_reader :current_time, :house_name, :tour
+  attr_reader :house_name, :tour
+  include TimeChecker
 
   def initialize(args={})
     @house_name = args[:house_name]
     @tour = args[:tour]
-    @current_time = set_current_time
   end
 
-  def set_current_time
-    set_time_zone
-    Time.zone.now
+  def start_time
+    Time.zone.parse "12:25 am"
   end
 
-  def set_time_zone
-    Time.zone = 'Eastern Time (US & Canada)'
+  def end_time
+    Time.zone.parse "6:35 am"
   end
 
   def should_send_alert?
-    correct_time? && time_passed_too_long?
-  end
-
-  def correct_time?
-    current_time >= (Time.zone.parse "12:25 am") && current_time <= (Time.zone.parse "6:35 am")
+    correct_time?(start_time, end_time) && time_passed_too_long?
   end
 
   def time_passed_too_long?
