@@ -13,7 +13,8 @@ class ToursController < ApplicationController
   end
 
   def create
-    @tour = Tour.find(params[:tour][:id])
+    @tour = Tour.includes(house: [:rooms, :beds]).find(params[:tour][:id])
+    # @tour = Tour.find(params[:tour][:id])
     @tour.house_id = params[:tour][:house_id]
     @tour.status = "incomplete"
     @tour.save
