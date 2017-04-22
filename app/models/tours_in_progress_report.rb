@@ -5,6 +5,10 @@ class ToursInProgressReport
     @tours = Tour.last_night
   end
 
+  def correct_time?
+    # add a validation here to determine if it is the right time to send the email 
+  end
+
   def student_checks
     checks = []
     tours.each do |tour|
@@ -28,6 +32,10 @@ class ToursInProgressReport
         csv << [house.name, tour.created_at, tour.status, student_check.initials, student_check.status, student_check.comment]
       end
     end
+  end
+
+  def send_email
+    ToursInProgressMailer.new_report.deliver_later
   end
 
   def open_csv_file
