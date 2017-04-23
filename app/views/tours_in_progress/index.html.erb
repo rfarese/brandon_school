@@ -1,40 +1,13 @@
 <div class="tours-in-progress-top-container">
 <% @houses.each do |house| %>
-  <div class="tours-in-progress-container">
-    <div class="row table-title-container">
-      <div class="small-12 columns text-center">
-      <h2 class="table-title"><%= house.name %></h2>
-      </div>
-    </div>
-
-    <div class="tours-in-progress-house-container">
-      <div class="row tours-in-progress-header">
-        <div class="small-3 small-offset-1 columns">Tour Start Time</div>
-        <div class="small-4 columns text-center">Tour Status</div>
-        <div class="small-4 columns text-center">Tour Selfie</div>
-      </div>
+  <%= render 'house', house: house %>
+  <!-- old content here -->
 
       <% house.tours.each do |tour| %>
-        <a href="#tour<%=tour.id%>-details" class="display-tour-details">
-          <div class="row tours-in-progress">
-            <div class="small-3 small-offset-1 columns tour-info"><%= tour.created_at.strftime("%b %d %Y %H:%M") %></div>
-            <div class="small-4 columns tour-info text-center"><%= tour.status %></div>
-            <div class="small-4 columns text-center selfie-container"><%= image_tag(tour.selfie_pic, size: "100x100") %></div>
-          </div>
-
-          <div class="row tours-in-progress-details" id="tour<%=tour.id%>-details">
-            <h4 class="text-center">Bed Checks</h4>
-            <div class="row tours-in-progress-details-headers">
-              <div class="small-3 small-offset-1 columns bed-check-details-initials-header">Initials</div>
-              <div class="small-4 columns text-center">Status</div>
-              <div class="small-4 columns text-center">Comment</div>
-            </div>
+        <%= render 'tour', tour: tour %>
+        <!-- old tour content here -->
             <% tour.student_checks.each do |student_check| %>
-            <div class="row">
-              <div class="small-3 small-offset-1 columns bed-check-details-initials"><%= student_check.initials || " - " %></div>
-              <div class="small-4 columns text-center"><%= student_check.status %></div>
-              <div class="small-4 columns text-center"><%= student_check.comment || " - " %></div>
-            </div>
+              <%= render 'student_checks', student_check: student_check %>
             <% end %>
           </div>
 
