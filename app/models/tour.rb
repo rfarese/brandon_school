@@ -1,7 +1,8 @@
 class Tour < ActiveRecord::Base
   belongs_to :house
+  belongs_to :selfie
   has_many :student_checks
-  mount_uploader :selfie, SelfieUploader
+  # mount_uploader :selfie, SelfieUploader
   enum status: { incomplete: 0, complete: 1 }
 
   scope :today, -> { includes(:student_checks).where(updated_at: (Time.now - 24.hours)..Time.now) }
@@ -11,9 +12,9 @@ class Tour < ActiveRecord::Base
     where(updated_at: ((Time.parse "11:00 pm") - 24.hours)..Time.now)
   }
 
-  def selfie_pic
-    selfie.file.url
-  end
+  # def selfie_pic
+  #   selfie.file.url
+  # end
 
   def rooms
     house.rooms
