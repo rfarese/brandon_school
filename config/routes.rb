@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :beds
   resources :students
   resources :reports, only: [:index]
+  resources :selfies, only: [:new, :create]
 
   get 'report_filters' => "reports#filters"
   post 'generate_student_checks' => 'student_checks#new'
