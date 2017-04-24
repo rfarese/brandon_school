@@ -1,21 +1,5 @@
 <div class="tours-in-progress-top-container">
-<% @houses.each do |house| %>
-  <%= render 'house', house: house %>
-  <!-- old content here -->
-
-      <% house.tours.each do |tour| %>
-        <%= render 'tour', tour: tour %>
-        <!-- old tour content here -->
-            <% tour.student_checks.each do |student_check| %>
-              <%= render 'student_checks', student_check: student_check %>
-            <% end %>
-          </div>
-
-        </a>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+  <%= render 'update_tours', houses: @houses %>
 </div>
 
 <%= link_to "Download Excel", tours_in_progress_path(format: "xls"), class: "button tours-in-progress-button" %>
