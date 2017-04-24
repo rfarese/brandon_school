@@ -32,10 +32,11 @@ RSpec.describe StudentCheckBuilder, type: :model do
     let(:bed1) { Bed.create(name: "Bed1", room_id: room.id) }
     let(:bed2) { Bed.create(name: "Bed2", room_id: room.id) }
     let(:house) { room.house }
+    let(:selfie) { FactoryGirl.create(:selfie) }
     let(:tour) { Tour.create(
       status: "incomplete",
       house_id: house.id,
-      selfie: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'images', 'photo.jpg'))
+      selfie_id: selfie.id
       )}
     let(:generator) { StudentCheckBuilder.new(tour) }
 

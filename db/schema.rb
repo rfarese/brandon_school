@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408142715) do
+ActiveRecord::Schema.define(version: 20170424185500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,10 @@ ActiveRecord::Schema.define(version: 20170408142715) do
 
   add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
 
+  create_table "selfies", force: :cascade do |t|
+    t.string "image", null: false
+  end
+
   create_table "student_checks", force: :cascade do |t|
     t.string   "status",                      null: false
     t.text     "comment"
@@ -77,11 +81,11 @@ ActiveRecord::Schema.define(version: 20170408142715) do
   end
 
   create_table "tours", force: :cascade do |t|
-    t.string   "selfie",                 null: false
     t.integer  "house_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     default: 0
+    t.integer  "selfie_id"
   end
 
   add_index "tours", ["house_id"], name: "index_tours_on_house_id", using: :btree

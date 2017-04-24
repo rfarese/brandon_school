@@ -18,26 +18,17 @@ $(document).ready(function() {
 
     var request = $.ajax( {
       method: "POST",
-      url: "/selfie_upload",
+      url: "/selfies",
       data: fd,
       processData: false,
       contentType: false
     });
 
-    function showNewTourContainer(data) {
-      $("#new-tour-container").show();
-      $(".container").hide();
-      $("#selfie-header").hide();
-      $("#tour_id").val(data.tour_id);
-    }
-
     request.done(function(data) {
-      if (data.house_status) {
-        console.log("We have a house.");
-      } else {
-        console.log("No house assigned.")
+      console.log(data.errors);
+      if (data.errors === "No errors") {
+        location.href = data.selfie_id + "/tours/new"
       }
-      showNewTourContainer(data);
     });
   });
 });
