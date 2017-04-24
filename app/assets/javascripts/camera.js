@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  if (top.location.pathname === "/tours/new" ) {
+  if (top.location.pathname === "/tours/new" || top.location.pathname === "/selfies/new") {
     // References to all the element we will need.
     var video = document.querySelector('#camera-stream'),
         image = document.querySelector('#snap'),

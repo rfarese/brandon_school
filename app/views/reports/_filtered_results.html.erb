@@ -21,7 +21,7 @@
         <td class="text-center"><%= student_check.status %></td>
         <td class="text-center"><%= student_check.complete? %></td>
         <td class="text-center"><%= student_check.comment %></td>
-        <td class="text-center"><%= image_tag(student_check.tour.selfie_pic, size: "100x100") %></td>
+        <td class="text-center"><%= image_tag(student_check.tour.selfie.image, size: "100x100") %></td>
       </tr>
     <% end %>
   </tbody>

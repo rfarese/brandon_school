@@ -14,7 +14,7 @@
     <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
       <ul class="vertical dropdown menu" data-dropdown-menu>
         <% if user_signed_in? %>
-          <li><%= link_to "New Tour", new_tour_path %></li>
+          <li><%= link_to "New Tour", new_selfie_path %></li>
 
           <% if admin_signed_in? %>
             <li><%= link_to "Tours in Progress", tours_in_progress_path %></li>
@@ -42,7 +42,7 @@
         <%if user_signed_in? %>
         <div>
           <ul class="vertical medium-horizontal menu float-right">
-            <li><%= link_to "New Tour", new_tour_path %></li>
+            <li><%= link_to "New Tour", new_selfie_path %></li>
 
             <% if admin_signed_in? %>
               <li><%= link_to "Tours in Progress", tours_in_progress_path %></li>
