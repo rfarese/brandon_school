@@ -3,6 +3,15 @@ class StudentChecksController < ApplicationController
   before_action :get_current_rooms, only: [:edit, :update]
 
   def edit
+    # what we need here is a query to the database to eager load all the data based on the current tour
+    # tour = Tour.includes(:student_checks, house: [:rooms, :beds]).find(params[:tour_id])
+
+    # find the room that has the qrcode_identifier from the eager loaded rooms
+    # @room = tour.house.rooms.find { |room| room.qrcode_identifier == params[:qrcode_identifier].to_i }
+
+    # find the student_checks from based on the room (they are already based on the tour...)
+    # @student_checks = tour.student_checks.find_all { |student_check| student_check.room_id == @room.id }
+
     @room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
     args = { room_id: @room.id, tour_id: finder_params[:tour_id] }
     @student_checks = StudentCheck.by_room_and_tour(args)
