@@ -1,5 +1,3 @@
-require_relative 'qr_code_image_creator'
-
 class Qrcode < ActiveRecord::Base
   belongs_to :room
   include TmpAide
