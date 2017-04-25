@@ -19,10 +19,6 @@ class Tour < ActiveRecord::Base
     student_checks.where(complete_status: 1).count == house.beds.count
   end
 
-  def current_room_complete?
-    incomplete_student_checks.count == 0
-  end
-
   def incomplete_student_checks
     self.student_checks.where(complete_status: 0)
   end
