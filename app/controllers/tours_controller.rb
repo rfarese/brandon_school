@@ -13,7 +13,8 @@ class ToursController < ApplicationController
     if @tour.save
       @tour.build_student_checks
       flash[:notice] = "Tour successfully started."
-      render new_qrcode_scans_path
+      # render new_qrcode_scans_path
+      render qrcodes_scan_path 
     else
       flash[:notice] = "Tour failed to start."
       render 'new'

@@ -1,9 +1,8 @@
 class StudentChecksController < ApplicationController
-  before_action :get_current_tour, only: [:new, :update, :update_all]
-  before_action :get_current_rooms, only: [:new, :update, :update_all]
+  before_action :get_current_tour, only: [:edit, :update]
+  before_action :get_current_rooms, only: [:edit, :update]
 
-  # this is really an edit method...the student check has already been created
-  def new
+  def edit
     @room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
     args = { room_id: @room.id, tour_id: finder_params[:tour_id] }
     @student_checks = StudentCheck.by_room_and_tour(args)
@@ -13,18 +12,6 @@ class StudentChecksController < ApplicationController
   end
 
   def update
-    student_check = StudentCheck.find(params[:id])
-    current_room = student_check.room
-    student_check.assign_attributes(student_check_params)
-    is_student_check_valid?(student_check)
-    @student_checks = incomplete_student_checks(current_room)
-    @rooms.each do |room|
-      room.complete_checker(current_tour)
-    end
-    room_complete_checker(@student_checks)
-  end
-
-  def update_all
     student_checks_params = params[:student_checks][:student_checks]
 
     student_checks_params.each do |student_check_params|
@@ -73,7 +60,7 @@ class StudentChecksController < ApplicationController
 
   def scan_next_qrcode
     flash[:notice] = "Scan Next QR Code"
-    render 'qrcode_scans/new'
+    render qrcodes_scan_path
   end
 
   def room_complete_checker(student_checks)
