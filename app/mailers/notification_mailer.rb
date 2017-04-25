@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "\"No New Tours\" <no-reply@example.com>"
+  default from: "\"Brandon School IT\" <no-reply@example.com>"
 
   def new_notification(house_name)
     @house_name = house_name
