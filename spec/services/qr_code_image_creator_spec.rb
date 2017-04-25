@@ -1,17 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe QrCodeImageCreator, type: :model do
-  let(:room) { FactoryGirl.create(:room) }
+  let(:image_creator) { QrCodeImageCreator.new("10") }
 
   describe "#build_image" do
-    it "builds a QR code image" do
-      room.qrcode_identifier = room.generate_qrcode_identifier
-      room.save
+    it "builds a QR code image with the RQRCode module" do
+      image_creator.build_image
 
-      qrcode = QrCodeImageCreator.new(room.qrcode_identifier.to_s)
-      qrcode.build_image
-
-      expect(qrcode.identifier).to eq(room.qrcode_identifier.to_s)
+      expect(image_creator.image.class.name).to eq("RQRCode::QRCode")
     end
   end
 end

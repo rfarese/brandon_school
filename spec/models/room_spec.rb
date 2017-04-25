@@ -8,12 +8,4 @@ RSpec.describe Room, type: :model do
   it { should have_many(:beds) }
 
   let(:room) { FactoryGirl.create(:room) }
-
-  describe "#create_new_qr_code" do
-    it 'creates a new qrcode for the room' do
-      room.create_new_qr_code
-
-      expect(room).to respond_to(:qrcode)
-    end
-  end
 end

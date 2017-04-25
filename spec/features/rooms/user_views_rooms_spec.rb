@@ -4,8 +4,10 @@ RSpec.feature "User views all rooms;", type: :feature do
   let(:permission) { FactoryGirl.create(:permission) }
   let(:user) { permission.user }
   let(:house) { permission.house }
-  let(:room)  { FactoryGirl.create(:room, house_id: house.id) }
-  let(:room2) { FactoryGirl.create(:room, house_id: house.id) }
+  let(:qrcode) { FactoryGirl.create(:qrcode) }
+  let(:qrcode2) { FactoryGirl.create(:qrcode) }
+  let(:room)  { qrcode.room }
+  let(:room2) { qrcode2.room }
 
   def sign_in_and_navigate_to_rooms_index
     user.role = "admin"
@@ -18,7 +20,7 @@ RSpec.feature "User views all rooms;", type: :feature do
 
   def create_rooms(num)
     num.times do
-      FactoryGirl.create(:room)
+      FactoryGirl.create(:qrcode)
     end
   end
 
