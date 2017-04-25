@@ -6,8 +6,6 @@ class House < ActiveRecord::Base
   has_many :beds, dependent: :destroy
   validates :name, presence: true
 
-  # I really feel like this should just be on the Tour model
-  # and we should just includes(:house) for the scope on the Tour model...
   scope :tours_today, -> { includes(:tours).joins(:tours).merge(Tour.today) }
 
   def self.to_csv(options = {})
