@@ -8,11 +8,13 @@ class LastNightsToursReport
   end
 
   def start_time
-    Time.zone.parse "8:50 am"
+    Time.zone.parse "2:50 pm"
+    # Time.zone.parse "8:50 am"
   end
 
   def end_time
-    Time.zone.parse "9:10 am"
+    Time.zone.parse "3:10 pm"
+    # Time.zone.parse "9:10 am"
   end
 
   def right_time?
