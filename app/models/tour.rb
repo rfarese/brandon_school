@@ -15,6 +15,10 @@ class Tour < ActiveRecord::Base
     house.rooms
   end
 
+  def beds
+    house.beds 
+  end
+
   def complete?
     student_checks.where(complete_status: 1).count == house.beds.count
   end

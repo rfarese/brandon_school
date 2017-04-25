@@ -11,9 +11,10 @@ class ToursController < ApplicationController
     @tour.selfie = @selfie
 
     if @tour.save
+      @tour = Tour.includes(house: [:rooms, :beds]).find(@tour.id)
       @tour.build_student_checks
       flash[:notice] = "Tour successfully started."
-      render qrcodes_scan_path 
+      render qrcodes_scan_path
     else
       flash[:notice] = "Tour failed to start."
       render 'new'
