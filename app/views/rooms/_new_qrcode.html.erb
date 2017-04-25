@@ -1,4 +1,4 @@
 <%= simple_form_for :qrcode, url: new_qrcode_path do |f| %>
-  <%= f.hidden_field :identifier, :value => @room.qrcode_identifier %>
+  <%= f.hidden_field :identifier, :value => room.qrcode_identifier %>
   <%= f.button :submit, value: "Replace Existing QR Code" %>
 <% end %>

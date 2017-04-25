@@ -1,5 +1,5 @@
-<%= simple_form_for @room do |f| %>
-  <%= f.input :house_id, collection: @houses %>
+<%= simple_form_for room do |f| %>
+  <%= f.input :house_id, collection: houses %>
   <%= f.input :name %>
 
   <%= f.button :submit, value: "Submit" %>
