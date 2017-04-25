@@ -13,9 +13,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    @room.qrcode_identifier = @room.generate_qrcode_identifier
+    @room.qrcode_identifier = generate_qrcode_identifier
 
     if @room.save
+      QrcodeCreator.new(@room).generate
       flash[:notice] = "A room was successfully created."
       redirect_to rooms_path
     else
@@ -59,5 +60,10 @@ class RoomsController < ApplicationController
   private
   def room_params
     params.require(:room).permit(:name, :house_id)
+  end
+
+  def generate_qrcode_identifier
+    num = Room.maximum(:qrcode_identifier) || 1
+    num + 1
   end
 end

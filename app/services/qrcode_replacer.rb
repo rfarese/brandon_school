@@ -1,8 +1,10 @@
 class QrcodeReplacer
-  attr_reader :room
+  attr_reader :room, :qrcode
+  include QrcodeAssistant
 
   def initialize(room)
     @room = room
+    @qrcode = Qrcode.new
   end
 
   def replace
@@ -12,16 +14,15 @@ class QrcodeReplacer
     save_room
   end
 
-  def replace_qrcode_identifier
-    room.qrcode_identifier = room.generate_qrcode_identifier
-  end
-
   def delete_current_qrcode
     room.qrcode.destroy
   end
 
   def create_new_qr_code
-    room.create_new_qr_code
+    assign_room_id
+    build_qrcode_image
+    save_qrcode
+    bind_qrcode_to_room
   end
 
   def save_room
