@@ -1,5 +1,4 @@
 require 'rails_helper'
-require_relative '../../app/models/qr_code_image_creator'
 
 RSpec.describe QrCodeImageCreator, type: :model do
   let(:room) { FactoryGirl.create(:room) }
