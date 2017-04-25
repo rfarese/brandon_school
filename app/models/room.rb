@@ -2,12 +2,12 @@ class Room < ActiveRecord::Base
   attr_accessor :complete
 
   belongs_to :house, counter_cache: true
-  has_many :beds, dependent: :destroy 
+  has_many :beds, dependent: :destroy
   has_many :student_checks
   has_one :qrcode, dependent: :destroy
   validates :name, presence: true
   validates :house_id, presence: true
-  after_save :create_new_qr_code
+  after_create :create_new_qr_code
 
   def create_new_qr_code
     qr_code = Qrcode.new
