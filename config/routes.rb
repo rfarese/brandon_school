@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#index"
-  resource :qrcode_scans, only: [:new]
+  namespace :qrcodes do
+    get 'scan'
+  end
   resources :rooms
-  resources :student_checks, only: [:update]
+  namespace :student_checks do
+    post 'edit'
+    patch 'update'
+  end
+
   resources :houses
   resources :beds
   resources :students
@@ -13,8 +19,6 @@ Rails.application.routes.draw do
   end
 
   get 'report_filters' => "reports#filters"
-  post 'generate_student_checks' => 'student_checks#new'
-  patch 'update_student_checks' => 'student_checks#update_all'
   post 'new_qrcode' => 'rooms#new_qrcode'
   post 'new_notification' => 'notification_emails#new'
   get 'tours_in_progress' => 'tours_in_progress#index'

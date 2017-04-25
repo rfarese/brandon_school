@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def current_tour
-    if params[:action] == "new" && params[:controller] == "student_checks"
+    if params[:action] == "edit" && params[:controller] == "student_checks"
       Tour.find(params[:tour_id])
-    elsif params[:action] == 'update_all' && params[:controller] == 'student_checks'
+    elsif params[:action] == 'update' && params[:controller] == 'student_checks'
       Tour.find(params[:student_checks][:student_checks].first[1][:tour_id])
     else
       Tour.find(params[:student_check][:tour_id])
