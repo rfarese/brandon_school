@@ -11,9 +11,12 @@ task :email_notification => :environment do
 end
 
 desc "Called by the Heroku scheduler for sending tours in progress email"
-task :tours_in_progress_email => :environment do
-  tours_in_progress = ToursInProgressReport.new
-  tours_in_progress.csv_generator
-  tours_in_progress.email_report if tours_in_progress.right_time?
-  tours_in_progress.remove_file
+task :last_nights_tours_report => :environment do
+  generator = LastNightsToursReport.new
+
+  if generator.right_time?
+    generator.csv_generator
+    generator.email_report
+    generator.remove_file
+  end
 end

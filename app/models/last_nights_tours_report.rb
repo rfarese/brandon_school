@@ -1,4 +1,4 @@
-class ToursInProgressReport
+class LastNightsToursReport
   attr_reader :tours, :report
   include TimeChecker
   include TmpAide
@@ -8,7 +8,8 @@ class ToursInProgressReport
   end
 
   def start_time
-    Time.zone.parse "8:55 am"
+    Time.zone.parse "4:05 am"
+    # Time.zone.parse "8:55 am"
   end
 
   def end_time
@@ -45,6 +46,6 @@ class ToursInProgressReport
   end
 
   def email_report
-    ToursInProgressMailer.new_report.deliver_later
+    LastNightsToursReportMailer.new_report.deliver_later
   end
 end
