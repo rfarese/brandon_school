@@ -1,6 +1,5 @@
 class Qrcode < ActiveRecord::Base
   belongs_to :room
-  include TmpAide
 
   mount_uploader :image, ImageUploader
 
