@@ -11,12 +11,17 @@ class Tour < ActiveRecord::Base
     where(updated_at: ((Time.parse "11:00 pm") - 24.hours)..Time.now)
   }
 
+  scope :current_tour, -> (tour_id) {
+    includes(:student_checks, house: [:rooms, :beds]).
+    find(tour_id)
+  }
+
   def rooms
     house.rooms
   end
 
   def beds
-    house.beds 
+    house.beds
   end
 
   def complete?
