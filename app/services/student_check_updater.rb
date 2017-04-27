@@ -4,7 +4,8 @@ class StudentCheckUpdater
               :comment, :tour_id, :rooms, :current_room,
               :cached_student_checks, :tour_manager
 
-  def initialize(student_checks_params)
+  def initialize(student_checks_params, tour_id)
+    @tour_id = tour_id
     @student_checks_params = student_checks_params
     @student_checks = []
   end
@@ -17,7 +18,6 @@ class StudentCheckUpdater
     @initials = student_check_params[:initials]
     @status = student_check_params[:status]
     @comment = student_check_params[:comment]
-    @tour_id = student_check_params[:tour_id]
   end
 
   def update_student_check
@@ -34,7 +34,7 @@ class StudentCheckUpdater
   end
 
   def set_cached_student_checks
-    @cached_student_checks = Rails.cache.fetch("tour_manager_cache").current_student_checks
+    @cached_student_checks = Rails.cache.fetch("tour_#{tour_id}_manager_cache").current_student_checks
   end
 
   def add_current_room
@@ -52,17 +52,17 @@ class StudentCheckUpdater
   end
 
   def remove_old_tour_manager_cache
-    Rails.cache.delete("tour_manager_cache")
+    Rails.cache.delete("tour_#{tour_id}_manager_cache")
   end
 
   def add_new_tour_manager_cache
-    Rails.cache.fetch("tour_manager_cache", expires_in: 1.hour) do
+    Rails.cache.fetch("tour_#{tour_id}_manager_cache", expires_in: 1.hour) do
       tour_manager
     end
   end
 
   def set_tour_manager
-    @tour_manager = Rails.cache.fetch("tour_manager_cache")
+    @tour_manager = Rails.cache.fetch("tour_#{tour_id}_manager_cache")
   end
 
   def execute

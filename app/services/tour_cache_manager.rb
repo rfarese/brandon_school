@@ -11,18 +11,18 @@ class TourCacheManager
   end
 
   def exists?
-    # Rails.cache.exist?("tour_#{tour.id}_manager_cache")
-    Rails.cache.exist?("tour_manager_cache")
+    Rails.cache.exist?("tour_#{tour.id}_manager_cache")
+    # Rails.cache.exist?("tour_manager_cache")
   end
 
   def delete_tour_manager
-    # Rails.cache.delete("tour_#{tour.id}_manager_cache")
-    Rails.cache.delete("tour_manager_cache")
+    Rails.cache.delete("tour_#{tour.id}_manager_cache")
+    # Rails.cache.delete("tour_manager_cache")
   end
 
   def fetch_tour_manager_cache
-    @tour_manager = Rails.cache.fetch("tour_manager_cache")
-    # @tour_manager = Rails.cache.fetch("tour_#{tour.id}_manager_cache")
+    # @tour_manager = Rails.cache.fetch("tour_manager_cache")
+    @tour_manager = Rails.cache.fetch("tour_#{tour.id}_manager_cache")
     set_qrcode_identifier
   end
 
@@ -41,8 +41,8 @@ class TourCacheManager
   end
 
   def create_tour_manager_cache
-    Rails.cache.fetch("tour_manager_cache", expires_in: 1.hour) do 
-    # Rails.cache.fetch("tour_#{tour.id}_manager_cache", expires_in: 1.hour) do
+    # Rails.cache.fetch("tour_manager_cache", expires_in: 1.hour) do
+    Rails.cache.fetch("tour_#{tour.id}_manager_cache", expires_in: 1.hour) do
       tour_manager
     end
   end

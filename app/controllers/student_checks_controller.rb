@@ -1,6 +1,7 @@
 class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:edit, :update]
   before_action :get_current_rooms, only: [:edit, :update]
+  before_action :get_current_tour_id, only: :update
 
   def edit
     tour_cache_manager = TourCacheManager.new(current_tour, params[:qrcode_identifier].to_i)
@@ -12,9 +13,8 @@ class StudentChecksController < ApplicationController
   end
 
   def update
-    # check and see if you get a tour_id or tour param 
-    binding.pry
-    updater = StudentCheckUpdater.new(student_checks_params)
+    # check and see if you get a tour_id or tour param
+    updater = StudentCheckUpdater.new(student_checks_params, @tour_id)
     updater.execute
     @room = updater.current_room
     @rooms = updater.rooms
@@ -26,6 +26,10 @@ class StudentChecksController < ApplicationController
 
   def student_checks_params
     params[:student_checks][:student_checks].values
+  end
+
+  def get_current_tour_id
+    @tour_id = Rails.cache.fetch("user_#{current_user.id}_current_tour_id")
   end
 
   def get_current_tour
