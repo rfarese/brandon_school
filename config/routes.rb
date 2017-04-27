@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   resources :houses
   resources :beds
-  resources :students
   resources :reports, only: [:index]
 
   resources :selfies, only: [:new, :create] do

@@ -1,38 +1,35 @@
 class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:edit, :update]
   before_action :get_current_rooms, only: [:edit, :update]
+  before_action :get_current_tour_id, only: :update
 
   def edit
-    @room = Room.find_by(qrcode_identifier: finder_params[:qrcode_identifier])
-    args = { room_id: @room.id, tour_id: finder_params[:tour_id] }
-    @student_checks = StudentCheck.by_room_and_tour(args)
-    @rooms.each do |room|
-      room.complete_checker(current_tour)
-    end
+    tour_cache_manager = TourCacheManager.new(current_tour, params[:qrcode_identifier].to_i)
+    tour_cache_manager.execute
+    tour_manager = tour_cache_manager.tour_manager
+    @rooms = tour_manager.rooms
+    @room = tour_manager.current_room
+    @student_checks = tour_manager.current_student_checks
   end
 
   def update
-    student_checks_params = params[:student_checks][:student_checks]
-
-    student_checks_params.each do |student_check_params|
-      student_check_id = student_check_params.first
-      student_check = StudentCheck.find(student_check_id)
-      @current_room ||= student_check.room
-      new_params = student_check_params.last
-      student_check.assign_attributes(initials: new_params[:initials], status: new_params[:status], comment: new_params[:comment])
-      is_student_check_valid?(student_check)
-    end
-    @student_checks = incomplete_student_checks(@current_room)
+    # check and see if you get a tour_id or tour param
+    updater = StudentCheckUpdater.new(student_checks_params, @tour_id)
+    updater.execute
+    @room = updater.current_room
+    @rooms = updater.rooms
+    @student_checks = incomplete_student_checks(@room)
     room_complete_checker(@student_checks)
   end
 
   private
-  def finder_params
-    { qrcode_identifier: params[:qrcode_identifier], tour_id: params[:tour_id] }
+
+  def student_checks_params
+    params[:student_checks][:student_checks].values
   end
 
-  def student_check_params
-    params.require(:student_check).permit(:status, :comment, :initials)
+  def get_current_tour_id
+    @tour_id = Rails.cache.fetch("user_#{current_user.id}_current_tour_id")
   end
 
   def get_current_tour
@@ -46,6 +43,7 @@ class StudentChecksController < ApplicationController
   def tour_complete_check
     if @tour.complete?
       tour_completer
+      delete_tour_manager_cache
       render "homes/index"
     else
       scan_next_qrcode
@@ -67,7 +65,7 @@ class StudentChecksController < ApplicationController
     if student_checks.count == 0
       tour_complete_check
     else
-      render 'new'
+      render 'edit'
     end
   end
 
@@ -81,5 +79,10 @@ class StudentChecksController < ApplicationController
       student_check.complete_status = 1
       student_check.save
     end
+  end
+
+  # tour_manager_cache
+  def delete_tour_manager_cache
+    Rails.cache.delete("tour_manager_cache")
   end
 end

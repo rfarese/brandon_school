@@ -4,9 +4,13 @@
       <div class="small-10 small-centered medium-8 large-6 columns">
         <% @student_checks.each do |student_check| %>
           <%= f.simple_fields_for "student_checks[]", student_check do |sf| %>
+            <%= sf.input :id, as: :hidden, input_html: { value: student_check.id }%>
             <%= sf.input :initials %>
             <%= sf.input :status, as: :select, collection: [['asleep', :asleep], ['awake', :awake], ['bathroom', :bathroom], ['pass', :pass], ['off campus', :off_campus], ['missing', :missing], ['empty', :empty]] %>
             <%= sf.input :comment, as: :text %>
+
+            <!-- NOTE do we need the @tour.id here anymore with the current_tour_id being cached?  -->
+
             <%= sf.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
           <% end %>
           <br>
