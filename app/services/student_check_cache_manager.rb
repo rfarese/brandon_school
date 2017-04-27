@@ -18,9 +18,6 @@ class StudentCheckCacheManager
     # update tour_manager.student_checks with student_checks
       # iterate over the tour_manager.student_checks
         # find the student_check that matches the current tour_manager student_check by id
-        
-    # I don't believe I have to update tour_manager.current_student_checks with student_checks because
-    # the current_student_checks will be switched when TourCacheManager.new is called in #edit
     update_cached_student_checks
   end
 end
