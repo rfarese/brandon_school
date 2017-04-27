@@ -13,7 +13,6 @@ class StudentChecksController < ApplicationController
   end
 
   def update
-    # check and see if you get a tour_id or tour param
     updater = StudentCheckUpdater.new(student_checks_params, @tour_id)
     updater.execute
     @room = updater.current_room
@@ -81,8 +80,7 @@ class StudentChecksController < ApplicationController
     end
   end
 
-  # tour_manager_cache
   def delete_tour_manager_cache
-    Rails.cache.delete("tour_manager_cache")
+    Rails.cache.delete("tour_#{@tour_id}_manager_cache")
   end
 end
