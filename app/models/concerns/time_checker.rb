@@ -1,8 +1,4 @@
 module TimeChecker
-  def current_time
-    set_current_time
-  end
-
   def set_current_time
     set_time_zone
     Time.zone.now

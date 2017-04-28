@@ -5,6 +5,7 @@ class NoNewTourAlert
   def initialize(args={})
     @house_name = args[:house_name]
     @tour = args[:tour]
+    @current_time = set_current_time
   end
 
   def start_time
