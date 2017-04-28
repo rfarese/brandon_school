@@ -5,16 +5,15 @@ class LastNightsToursReport
 
   def initialize()
     @tours = Tour.last_night
+    @current_time = set_current_time
   end
 
   def start_time
-    Time.zone.parse "3:50 pm"
-    # Time.zone.parse "8:50 am"
+    Time.zone.parse "8:50 am"
   end
 
   def end_time
-    Time.zone.parse "4:10 pm"
-    # Time.zone.parse "9:10 am"
+    Time.zone.parse "9:10 am"
   end
 
   def right_time?
