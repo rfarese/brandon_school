@@ -1,5 +1,5 @@
 class LastNightsToursReport
-  attr_reader :tours, :report
+  attr_reader :tours, :report, :current_time
   include TimeChecker
   include TmpAide
 
@@ -9,11 +9,13 @@ class LastNightsToursReport
   end
 
   def start_time
-    Time.zone.parse "8:50 am"
+    Time.zone.parse "9:50 am"
+    # Time.zone.parse "8:50 am"
   end
 
   def end_time
-    Time.zone.parse "9:10 am"
+    Time.zone.parse "10:10 am"
+    # Time.zone.parse "9:10 am"
   end
 
   def right_time?

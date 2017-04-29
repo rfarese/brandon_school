@@ -1,5 +1,5 @@
 class NoNewTourAlert
-  attr_reader :house_name, :tour
+  attr_reader :house_name, :tour, :current_time
   include TimeChecker
 
   def initialize(args={})
@@ -9,11 +9,13 @@ class NoNewTourAlert
   end
 
   def start_time
-    Time.zone.parse "12:25 am"
+    Time.zone.parse "10:20 am"
+    # Time.zone.parse "12:25 am"
   end
 
   def end_time
-    Time.zone.parse "6:35 am"
+    Time.zone.parse "10:40 am"
+    # Time.zone.parse "6:35 am"
   end
 
   def should_send_alert?
