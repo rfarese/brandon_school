@@ -5,7 +5,7 @@ class NotificationMailer < ApplicationMailer
     @house_name = house_name
 
     mail(
-      to: "robertfarese@yahoo.com",
+      to: ["robertfarese@yahoo.com", "onappalertsext@brandonschool.org"],
       subject: "No New Tours for #{house_name}"
     )
   end

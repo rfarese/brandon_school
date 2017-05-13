@@ -4,7 +4,7 @@ class LastNightsToursReportMailer < ApplicationMailer
   def new_report
     attachments['last_nights_tours.csv'] = File.read("./tmp/last_nights_tours.csv")
     mail(
-      to: "robertfarese@yahoo.com",
+      to: ["robertfarese@yahoo.com", "onappreportext@brandonschool.org"],
       subject: "Last Nights Tours Reports"
     )
   end
