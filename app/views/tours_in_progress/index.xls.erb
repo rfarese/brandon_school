@@ -15,7 +15,7 @@
         <tr>
           <td><%= house.name %></td>
           <td><%= tour.created_at.strftime("%b. %d, %Y, %H:%M") %></td>
-          <td><%= tour.status %></td>
+          <td><%= tour_status(tour.status, tour.created_at) %></td>
           <td><%= student_check.initials %></td>
           <td><%= student_check.status %></td>
           <td><%= student_check.comment %></td>
