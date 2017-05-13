@@ -3,7 +3,7 @@ class Room < ActiveRecord::Base
 
   belongs_to :house, counter_cache: true
   has_many :beds, dependent: :destroy
-  has_many :student_checks
+  has_many :student_checks, dependent: :destroy 
   has_one :qrcode, dependent: :destroy
   validates :name, presence: true
   validates :house_id, presence: true
