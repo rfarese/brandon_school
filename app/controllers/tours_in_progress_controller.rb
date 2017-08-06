@@ -1,5 +1,5 @@
 class ToursInProgressController < ApplicationController
-  before_action :authorize_admin
+  before_action :authorize_admin_and_supervisor
 
   def index
     @houses = House.tours_today
