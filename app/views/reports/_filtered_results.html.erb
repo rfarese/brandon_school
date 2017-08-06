@@ -16,7 +16,7 @@
       <tr>
         <td><%= student_check.house.name %></td>
         <td class="text-center"><%= student_check.tour.complete? %></td>
-        <td class="text-center"><%= (student_check.created_at - 5.hours).strftime("%b. %d, %Y, %H:%M") %></td>
+        <td class="text-center"><%= (student_check.created_at - 4.hours).strftime("%b. %d, %Y, %H:%M") %></td>
         <td class="text-center"><%= student_check.initials %></td>
         <td class="text-center"><%= student_check.status %></td>
         <td class="text-center"><%= student_check.complete? %></td>
