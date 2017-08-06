@@ -14,7 +14,7 @@
       <% tour.student_checks.each do |student_check| %>
         <tr>
           <td><%= house.name %></td>
-          <td><%= tour.created_at.strftime("%b. %d, %Y, %H:%M") %></td>
+          <td><%= (tour.created_at - 4.hours).strftime("%b. %d, %Y, %H:%M") %></td>
           <td><%= tour_status(tour.status, tour.created_at) %></td>
           <td><%= student_check.initials %></td>
           <td><%= student_check.status %></td>
