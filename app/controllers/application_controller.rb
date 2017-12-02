@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   helper_method :supervisor_signed_in?
 
   def authorize_admin_and_supervisor
-    if current_user.role != "admin" || current_user.role != "supervisor"
+    if current_user.role == "overnight_staff" 
       flash[:notice] = "ERROR! Page Does Not Exist"
       redirect_to root_path
     end
