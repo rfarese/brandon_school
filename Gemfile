@@ -13,6 +13,7 @@ gem 'fog-aws'
 gem 'rqrcode'
 gem 'kaminari'
 gem 'puma'
+gem 'airbrake'
 
 group :development do
   gem 'bullet'
