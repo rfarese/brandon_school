@@ -5,7 +5,7 @@
     <h2>New Tour</h2>
     <%= simple_form_for [@selfie, @tour] do |f| %>
     <div class="form-fields">
-      <%= f.input :house_id, collection: @houses %>
+      <%= f.input :house_id, collection: @houses, selected: @houses.first %>
       <%= f.hidden_field :status, value: "incomplete" %>
     </div>
       <%= f.button :submit, value: "Create Tour", id: "new-tour-button" %>
