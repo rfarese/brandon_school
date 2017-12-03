@@ -2,10 +2,16 @@
   <div class="small-1 medium-3 large-4 columns"> </div>
 
   <div class="small-10 small-centered medium-6 large-4 columns">
-    <h2>New Tour</h2>
+    <% if current_user.role == "admin" %>
+      <h3>Choose a House</h3>
+    <% end %>
     <%= simple_form_for [@selfie, @tour] do |f| %>
     <div class="form-fields">
-      <%= f.input :house_id, collection: @houses %>
+      <% if current_user.role == "overnight_staff" %>
+        <%= f.hidden_field :house_id, value: @houses.first.id %>
+      <% else %>
+        <%= f.input :house_id, collection: @houses, selected: @houses.first, label: false %>
+      <% end %>
       <%= f.hidden_field :status, value: "incomplete" %>
     </div>
       <%= f.button :submit, value: "Create Tour", id: "new-tour-button" %>
