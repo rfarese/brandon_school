@@ -2,6 +2,7 @@ class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:edit, :update]
   before_action :get_current_rooms, only: [:edit, :update]
   before_action :get_current_tour_id, only: :update
+  before_action :authorize_user
 
   def edit
     tour_cache_manager = TourCacheManager.new(current_tour, params[:qrcode_identifier].to_i)
