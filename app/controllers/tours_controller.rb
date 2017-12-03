@@ -1,4 +1,6 @@
 class ToursController < ApplicationController
+  before_action :authorize_user
+
   def new
     @tour = Tour.new
     @selfie = Selfie.find(params[:selfie_id])
