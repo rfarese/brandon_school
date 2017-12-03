@@ -2,7 +2,7 @@
   <div class="small-1 medium-3 large-4 columns"> </div>
 
   <div class="small-10 small-centered medium-6 large-4 columns">
-    <% if current_user.role == "admin" %>
+    <% if current_user.role == "admin" || current_user.role == "supervisor" %>
       <h3>Choose a House</h3>
     <% end %>
     <%= simple_form_for [@selfie, @tour] do |f| %>
