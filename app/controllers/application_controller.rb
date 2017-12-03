@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_tour
 
+  def authorize_user
+    unless current_user
+      flash[:notice] = "ERROR! Page Does Not Exist"
+      redirect_to root_path
+    end
+  end
+  helper_method :authorize_user
+
   def admin_signed_in?
     current_user.role == "admin"
   end
@@ -24,7 +32,7 @@ class ApplicationController < ActionController::Base
   helper_method :supervisor_signed_in?
 
   def authorize_admin_and_supervisor
-    if current_user.role == "overnight_staff" 
+    if current_user.role == "overnight_staff"
       flash[:notice] = "ERROR! Page Does Not Exist"
       redirect_to root_path
     end

@@ -1,4 +1,6 @@
 class QrcodesController < ApplicationController
+  before_action :authorize_user
+
   def scan
   end
 
