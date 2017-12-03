@@ -1,4 +1,6 @@
 class SelfiesController < ApplicationController
+  before_action :authorize_user 
+
   def new
     @selfie = Selfie.new
   end
