@@ -10,6 +10,26 @@ class StudentCheckUpdater
     @student_checks = []
   end
 
+  def execute
+    set_cached_student_checks
+    student_checks_params.each do |student_check_params|
+      @student_check_params = student_check_params
+      find_student_check
+      set_student_check_attributes
+      update_student_check
+      is_student_check_valid?
+      update_tour_manager_cache
+      add_current_room
+      add_rooms
+    end
+  end
+
+  def set_cached_student_checks
+    # the error is coming from here
+    # current_student_checks is an undefined method on nil:NillClass
+    @cached_student_checks = Rails.cache.fetch("tour_#{tour_id}_manager_cache").current_student_checks
+  end
+
   def find_student_check
     @student_check = cached_student_checks.find { |student_check| student_check.id == student_check_params[:id].to_i }
   end
@@ -28,27 +48,27 @@ class StudentCheckUpdater
 
   def is_student_check_valid?
     if student_check.valid?
-      student_check.complete_status = 1
-      student_check.save
+      set_student_check_complete_status
     end
   end
 
-  def set_cached_student_checks
-    @cached_student_checks = Rails.cache.fetch("tour_#{tour_id}_manager_cache").current_student_checks
+  def set_student_check_complete_status
+    student_check.complete_status = 1
+    save_student_check
   end
 
-  def add_current_room
-    @current_room = tour_manager.current_room
-  end
-
-  def add_rooms
-    @rooms = tour_manager.rooms
+  def save_student_check
+    student_check.save
   end
 
   def update_tour_manager_cache
     set_tour_manager
     remove_old_tour_manager_cache
     add_new_tour_manager_cache
+  end
+
+  def set_tour_manager
+    @tour_manager = Rails.cache.fetch("tour_#{tour_id}_manager_cache")
   end
 
   def remove_old_tour_manager_cache
@@ -61,21 +81,11 @@ class StudentCheckUpdater
     end
   end
 
-  def set_tour_manager
-    @tour_manager = Rails.cache.fetch("tour_#{tour_id}_manager_cache")
+  def add_current_room
+    @current_room = tour_manager.current_room
   end
 
-  def execute
-    set_cached_student_checks
-    student_checks_params.each do |student_check_params|
-      @student_check_params = student_check_params
-      find_student_check
-      set_student_check_attributes
-      update_student_check
-      is_student_check_valid?
-      update_tour_manager_cache
-      add_current_room
-      add_rooms
-    end
+  def add_rooms
+    @rooms = tour_manager.rooms
   end
 end
