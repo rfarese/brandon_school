@@ -5,12 +5,20 @@ class StudentChecksController < ApplicationController
   before_action :authorize_user
 
   def edit
-    tour_cache_manager = TourCacheManager.new(current_tour, params[:qrcode_identifier].to_i)
-    tour_cache_manager.execute
-    tour_manager = tour_cache_manager.tour_manager
-    @rooms = tour_manager.rooms
-    @room = tour_manager.current_room
-    @student_checks = tour_manager.current_student_checks
+    valid_identifiers = get_valid_qrcode_identifiers
+    current_identifier = params[:qrcode_identifier].to_i
+
+    if valid_identifiers.include?(current_identifier)
+      tour_cache_manager = TourCacheManager.new(current_tour, current_identifier)
+      tour_cache_manager.execute
+      tour_manager = tour_cache_manager.tour_manager
+      @rooms = tour_manager.rooms
+      @room = tour_manager.current_room
+      @student_checks = tour_manager.current_student_checks
+    else
+      flash.now[:notice] = "The QR Code didn't scan properly. Please try again."
+      render qrcodes_scan_path
+    end
   end
 
   def update
@@ -83,5 +91,13 @@ class StudentChecksController < ApplicationController
 
   def delete_tour_manager_cache
     Rails.cache.delete("tour_#{@tour_id}_manager_cache")
+  end
+
+  def get_valid_qrcode_identifiers
+    valid_identifiers = []
+    @rooms.each do |room|
+      valid_identifiers << room.qrcode_identifier
+    end
+    valid_identifiers
   end
 end
