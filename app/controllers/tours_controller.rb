@@ -16,7 +16,7 @@ class ToursController < ApplicationController
       cache_tour_id
       @tour = Tour.includes(house: [:rooms, :beds]).find(@tour.id)
       @tour.build_student_checks
-      flash[:notice] = "Tour successfully started."
+      flash.now[:notice] = "Tour successfully started."
       render qrcodes_scan_path
     else
       flash[:notice] = "Tour failed to start."
