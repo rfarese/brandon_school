@@ -6,12 +6,18 @@ class TourCacheManager
     @qrcode_identifier = qrcode_identifier
   end
 
-  def exists?
-    Rails.cache.exist?("tour_#{tour.id}_manager_cache")
+  def execute
+    if exists?
+      fetch_tour_manager_cache
+      delete_and_update_cache
+    else
+      new_tour_manager
+      create_tour_manager_cache
+    end
   end
 
-  def delete_tour_manager
-    Rails.cache.delete("tour_#{tour.id}_manager_cache")
+  def exists?
+    Rails.cache.exist?("tour_#{tour.id}_manager_cache")
   end
 
   def fetch_tour_manager_cache
@@ -28,6 +34,10 @@ class TourCacheManager
     tour_manager.organize
   end
 
+  def delete_tour_manager
+    Rails.cache.delete("tour_#{tour.id}_manager_cache")
+  end
+
   def delete_and_update_cache
     delete_tour_manager
     create_tour_manager_cache
@@ -42,15 +52,5 @@ class TourCacheManager
   def new_tour_manager
     @tour_manager = TourManager.new(tour, qrcode_identifier)
     tour_manager.organize
-  end
-
-  def execute
-    if exists?
-      fetch_tour_manager_cache
-      delete_and_update_cache
-    else
-      new_tour_manager
-      create_tour_manager_cache
-    end
   end
 end

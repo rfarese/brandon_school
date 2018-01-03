@@ -1,6 +1,10 @@
 class StudentChecksController < ApplicationController
   before_action :get_current_tour, only: [:edit, :update]
   before_action :get_current_rooms, only: [:edit, :update]
+  # we shouldn't have to get the tour_id for update.  The tour_id is already included in the form submission as a hidden field
+    # remove the get_current_tour_id before_action
+    # change StudentCheckUpdater to only take student_checks_params as a parameter
+    # in StudentCheckUpdater, get the tour_id from the student_checks_params
   before_action :get_current_tour_id, only: :update
   before_action :authorize_user
 
@@ -65,7 +69,7 @@ class StudentChecksController < ApplicationController
   end
 
   def scan_next_qrcode
-    flash[:notice] = "Scan Next QR Code"
+    flash.now[:notice] = "Scan Next QR Code"
     render qrcodes_scan_path
   end
 
