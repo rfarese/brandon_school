@@ -1,11 +1,5 @@
 class StudentChecksController < ApplicationController
-  before_action :get_current_tour, only: [:edit, :update]
-  before_action :get_current_rooms, only: [:edit, :update]
-  # we shouldn't have to get the tour_id for update.  The tour_id is already included in the form submission as a hidden field
-    # remove the get_current_tour_id before_action
-    # change StudentCheckUpdater to only take student_checks_params as a parameter
-    # in StudentCheckUpdater, get the tour_id from the student_checks_params
-  before_action :get_current_tour_id, only: :update
+  before_action :get_tour_and_rooms, only: [:edit, :update]
   before_action :authorize_user
 
   def edit
@@ -13,9 +7,8 @@ class StudentChecksController < ApplicationController
     current_identifier = params[:qrcode_identifier].to_i
 
     if valid_identifiers.include?(current_identifier)
-      tour_cache_manager = TourCacheManager.new(current_tour, current_identifier)
-      tour_cache_manager.execute
-      tour_manager = tour_cache_manager.tour_manager
+      tour_manager = TourManager.new(@tour, current_identifier)
+      tour_manager.organize
       @rooms = tour_manager.rooms
       @room = tour_manager.current_room
       @student_checks = tour_manager.current_student_checks
@@ -26,7 +19,7 @@ class StudentChecksController < ApplicationController
   end
 
   def update
-    updater = StudentCheckUpdater.new(student_checks_params, @tour_id)
+    updater = StudentCheckUpdater.new(student_checks_params, @tour)
     updater.execute
     @room = updater.current_room
     @rooms = updater.rooms
@@ -40,16 +33,9 @@ class StudentChecksController < ApplicationController
     params[:student_checks][:student_checks].values
   end
 
-  def get_current_tour_id
-    @tour_id = Rails.cache.fetch("user_#{current_user.id}_current_tour_id")
-  end
-
-  def get_current_tour
+  def get_tour_and_rooms
     @tour = current_tour
-  end
-
-  def get_current_rooms
-    @rooms = current_tour.rooms
+    @rooms = @tour.rooms
   end
 
   def tour_complete_check
@@ -103,5 +89,9 @@ class StudentChecksController < ApplicationController
       valid_identifiers << room.qrcode_identifier
     end
     valid_identifiers
+  end
+
+  def get_qrcode_identifier
+    params[:student_checks][:student_checks].values.first[:qrcode_identifier]
   end
 end
