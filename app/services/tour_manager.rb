@@ -13,14 +13,10 @@ class TourManager
   end
 
   def organize
-    @current_room = room_with_qrcode_identifier
+    @current_room = Room.find_by(qrcode_identifier: qrcode_identifier)
     create_current_beds
     create_current_student_checks
     set_rooms_complete_status
-  end
-
-  def room_with_qrcode_identifier
-    rooms.find { |room| room.qrcode_identifier == qrcode_identifier }
   end
 
   def create_current_beds

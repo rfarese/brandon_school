@@ -8,10 +8,8 @@
             <%= sf.input :initials %>
             <%= sf.input :status, as: :select, collection: [['asleep', :asleep], ['awake', :awake], ['bathroom', :bathroom], ['pass', :pass], ['off campus', :off_campus], ['missing', :missing], ['empty', :empty]] %>
             <%= sf.input :comment, as: :text %>
-
-            <!-- NOTE do we need the @tour.id here anymore with the current_tour_id being cached?  -->
-
             <%= sf.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
+            <%= sf.input :qrcode_identifier, as: :hidden, input_html: { value: student_check.room.qrcode_identifier }%>
           <% end %>
           <br>
           <br>
